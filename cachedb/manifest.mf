@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: ISC
+OpenIDE-Module-Localizing-Bundle: ISC/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

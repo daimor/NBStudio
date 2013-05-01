@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Connections">
+        <attr name="instanceCreate" methodvalue="org.nbstudio.core.Connection"/>
+    </folder>
+        
+<!--    <folder name="Loaders">
+        <folder name="text">
+            <folder name="isc-mac">
+                <folder name="Factories">
+                    <file name="org-nbstudio-core-mac-macDataLoader.instance">
+                        <attr name="position" intvalue="100"/>
+                    </file>
+                </folder>
+            </folder>
+            <folder name="isc-cls">
+                <folder name="Factories">
+                </folder>
+            </folder>
+            <folder name="isc-csp">
+                <folder name="Factories">
+                </folder>
+            </folder>
+            <folder name="isc-inc">
+                <folder name="Factories">
+                </folder>
+            </folder>
+            <folder name="isc-bas">
+                <folder name="Factories">
+                </folder>
+            </folder>
+        </folder>
+    </folder>-->
+    <folder name="Editors">
+        <folder name="text">
+            <folder name="isc-mac">
+                <!--<attr name="displayName" bundlevalue="org.nbstudio.Bundle#text/isc-mac"/>-->
+                <!--<file name="org-nbstudio-core-mac-editorKit.instance"/>-->
+                <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
+                <file name="org-nbstudio-syntax-macParserFactory.instance"/>
+                <file name="org-nbstudio-syntax-macSyntaxErrorsHighlightingTaskFactory.instance"/>
+                <file name="language.instance">
+                    <attr name="instanceCreate" methodvalue="org.nbstudio.syntax.utils.ANTLRTokenId.getLanguage"/>
+                    <attr name="instanceOf" stringvalue="org.netbeans.api.lexer.Language"/>
+                </file>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
+                <folder name="FontsColors">
+                    <folder name="NetBeans">
+                        <folder name="Defaults">
+                            <file name="SyntaxColors.xml" url="SyntaxColors.xml">
+                                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
+                </folder>
+            </folder>
+            <folder name="isc-cls">
+                <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
+            </folder>
+            <folder name="isc-bas">
+                <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
+            </folder>
+            <folder name="isc-csp">
+                <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
+            </folder>
+            <folder name="isc-inc">
+                <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
+            </folder>
+        </folder>
+    </folder>
+    <!--    <folder name="OptionsDialog">
+        <folder name="PreviewExamples">
+            <folder name="text">
+                <file name="isc-mac" url="macExample.mac"/>
+            </folder>
+        </folder>
+    </folder>    -->
+</filesystem>
