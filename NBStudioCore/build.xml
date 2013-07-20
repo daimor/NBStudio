@@ -5,4 +5,42 @@
 <project name="org.nbstudio.core" default="netbeans" basedir=".">
     <description>Builds, tests, and runs the project org.nbstudio.core.</description>
     <import file="nbproject/build-impl.xml"/>
+
+    <target name="-getAntContrib">
+        <fileset id="ant-contrib-jar" dir="${suite.dir}/tools/">
+            <include name="ant-contrib-*.jar" />
+        </fileset>
+        <pathconvert property="ant-contrib-jar" refid="ant-contrib-jar" pathsep="," />
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+            <classpath>
+                <pathelement location="${ant-contrib-jar}"/>
+            </classpath>
+        </taskdef>
+    </target>
+
+    <target name="build-init" depends="-getAntContrib,harness.build-init">
+        <echo level="info">generating java for grammar files</echo>
+        <!-- antlr.tool jar file -->
+        <pathconvert property="antlr.tool.src">
+            <fileset dir="${release.dir}"  >
+                <include name="**/antlr-4.*.jar" />
+            </fileset>
+        </pathconvert>
+        <echo level="info">antlr.tool: ${antlr.tool.src}</echo>
+    
+        <foreach target="antlr" param="theFile">
+            <fileset dir="${src.dir}"  >
+                <include name="**/mac*.g4" />
+            </fileset>
+            <param name="antlr.tool.src" value="${antlr.tool.src}"></param>
+        </foreach>
+    </target>
+    <target name="antlr">
+        <dirname property="fileDir" file="${theFile}"></dirname>
+        <echo level="info">grammar file: ${theFile} </echo>
+        <java jar="${antlr.tool.src}" fork="true" failonerror="true" dir="${fileDir}">
+            <arg line="${theFile}"/>
+        </java>
+    </target>
+
 </project>

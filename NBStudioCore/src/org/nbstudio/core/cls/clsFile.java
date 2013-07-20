@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.nbstudio.core;
+package org.nbstudio.core.cls;
 
 import com.intersys.classes.Dictionary.ClassDefinition;
 import com.intersys.objects.CacheException;
@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Date;
+import org.nbstudio.core.CacheFile;
 import org.nbstudio.utils.Logger;
 import org.openide.util.Exceptions;
 
@@ -21,13 +22,13 @@ import org.openide.util.Exceptions;
  *
  * @author daimor
  */
-public class CacheClass extends CacheFile {
+public class clsFile extends CacheFile {
 
     ClassDefinition cls;
 
-    public CacheClass(Database db, String name) throws CacheException {
+    public clsFile(Database db, String name) throws CacheException {
         super(db, name);
-        cls = (ClassDefinition) ClassDefinition._open(db, new Id(name) );
+        cls = (ClassDefinition) ClassDefinition._open(db, new Id(name));
     }
 
     @Override
@@ -51,8 +52,14 @@ public class CacheClass extends CacheFile {
                 System.out.printf("Include %s\n\n", includes);
             }
             String extend = this.cls.getSuper();
-            System.out.printf("Class %s extends %s\n", this.cls.getName(), extend);
+            System.out.printf("Class %s", this.cls.getName());
+            if (!extend.isEmpty()) {
+                System.out.printf(" extends %s", extend);
+            }
+            System.out.printf("\n");
             System.out.println("{\n");
+
+
             System.out.println("\n}");
 
         } catch (Exception ex) {

@@ -22,8 +22,11 @@ class macEditorLexer implements Lexer<ANTLRTokenId> {
 
     public macEditorLexer(LexerRestartInfo<ANTLRTokenId> info) {
         this.info = info;
-        ANTLRCharStream charStream = new ANTLRCharStream(info.input(), "macEditor", true);
+        ANTLRCharStream charStream = new ANTLRCharStream(info.input(), "macEditor");
         lexer = new macLexer(charStream);
+        macLexer.lexerState state = (macLexer.lexerState) info.state();
+        
+        lexer.setLexerState((macLexer.lexerState) info.state());
     }
 
     @Override
@@ -44,7 +47,8 @@ class macEditorLexer implements Lexer<ANTLRTokenId> {
 
     @Override
     public Object state() {
-        return null;
+        macLexer.lexerState state = lexer.getLexerState();
+        return state;
     }
 
     @Override

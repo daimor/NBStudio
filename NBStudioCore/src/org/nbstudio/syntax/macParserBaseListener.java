@@ -1,331 +1,1406 @@
-// Generated from macParser.g4 by ANTLR 4.0
+// Generated from /mnt/disk3/NetBeansProjects/NBStudio/NBStudioCore/src/org/nbstudio/syntax/macParser.g4 by ANTLR 4.1
 
     package org.nbstudio.syntax; 
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.TerminalNode;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
+/**
+ * This class provides an empty implementation of {@link macParserListener},
+ * which can be extended to create a listener which only needs to handle a subset
+ * of the available methods.
+ */
 public class macParserBaseListener implements macParserListener {
-	@Override public void enterMergeCommand(macParser.MergeCommandContext ctx) { }
-	@Override public void exitMergeCommand(macParser.MergeCommandContext ctx) { }
-
-	@Override public void enterZprintCommand(macParser.ZprintCommandContext ctx) { }
-	@Override public void exitZprintCommand(macParser.ZprintCommandContext ctx) { }
-
-	@Override public void enterElseifCommand(macParser.ElseifCommandContext ctx) { }
-	@Override public void exitElseifCommand(macParser.ElseifCommandContext ctx) { }
-
-	@Override public void enterZzdumpStatement(macParser.ZzdumpStatementContext ctx) { }
-	@Override public void exitZzdumpStatement(macParser.ZzdumpStatementContext ctx) { }
-
-	@Override public void enterNewStatement(macParser.NewStatementContext ctx) { }
-	@Override public void exitNewStatement(macParser.NewStatementContext ctx) { }
-
-	@Override public void enterSetStatement(macParser.SetStatementContext ctx) { }
-	@Override public void exitSetStatement(macParser.SetStatementContext ctx) { }
-
-	@Override public void enterMergeArgument(macParser.MergeArgumentContext ctx) { }
-	@Override public void exitMergeArgument(macParser.MergeArgumentContext ctx) { }
-
-	@Override public void enterZwriteCommand(macParser.ZwriteCommandContext ctx) { }
-	@Override public void exitZwriteCommand(macParser.ZwriteCommandContext ctx) { }
-
-	@Override public void enterSimpleStatement(macParser.SimpleStatementContext ctx) { }
-	@Override public void exitSimpleStatement(macParser.SimpleStatementContext ctx) { }
-
-	@Override public void enterOpenStatement(macParser.OpenStatementContext ctx) { }
-	@Override public void exitOpenStatement(macParser.OpenStatementContext ctx) { }
-
-	@Override public void enterOpenCommand(macParser.OpenCommandContext ctx) { }
-	@Override public void exitOpenCommand(macParser.OpenCommandContext ctx) { }
-
-	@Override public void enterCloseStatement(macParser.CloseStatementContext ctx) { }
-	@Override public void exitCloseStatement(macParser.CloseStatementContext ctx) { }
-
-	@Override public void enterZloadCommand(macParser.ZloadCommandContext ctx) { }
-	@Override public void exitZloadCommand(macParser.ZloadCommandContext ctx) { }
-
-	@Override public void enterDoCommand(macParser.DoCommandContext ctx) { }
-	@Override public void exitDoCommand(macParser.DoCommandContext ctx) { }
-
-	@Override public void enterWhileCommand(macParser.WhileCommandContext ctx) { }
-	@Override public void exitWhileCommand(macParser.WhileCommandContext ctx) { }
-
-	@Override public void enterIfCommand(macParser.IfCommandContext ctx) { }
-	@Override public void exitIfCommand(macParser.IfCommandContext ctx) { }
-
-	@Override public void enterSetCommand(macParser.SetCommandContext ctx) { }
-	@Override public void exitSetCommand(macParser.SetCommandContext ctx) { }
-
-	@Override public void enterHaltCommand(macParser.HaltCommandContext ctx) { }
-	@Override public void exitHaltCommand(macParser.HaltCommandContext ctx) { }
-
-	@Override public void enterViewCommand(macParser.ViewCommandContext ctx) { }
-	@Override public void exitViewCommand(macParser.ViewCommandContext ctx) { }
-
-	@Override public void enterDoRoutine(macParser.DoRoutineContext ctx) { }
-	@Override public void exitDoRoutine(macParser.DoRoutineContext ctx) { }
-
-	@Override public void enterWriteStatement(macParser.WriteStatementContext ctx) { }
-	@Override public void exitWriteStatement(macParser.WriteStatementContext ctx) { }
-
-	@Override public void enterZkillCommand(macParser.ZkillCommandContext ctx) { }
-	@Override public void exitZkillCommand(macParser.ZkillCommandContext ctx) { }
-
-	@Override public void enterPc(macParser.PcContext ctx) { }
-	@Override public void exitPc(macParser.PcContext ctx) { }
-
-	@Override public void enterLockArgument2(macParser.LockArgument2Context ctx) { }
-	@Override public void exitLockArgument2(macParser.LockArgument2Context ctx) { }
-
-	@Override public void enterReadCommand(macParser.ReadCommandContext ctx) { }
-	@Override public void exitReadCommand(macParser.ReadCommandContext ctx) { }
-
-	@Override public void enterLockStatement(macParser.LockStatementContext ctx) { }
-	@Override public void exitLockStatement(macParser.LockStatementContext ctx) { }
-
-	@Override public void enterBreakStatement(macParser.BreakStatementContext ctx) { }
-	@Override public void exitBreakStatement(macParser.BreakStatementContext ctx) { }
-
-	@Override public void enterLockCommand(macParser.LockCommandContext ctx) { }
-	@Override public void exitLockCommand(macParser.LockCommandContext ctx) { }
-
-	@Override public void enterForCommand(macParser.ForCommandContext ctx) { }
-	@Override public void exitForCommand(macParser.ForCommandContext ctx) { }
-
-	@Override public void enterTrollbackCommand(macParser.TrollbackCommandContext ctx) { }
-	@Override public void exitTrollbackCommand(macParser.TrollbackCommandContext ctx) { }
-
-	@Override public void enterElseCommand1(macParser.ElseCommand1Context ctx) { }
-	@Override public void exitElseCommand1(macParser.ElseCommand1Context ctx) { }
-
-	@Override public void enterForStatement(macParser.ForStatementContext ctx) { }
-	@Override public void exitForStatement(macParser.ForStatementContext ctx) { }
-
-	@Override public void enterElseStatement(macParser.ElseStatementContext ctx) { }
-	@Override public void exitElseStatement(macParser.ElseStatementContext ctx) { }
-
-	@Override public void enterSetArgument(macParser.SetArgumentContext ctx) { }
-	@Override public void exitSetArgument(macParser.SetArgumentContext ctx) { }
-
-	@Override public void enterKillCommand(macParser.KillCommandContext ctx) { }
-	@Override public void exitKillCommand(macParser.KillCommandContext ctx) { }
-
-	@Override public void enterTcommitCommand(macParser.TcommitCommandContext ctx) { }
-	@Override public void exitTcommitCommand(macParser.TcommitCommandContext ctx) { }
-
-	@Override public void enterProg(macParser.ProgContext ctx) { }
-	@Override public void exitProg(macParser.ProgContext ctx) { }
-
-	@Override public void enterCloseCommand(macParser.CloseCommandContext ctx) { }
-	@Override public void exitCloseCommand(macParser.CloseCommandContext ctx) { }
-
-	@Override public void enterForExpression(macParser.ForExpressionContext ctx) { }
-	@Override public void exitForExpression(macParser.ForExpressionContext ctx) { }
-
-	@Override public void enterContinueCommand(macParser.ContinueCommandContext ctx) { }
-	@Override public void exitContinueCommand(macParser.ContinueCommandContext ctx) { }
-
-	@Override public void enterArguments(macParser.ArgumentsContext ctx) { }
-	@Override public void exitArguments(macParser.ArgumentsContext ctx) { }
-
-	@Override public void enterUseCommand(macParser.UseCommandContext ctx) { }
-	@Override public void exitUseCommand(macParser.UseCommandContext ctx) { }
-
-	@Override public void enterPrintCommand(macParser.PrintCommandContext ctx) { }
-	@Override public void exitPrintCommand(macParser.PrintCommandContext ctx) { }
-
-	@Override public void enterZtrapCommand(macParser.ZtrapCommandContext ctx) { }
-	@Override public void exitZtrapCommand(macParser.ZtrapCommandContext ctx) { }
-
-	@Override public void enterColonExpression(macParser.ColonExpressionContext ctx) { }
-	@Override public void exitColonExpression(macParser.ColonExpressionContext ctx) { }
-
-	@Override public void enterJobProcessParams(macParser.JobProcessParamsContext ctx) { }
-	@Override public void exitJobProcessParams(macParser.JobProcessParamsContext ctx) { }
-
-	@Override public void enterJobStatement(macParser.JobStatementContext ctx) { }
-	@Override public void exitJobStatement(macParser.JobStatementContext ctx) { }
-
-	@Override public void enterElseCommand2(macParser.ElseCommand2Context ctx) { }
-	@Override public void exitElseCommand2(macParser.ElseCommand2Context ctx) { }
-
-	@Override public void enterGotoStatement(macParser.GotoStatementContext ctx) { }
-	@Override public void exitGotoStatement(macParser.GotoStatementContext ctx) { }
-
-	@Override public void enterVariable(macParser.VariableContext ctx) { }
-	@Override public void exitVariable(macParser.VariableContext ctx) { }
-
-	@Override public void enterComments(macParser.CommentsContext ctx) { }
-	@Override public void exitComments(macParser.CommentsContext ctx) { }
-
-	@Override public void enterZnspaceCommand(macParser.ZnspaceCommandContext ctx) { }
-	@Override public void exitZnspaceCommand(macParser.ZnspaceCommandContext ctx) { }
-
-	@Override public void enterExpression(macParser.ExpressionContext ctx) { }
-	@Override public void exitExpression(macParser.ExpressionContext ctx) { }
-
-	@Override public void enterLabelDef(macParser.LabelDefContext ctx) { }
-	@Override public void exitLabelDef(macParser.LabelDefContext ctx) { }
-
-	@Override public void enterZsaveCommand(macParser.ZsaveCommandContext ctx) { }
-	@Override public void exitZsaveCommand(macParser.ZsaveCommandContext ctx) { }
-
-	@Override public void enterReadStatement(macParser.ReadStatementContext ctx) { }
-	@Override public void exitReadStatement(macParser.ReadStatementContext ctx) { }
-
-	@Override public void enterXecuteStatement(macParser.XecuteStatementContext ctx) { }
-	@Override public void exitXecuteStatement(macParser.XecuteStatementContext ctx) { }
-
-	@Override public void enterLabelParameter(macParser.LabelParameterContext ctx) { }
-	@Override public void exitLabelParameter(macParser.LabelParameterContext ctx) { }
-
-	@Override public void enterMergeStatement(macParser.MergeStatementContext ctx) { }
-	@Override public void exitMergeStatement(macParser.MergeStatementContext ctx) { }
-
-	@Override public void enterKillStatement(macParser.KillStatementContext ctx) { }
-	@Override public void exitKillStatement(macParser.KillStatementContext ctx) { }
-
-	@Override public void enterZremoveCommand(macParser.ZremoveCommandContext ctx) { }
-	@Override public void exitZremoveCommand(macParser.ZremoveCommandContext ctx) { }
-
-	@Override public void enterZkillStatement(macParser.ZkillStatementContext ctx) { }
-	@Override public void exitZkillStatement(macParser.ZkillStatementContext ctx) { }
-
-	@Override public void enterDoArgument(macParser.DoArgumentContext ctx) { }
-	@Override public void exitDoArgument(macParser.DoArgumentContext ctx) { }
-
-	@Override public void enterHangCommand(macParser.HangCommandContext ctx) { }
-	@Override public void exitHangCommand(macParser.HangCommandContext ctx) { }
-
-	@Override public void enterZzdumpCommand(macParser.ZzdumpCommandContext ctx) { }
-	@Override public void exitZzdumpCommand(macParser.ZzdumpCommandContext ctx) { }
-
-	@Override public void enterGotoCommand(macParser.GotoCommandContext ctx) { }
-	@Override public void exitGotoCommand(macParser.GotoCommandContext ctx) { }
-
-	@Override public void enterHangStatement(macParser.HangStatementContext ctx) { }
-	@Override public void exitHangStatement(macParser.HangStatementContext ctx) { }
-
-	@Override public void enterCondition(macParser.ConditionContext ctx) { }
-	@Override public void exitCondition(macParser.ConditionContext ctx) { }
-
-	@Override public void enterBreakCommand(macParser.BreakCommandContext ctx) { }
-	@Override public void exitBreakCommand(macParser.BreakCommandContext ctx) { }
-
-	@Override public void enterPrintStatement(macParser.PrintStatementContext ctx) { }
-	@Override public void exitPrintStatement(macParser.PrintStatementContext ctx) { }
-
-	@Override public void enterStatement(macParser.StatementContext ctx) { }
-	@Override public void exitStatement(macParser.StatementContext ctx) { }
-
-	@Override public void enterZwriteStatement(macParser.ZwriteStatementContext ctx) { }
-	@Override public void exitZwriteStatement(macParser.ZwriteStatementContext ctx) { }
-
-	@Override public void enterQuitCommand(macParser.QuitCommandContext ctx) { }
-	@Override public void exitQuitCommand(macParser.QuitCommandContext ctx) { }
-
-	@Override public void enterTryCommand(macParser.TryCommandContext ctx) { }
-	@Override public void exitTryCommand(macParser.TryCommandContext ctx) { }
-
-	@Override public void enterGlobalVariable(macParser.GlobalVariableContext ctx) { }
-	@Override public void exitGlobalVariable(macParser.GlobalVariableContext ctx) { }
-
-	@Override public void enterDoClass(macParser.DoClassContext ctx) { }
-	@Override public void exitDoClass(macParser.DoClassContext ctx) { }
-
-	@Override public void enterViewStatement(macParser.ViewStatementContext ctx) { }
-	@Override public void exitViewStatement(macParser.ViewStatementContext ctx) { }
-
-	@Override public void enterJobCommand(macParser.JobCommandContext ctx) { }
-	@Override public void exitJobCommand(macParser.JobCommandContext ctx) { }
-
-	@Override public void enterSystemFunction(macParser.SystemFunctionContext ctx) { }
-	@Override public void exitSystemFunction(macParser.SystemFunctionContext ctx) { }
-
-	@Override public void enterSimpleExpression(macParser.SimpleExpressionContext ctx) { }
-	@Override public void exitSimpleExpression(macParser.SimpleExpressionContext ctx) { }
-
-	@Override public void enterCatchCommand(macParser.CatchCommandContext ctx) { }
-	@Override public void exitCatchCommand(macParser.CatchCommandContext ctx) { }
-
-	@Override public void enterLocalVariable(macParser.LocalVariableContext ctx) { }
-	@Override public void exitLocalVariable(macParser.LocalVariableContext ctx) { }
-
-	@Override public void enterBlockStatement(macParser.BlockStatementContext ctx) { }
-	@Override public void exitBlockStatement(macParser.BlockStatementContext ctx) { }
-
-	@Override public void enterXeceuteArgument(macParser.XeceuteArgumentContext ctx) { }
-	@Override public void exitXeceuteArgument(macParser.XeceuteArgumentContext ctx) { }
-
-	@Override public void enterZinsertCommand(macParser.ZinsertCommandContext ctx) { }
-	@Override public void exitZinsertCommand(macParser.ZinsertCommandContext ctx) { }
-
-	@Override public void enterJobArgument(macParser.JobArgumentContext ctx) { }
-	@Override public void exitJobArgument(macParser.JobArgumentContext ctx) { }
-
-	@Override public void enterTryStatement(macParser.TryStatementContext ctx) { }
-	@Override public void exitTryStatement(macParser.TryStatementContext ctx) { }
-
-	@Override public void enterXecuteCommand(macParser.XecuteCommandContext ctx) { }
-	@Override public void exitXecuteCommand(macParser.XecuteCommandContext ctx) { }
-
-	@Override public void enterZbreakCommand(macParser.ZbreakCommandContext ctx) { }
-	@Override public void exitZbreakCommand(macParser.ZbreakCommandContext ctx) { }
-
-	@Override public void enterDoStatement(macParser.DoStatementContext ctx) { }
-	@Override public void exitDoStatement(macParser.DoStatementContext ctx) { }
-
-	@Override public void enterWriteArgument(macParser.WriteArgumentContext ctx) { }
-	@Override public void exitWriteArgument(macParser.WriteArgumentContext ctx) { }
-
-	@Override public void enterKillArgument(macParser.KillArgumentContext ctx) { }
-	@Override public void exitKillArgument(macParser.KillArgumentContext ctx) { }
-
-	@Override public void enterNewCommand(macParser.NewCommandContext ctx) { }
-	@Override public void exitNewCommand(macParser.NewCommandContext ctx) { }
-
-	@Override public void enterReadArgument(macParser.ReadArgumentContext ctx) { }
-	@Override public void exitReadArgument(macParser.ReadArgumentContext ctx) { }
-
-	@Override public void enterLockArgument(macParser.LockArgumentContext ctx) { }
-	@Override public void exitLockArgument(macParser.LockArgumentContext ctx) { }
-
-	@Override public void enterCatchStatement(macParser.CatchStatementContext ctx) { }
-	@Override public void exitCatchStatement(macParser.CatchStatementContext ctx) { }
-
-	@Override public void enterWriteCommand(macParser.WriteCommandContext ctx) { }
-	@Override public void exitWriteCommand(macParser.WriteCommandContext ctx) { }
-
-	@Override public void enterIfStatement(macParser.IfStatementContext ctx) { }
-	@Override public void exitIfStatement(macParser.IfStatementContext ctx) { }
-
-	@Override public void enterTstartCommand(macParser.TstartCommandContext ctx) { }
-	@Override public void exitTstartCommand(macParser.TstartCommandContext ctx) { }
-
-	@Override public void enterLocalVariableList(macParser.LocalVariableListContext ctx) { }
-	@Override public void exitLocalVariableList(macParser.LocalVariableListContext ctx) { }
-
-	@Override public void enterZbreakStatement(macParser.ZbreakStatementContext ctx) { }
-	@Override public void exitZbreakStatement(macParser.ZbreakStatementContext ctx) { }
-
-	@Override public void enterWhileStatement(macParser.WhileStatementContext ctx) { }
-	@Override public void exitWhileStatement(macParser.WhileStatementContext ctx) { }
-
-	@Override public void enterQuitStatement(macParser.QuitStatementContext ctx) { }
-	@Override public void exitQuitStatement(macParser.QuitStatementContext ctx) { }
-
-	@Override public void enterThrowCommand(macParser.ThrowCommandContext ctx) { }
-	@Override public void exitThrowCommand(macParser.ThrowCommandContext ctx) { }
-
-	@Override public void enterUseStatement(macParser.UseStatementContext ctx) { }
-	@Override public void exitUseStatement(macParser.UseStatementContext ctx) { }
-
-	@Override public void enterEveryRule(ParserRuleContext ctx) { }
-	@Override public void exitEveryRule(ParserRuleContext ctx) { }
-	@Override public void visitTerminal(TerminalNode node) { }
-	@Override public void visitErrorNode(ErrorNode node) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterMergeCommand(@NotNull macParser.MergeCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitMergeCommand(@NotNull macParser.MergeCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZprintCommand(@NotNull macParser.ZprintCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZprintCommand(@NotNull macParser.ZprintCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterElseifCommand(@NotNull macParser.ElseifCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitElseifCommand(@NotNull macParser.ElseifCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZzdumpStatement(@NotNull macParser.ZzdumpStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZzdumpStatement(@NotNull macParser.ZzdumpStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterNewStatement(@NotNull macParser.NewStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitNewStatement(@NotNull macParser.NewStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSetStatement(@NotNull macParser.SetStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSetStatement(@NotNull macParser.SetStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterMergeArgument(@NotNull macParser.MergeArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitMergeArgument(@NotNull macParser.MergeArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZwriteCommand(@NotNull macParser.ZwriteCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZwriteCommand(@NotNull macParser.ZwriteCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSimpleStatement(@NotNull macParser.SimpleStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSimpleStatement(@NotNull macParser.SimpleStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterOpenStatement(@NotNull macParser.OpenStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitOpenStatement(@NotNull macParser.OpenStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterOpenCommand(@NotNull macParser.OpenCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitOpenCommand(@NotNull macParser.OpenCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCloseStatement(@NotNull macParser.CloseStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCloseStatement(@NotNull macParser.CloseStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZloadCommand(@NotNull macParser.ZloadCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZloadCommand(@NotNull macParser.ZloadCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDoCommand(@NotNull macParser.DoCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDoCommand(@NotNull macParser.DoCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWhileCommand(@NotNull macParser.WhileCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWhileCommand(@NotNull macParser.WhileCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIfCommand(@NotNull macParser.IfCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIfCommand(@NotNull macParser.IfCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSetCommand(@NotNull macParser.SetCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSetCommand(@NotNull macParser.SetCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterHaltCommand(@NotNull macParser.HaltCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitHaltCommand(@NotNull macParser.HaltCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterViewCommand(@NotNull macParser.ViewCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitViewCommand(@NotNull macParser.ViewCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDoRoutine(@NotNull macParser.DoRoutineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDoRoutine(@NotNull macParser.DoRoutineContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWriteStatement(@NotNull macParser.WriteStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWriteStatement(@NotNull macParser.WriteStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZkillCommand(@NotNull macParser.ZkillCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZkillCommand(@NotNull macParser.ZkillCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterPc(@NotNull macParser.PcContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitPc(@NotNull macParser.PcContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLockArgument2(@NotNull macParser.LockArgument2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLockArgument2(@NotNull macParser.LockArgument2Context ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterReadCommand(@NotNull macParser.ReadCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReadCommand(@NotNull macParser.ReadCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLockStatement(@NotNull macParser.LockStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLockStatement(@NotNull macParser.LockStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterBreakStatement(@NotNull macParser.BreakStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBreakStatement(@NotNull macParser.BreakStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLockCommand(@NotNull macParser.LockCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLockCommand(@NotNull macParser.LockCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterForCommand(@NotNull macParser.ForCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForCommand(@NotNull macParser.ForCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTrollbackCommand(@NotNull macParser.TrollbackCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTrollbackCommand(@NotNull macParser.TrollbackCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterElseCommand1(@NotNull macParser.ElseCommand1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitElseCommand1(@NotNull macParser.ElseCommand1Context ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterForStatement(@NotNull macParser.ForStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForStatement(@NotNull macParser.ForStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterElseStatement(@NotNull macParser.ElseStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitElseStatement(@NotNull macParser.ElseStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSetArgument(@NotNull macParser.SetArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSetArgument(@NotNull macParser.SetArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterKillCommand(@NotNull macParser.KillCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitKillCommand(@NotNull macParser.KillCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTcommitCommand(@NotNull macParser.TcommitCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTcommitCommand(@NotNull macParser.TcommitCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterProg(@NotNull macParser.ProgContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitProg(@NotNull macParser.ProgContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCloseCommand(@NotNull macParser.CloseCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCloseCommand(@NotNull macParser.CloseCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterForExpression(@NotNull macParser.ForExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForExpression(@NotNull macParser.ForExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterContinueCommand(@NotNull macParser.ContinueCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitContinueCommand(@NotNull macParser.ContinueCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterArguments(@NotNull macParser.ArgumentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitArguments(@NotNull macParser.ArgumentsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterUseCommand(@NotNull macParser.UseCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitUseCommand(@NotNull macParser.UseCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterPrintCommand(@NotNull macParser.PrintCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitPrintCommand(@NotNull macParser.PrintCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterColonExpression(@NotNull macParser.ColonExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitColonExpression(@NotNull macParser.ColonExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterJobProcessParams(@NotNull macParser.JobProcessParamsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitJobProcessParams(@NotNull macParser.JobProcessParamsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterJobStatement(@NotNull macParser.JobStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitJobStatement(@NotNull macParser.JobStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterElseCommand2(@NotNull macParser.ElseCommand2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitElseCommand2(@NotNull macParser.ElseCommand2Context ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterGotoStatement(@NotNull macParser.GotoStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitGotoStatement(@NotNull macParser.GotoStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterVariable(@NotNull macParser.VariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitVariable(@NotNull macParser.VariableContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterComments(@NotNull macParser.CommentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitComments(@NotNull macParser.CommentsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterExpression(@NotNull macParser.ExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExpression(@NotNull macParser.ExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLabelDef(@NotNull macParser.LabelDefContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLabelDef(@NotNull macParser.LabelDefContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZsaveCommand(@NotNull macParser.ZsaveCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZsaveCommand(@NotNull macParser.ZsaveCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterReadStatement(@NotNull macParser.ReadStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReadStatement(@NotNull macParser.ReadStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterXecuteStatement(@NotNull macParser.XecuteStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitXecuteStatement(@NotNull macParser.XecuteStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLabelParameter(@NotNull macParser.LabelParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLabelParameter(@NotNull macParser.LabelParameterContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterMergeStatement(@NotNull macParser.MergeStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitMergeStatement(@NotNull macParser.MergeStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterKillStatement(@NotNull macParser.KillStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitKillStatement(@NotNull macParser.KillStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZremoveCommand(@NotNull macParser.ZremoveCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZremoveCommand(@NotNull macParser.ZremoveCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZkillStatement(@NotNull macParser.ZkillStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZkillStatement(@NotNull macParser.ZkillStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDoArgument(@NotNull macParser.DoArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDoArgument(@NotNull macParser.DoArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterHangCommand(@NotNull macParser.HangCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitHangCommand(@NotNull macParser.HangCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZzdumpCommand(@NotNull macParser.ZzdumpCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZzdumpCommand(@NotNull macParser.ZzdumpCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterGotoCommand(@NotNull macParser.GotoCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitGotoCommand(@NotNull macParser.GotoCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterHangStatement(@NotNull macParser.HangStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitHangStatement(@NotNull macParser.HangStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCondition(@NotNull macParser.ConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCondition(@NotNull macParser.ConditionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterBreakCommand(@NotNull macParser.BreakCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBreakCommand(@NotNull macParser.BreakCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterPrintStatement(@NotNull macParser.PrintStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitPrintStatement(@NotNull macParser.PrintStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterStatement(@NotNull macParser.StatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStatement(@NotNull macParser.StatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZwriteStatement(@NotNull macParser.ZwriteStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZwriteStatement(@NotNull macParser.ZwriteStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterQuitCommand(@NotNull macParser.QuitCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitQuitCommand(@NotNull macParser.QuitCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTryCommand(@NotNull macParser.TryCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTryCommand(@NotNull macParser.TryCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterGlobalVariable(@NotNull macParser.GlobalVariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitGlobalVariable(@NotNull macParser.GlobalVariableContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDoClass(@NotNull macParser.DoClassContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDoClass(@NotNull macParser.DoClassContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterViewStatement(@NotNull macParser.ViewStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitViewStatement(@NotNull macParser.ViewStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterJobCommand(@NotNull macParser.JobCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitJobCommand(@NotNull macParser.JobCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSystemFunction(@NotNull macParser.SystemFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSystemFunction(@NotNull macParser.SystemFunctionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSimpleExpression(@NotNull macParser.SimpleExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSimpleExpression(@NotNull macParser.SimpleExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCatchCommand(@NotNull macParser.CatchCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCatchCommand(@NotNull macParser.CatchCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLocalVariable(@NotNull macParser.LocalVariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLocalVariable(@NotNull macParser.LocalVariableContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterBlockStatement(@NotNull macParser.BlockStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBlockStatement(@NotNull macParser.BlockStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterXeceuteArgument(@NotNull macParser.XeceuteArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitXeceuteArgument(@NotNull macParser.XeceuteArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZinsertCommand(@NotNull macParser.ZinsertCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZinsertCommand(@NotNull macParser.ZinsertCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterJobArgument(@NotNull macParser.JobArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitJobArgument(@NotNull macParser.JobArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTryStatement(@NotNull macParser.TryStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTryStatement(@NotNull macParser.TryStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterXecuteCommand(@NotNull macParser.XecuteCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitXecuteCommand(@NotNull macParser.XecuteCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZbreakCommand(@NotNull macParser.ZbreakCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZbreakCommand(@NotNull macParser.ZbreakCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDoStatement(@NotNull macParser.DoStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDoStatement(@NotNull macParser.DoStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWriteArgument(@NotNull macParser.WriteArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWriteArgument(@NotNull macParser.WriteArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterKillArgument(@NotNull macParser.KillArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitKillArgument(@NotNull macParser.KillArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterNewCommand(@NotNull macParser.NewCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitNewCommand(@NotNull macParser.NewCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterReadArgument(@NotNull macParser.ReadArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReadArgument(@NotNull macParser.ReadArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLockArgument(@NotNull macParser.LockArgumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLockArgument(@NotNull macParser.LockArgumentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCatchStatement(@NotNull macParser.CatchStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCatchStatement(@NotNull macParser.CatchStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWriteCommand(@NotNull macParser.WriteCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWriteCommand(@NotNull macParser.WriteCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIfStatement(@NotNull macParser.IfStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIfStatement(@NotNull macParser.IfStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterTstartCommand(@NotNull macParser.TstartCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitTstartCommand(@NotNull macParser.TstartCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLocalVariableList(@NotNull macParser.LocalVariableListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLocalVariableList(@NotNull macParser.LocalVariableListContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZbreakStatement(@NotNull macParser.ZbreakStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZbreakStatement(@NotNull macParser.ZbreakStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWhileStatement(@NotNull macParser.WhileStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWhileStatement(@NotNull macParser.WhileStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterQuitStatement(@NotNull macParser.QuitStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitQuitStatement(@NotNull macParser.QuitStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterThrowCommand(@NotNull macParser.ThrowCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitThrowCommand(@NotNull macParser.ThrowCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterUseStatement(@NotNull macParser.UseStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitUseStatement(@NotNull macParser.UseStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void visitTerminal(@NotNull TerminalNode node) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void visitErrorNode(@NotNull ErrorNode node) { }
 }

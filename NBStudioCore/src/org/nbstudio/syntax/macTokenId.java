@@ -2,14 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.nbstudio.core.mac;
-
-import java.util.EventListener;
+package org.nbstudio.syntax;
 
 /**
  *
  * @author daimor
  */
-public interface macEventListeren extends EventListener {
+public class macTokenId {
     
 }

@@ -4,7 +4,7 @@
  */
 package org.nbstudio.core;
 
-import org.nbstudio.core.mac.macEventListeren;
+import org.nbstudio.core.mac.macEventListener;
 import org.nbstudio.explorer.RootNode;
 import org.nbstudio.utils.Logger;
 import java.awt.BorderLayout;
@@ -55,7 +55,7 @@ import org.openide.util.NbBundle.Messages;
     "CTL_navigatorTopComponent=Projects",
     "HINT_navigatorTopComponent=Projects"
 })
-public final class navigatorTopComponent extends TopComponent implements ExplorerManager.Provider, macEventListeren {
+public final class navigatorTopComponent extends TopComponent implements ExplorerManager.Provider, macEventListener {
     
     private final ExplorerManager manager = new ExplorerManager();
     

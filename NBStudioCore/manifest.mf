@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 OpenIDE-Module: org.nbstudio.core/1
 OpenIDE-Module-Install: org/nbstudio/core/Installer.class
 OpenIDE-Module-Layer: org/nbstudio/core/layer.xml
-OpenIDE-Module-Localizing-Bundle: org/nbstudio/core/Bundle.properties
+OpenIDE-Module-Localizing-Bundle: org/nbstudio/Bundle.properties
 OpenIDE-Module-Requires: org.openide.windows.WindowManager
 OpenIDE-Module-Specification-Version: 1.0
 

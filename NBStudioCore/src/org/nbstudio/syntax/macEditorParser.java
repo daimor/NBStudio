@@ -15,6 +15,7 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
 import org.nbstudio.syntax.macParser.ProgContext;
+import org.nbstudio.utils.Logger;
 import org.netbeans.modules.parsing.api.Snapshot;
 import org.netbeans.modules.parsing.api.Task;
 import org.netbeans.modules.parsing.spi.ParseException;
@@ -84,7 +85,6 @@ public class macEditorParser extends Parser {
 
     @Override
     public void parse(Snapshot snapshot, Task task, SourceModificationEvent event) {
-        System.out.println("parse");
         this.snapshot = snapshot;
         ANTLRInputStream input = new ANTLRInputStream(snapshot.getText().toString());
         Lexer lexer = new macLexer(input);

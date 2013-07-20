@@ -53,7 +53,7 @@ class macLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
     }
 
     @Override
-    protected Lexer<ANTLRTokenId> createLexer(LexerRestartInfo<ANTLRTokenId> info) {
+    protected synchronized Lexer<ANTLRTokenId> createLexer(LexerRestartInfo<ANTLRTokenId> info) {
         return new macEditorLexer(info);
     }
 

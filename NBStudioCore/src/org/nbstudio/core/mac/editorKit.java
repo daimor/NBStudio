@@ -18,8 +18,11 @@ public class editorKit extends NbEditorKit {
     public editorKit() {
         super();
         Logger.Log("editorKit");
-        
 //        editorKitSettingsInitializer.init();
     }
 
+    @Override
+    public String getContentType() {
+        return super.getContentType();
+    }
 }

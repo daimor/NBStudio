@@ -8,7 +8,7 @@ package com.intersys.classes.NBStudio;
 **/
 
 public class Routine extends com.intersys.classes.RegisteredObject implements java.io.Serializable {
-    private static final long serialVersionUID = 6632;
+    private static final long serialVersionUID = 658;
     private static String CACHE_CLASS_NAME = "%NBStudio.Routine";
     /**
            <p>NB: DO NOT USE IN APPLICATION(!!!).
@@ -345,6 +345,17 @@ That is 'isclass' is a primary superclass of this object.</p>
         return res.getString();
     }
     /**
+     <p>Runs method compile in Cache.</p>
+     <p>Description: Compiles this routine.</p>
+     @throws com.intersys.objects.CacheException if any error occured while running the method.
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25NBStudio.Routine#compile"> Method compile</A>
+    */
+    public com.intersys.objects.SList compile () throws com.intersys.objects.CacheException {
+        com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
+        com.intersys.cache.Dataholder res=mInternal.runInstanceMethod("compile",args,com.intersys.objects.Database.RET_PRIM);
+        return res.getSList();
+    }
+    /**
      <p>Runs method getContents in Cache.</p>
      <p>Description: Retrieves routine contents.</p>
      @throws com.intersys.objects.CacheException if any error occured while running the method.
@@ -357,5 +368,19 @@ That is 'isclass' is a primary superclass of this object.</p>
         if (cobj == null)
             return null;
         return (com.intersys.classes.BinaryStream)(cobj.newJavaInstance());
+    }
+    /**
+     <p>Runs method setContents in Cache.</p>
+     <p>Description: Sets routine contents to those of
+specified character stream.</p>
+     @param contents represented as com.intersys.classes.CharacterStream
+     @throws com.intersys.objects.CacheException if any error occured while running the method.
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25NBStudio.Routine#setContents"> Method setContents</A>
+    */
+    public void setContents (com.intersys.classes.CharacterStream contents) throws com.intersys.objects.CacheException {
+        com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
+        args[0] = new com.intersys.cache.Dataholder(contents);
+        com.intersys.cache.Dataholder res=mInternal.runInstanceMethod("setContents",args,com.intersys.objects.Database.RET_NONE);
+        return;
     }
 }

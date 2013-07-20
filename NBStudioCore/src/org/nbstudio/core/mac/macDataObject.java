@@ -5,7 +5,7 @@
 package org.nbstudio.core.mac;
 
 import java.io.IOException;
-import org.nbstudio.utils.Logger;
+import org.netbeans.api.editor.document.EditorDocumentUtils;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
@@ -15,7 +15,6 @@ import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
 import org.openide.loaders.MultiFileLoader;
-import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.NbBundle.Messages;
 
@@ -90,13 +89,13 @@ import org.openide.util.NbBundle.Messages;
             position = 1400)
 })
 public class macDataObject extends MultiDataObject {
-    
+
     public macDataObject(FileObject pf, MultiFileLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
         registerEditor("text/isc-mac", false);
         registerEntry(pf);
     }
-    
+
     @Override
     protected int associateLookup() {
         return 1;
@@ -107,6 +106,4 @@ public class macDataObject extends MultiDataObject {
 //        return new node(super.getName());
         return super.createNodeDelegate(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 }

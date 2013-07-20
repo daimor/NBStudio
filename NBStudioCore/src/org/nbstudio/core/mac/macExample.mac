@@ -1,0 +1,7 @@
+    n new,kill
+    s s=123
+    for i=1:1:10 {
+        quit
+        set obj=##class(Sample.Person).%New()
+        s job=$job
+    }

@@ -27,22 +27,16 @@ import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileSystem;
 import org.openide.filesystems.FileUtil;
 import java.lang.String;
-import org.nbstudio.core.CacheClass;
+import org.nbstudio.core.cls.clsFile;
 import org.nbstudio.core.CacheFile;
 import org.nbstudio.core.CachePackage;
 import org.nbstudio.core.CacheRoutine;
 import org.nbstudio.utils.Logger;
-import org.openide.loaders.DataObject;
-import org.openide.nodes.Node;
 import org.openide.util.Enumerations;
 import org.openide.util.Exceptions;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
-/**
- *
- * @author daimor
- */
 @ServiceProviders({
     @ServiceProvider(service = FileSystem.class),
     @ServiceProvider(service = ISCFileSystem.class)
@@ -237,9 +231,17 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
     public OutputStream outputStream(final String name) throws IOException {
         class Out extends ByteArrayOutputStream {
 
+            @Override
             public void close() throws IOException {
                 super.close();
-
+                Entry entry = e(name);
+                if (entry.obj != null) {
+                    try {
+                        entry.obj.save(toByteArray());
+                    } catch (Exception ex) {
+                        Exceptions.printStackTrace(ex);
+                    }
+                }
                 e(name).last = new Date();
             }
         }
@@ -295,7 +297,7 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
                 obj = new CacheRoutine(db, name);
             } else if (ext.equals("cls")) {
                 name = name.substring(0, name.length() - 4);
-                obj = new CacheClass(db, name);
+                obj = new clsFile(db, name);
             }
             entry.obj = obj;
             entry.isFolder = isFolder;
