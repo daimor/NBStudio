@@ -35,21 +35,16 @@
     <folder name="Editors">
         <folder name="text">
             <folder name="isc-mac">
-                <!--<attr name="displayName" bundlevalue="org.nbstudio.Bundle#text/isc-mac"/>-->
                 <!--<file name="org-nbstudio-core-mac-editorKit.instance"/>-->
                 <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
                 <file name="org-nbstudio-syntax-macParserFactory.instance"/>
                 <file name="org-nbstudio-syntax-macSyntaxErrorsHighlightingTaskFactory.instance"/>
                 <file name="org-nbstudio-core-mac-macReformatTaskFactory.instance"/>
-                <!--                <file name="language.instance">
-                    <attr name="instanceCreate" methodvalue="org.nbstudio.syntax.utils.ANTLRTokenId.getLanguage"/>
-                    <attr name="instanceOf" stringvalue="org.netbeans.api.lexer.Language"/>
-                </file>-->
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
                 <folder name="FontsColors">
                     <folder name="NetBeans">
                         <folder name="Defaults">
-                            <file name="SyntaxColors.xml" url="SyntaxColors.xml">
+                            <file name="SyntaxColors.xml" url="macSyntaxColors.xml">
                                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
                             </file>
                         </folder>
@@ -57,7 +52,7 @@
                 </folder>
                 <folder name="Preferences">
                     <folder name="Defaults">
-                        <file name="org.nbstudio.core.mac-editor-preferences.xml" url="editor-preferences.xml"/>
+                        <file name="org.nbstudio.core.mac-editor-preferences.xml" url="mac/editor-preferences.xml"/>
                     </folder>
                 </folder>
                 <folder name="Formatting">
@@ -74,13 +69,25 @@
                 </folder>
             </folder>
             <folder name="isc-cls">
-                <folder name="CompletionProviders">
+                <!--                <folder name="CompletionProviders">
                     <file name="org-nbstudio-core-cls-CodeCompletion.instance_hidden"/>
                     <file name="org-nbstudio-core-cls-clsCodeCompletion.instance">
                         <attr name="instanceOf" stringvalue="org.netbeans.spi.editor.completion.CompletionProvider"/>
                     </file>
-                </folder>
+                </folder>-->
                 <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
+                <file name="org-nbstudio-syntax-clsParserFactory.instance"/>
+                <file name="org-nbstudio-syntax-clsSyntaxErrorsHighlightingTaskFactory.instance"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
+                <folder name="FontsColors">
+                    <folder name="NetBeans">
+                        <folder name="Defaults">
+                            <file name="SyntaxColors.xml" url="clsSyntaxColors.xml">
+                                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
+                </folder>
             </folder>
             <folder name="isc-bas">
                 <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
@@ -97,9 +104,22 @@
         <folder name="PreviewExamples">
             <folder name="text">
                 <file name="isc-mac" url="macExample.mac"/>
+                <file name="isc-cls" url="clsExample.cls"/>
             </folder>
         </folder>
     </folder>    
+    <folder name="Formatting">
+        <attr name="position" intvalue="0"/>
+        <folder name="text">
+            <folder name="isc-mac">
+                <file name="TabsAndIndents.instance">
+                    <attr name="instanceOf" stringvalue="org.netbeans.modules.options.editor.spi.PreferencesCustomizer$Factory"/>
+                    <attr name="instanceCreate" methodvalue="org.netbeans.modules.options.editor.spi.CustomizerFactories.createDefaultTabsAndIndentsCustomizerFactory"/>
+                    <attr name="position" intvalue="100"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
     <folder name="Keymaps">
         <folder name="NetBeans">
             <file name="D-S.shadow">

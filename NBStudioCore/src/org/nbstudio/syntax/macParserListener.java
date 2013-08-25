@@ -1,4 +1,4 @@
-// Generated from /mnt/disk3/NetBeansProjects/NBStudio/NBStudioCore/src/org/nbstudio/syntax/macParser.g4 by ANTLR 4.1
+// Generated from /home/daimor/Dropbox/myProjects/NBStudio/NBStudioCore/src/org/nbstudio/syntax/macParser.g4 by ANTLR 4.1
 
     package org.nbstudio.syntax; 
 
@@ -110,17 +110,6 @@ public interface macParserListener extends ParseTreeListener {
 	void exitSimpleStatement(@NotNull macParser.SimpleStatementContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link macParser#openStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterOpenStatement(@NotNull macParser.OpenStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link macParser#openStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitOpenStatement(@NotNull macParser.OpenStatementContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link macParser#openCommand}.
 	 * @param ctx the parse tree
 	 */
@@ -132,6 +121,17 @@ public interface macParserListener extends ParseTreeListener {
 	void exitOpenCommand(@NotNull macParser.OpenCommandContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link macParser#openStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpenStatement(@NotNull macParser.OpenStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#openStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpenStatement(@NotNull macParser.OpenStatementContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link macParser#closeStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -141,6 +141,17 @@ public interface macParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCloseStatement(@NotNull macParser.CloseStatementContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link macParser#methodContent}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodContent(@NotNull macParser.MethodContentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#methodContent}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodContent(@NotNull macParser.MethodContentContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link macParser#zloadCommand}.
@@ -418,6 +429,28 @@ public interface macParserListener extends ParseTreeListener {
 	void exitProg(@NotNull macParser.ProgContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link macParser#includeStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterIncludeStatement(@NotNull macParser.IncludeStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#includeStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitIncludeStatement(@NotNull macParser.IncludeStatementContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link macParser#define}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefine(@NotNull macParser.DefineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#define}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefine(@NotNull macParser.DefineContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link macParser#closeCommand}.
 	 * @param ctx the parse tree
 	 */
@@ -484,17 +517,6 @@ public interface macParserListener extends ParseTreeListener {
 	void exitPrintCommand(@NotNull macParser.PrintCommandContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link macParser#ztrapCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link macParser#ztrapCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link macParser#colonExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -504,6 +526,17 @@ public interface macParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitColonExpression(@NotNull macParser.ColonExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link macParser#ztrapCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#ztrapCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link macParser#jobProcessParams}.
@@ -528,17 +561,6 @@ public interface macParserListener extends ParseTreeListener {
 	void exitJobStatement(@NotNull macParser.JobStatementContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link macParser#elseCommand2}.
-	 * @param ctx the parse tree
-	 */
-	void enterElseCommand2(@NotNull macParser.ElseCommand2Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link macParser#elseCommand2}.
-	 * @param ctx the parse tree
-	 */
-	void exitElseCommand2(@NotNull macParser.ElseCommand2Context ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link macParser#gotoStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -548,6 +570,17 @@ public interface macParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitGotoStatement(@NotNull macParser.GotoStatementContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link macParser#elseCommand2}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseCommand2(@NotNull macParser.ElseCommand2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#elseCommand2}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseCommand2(@NotNull macParser.ElseCommand2Context ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link macParser#variable}.
@@ -572,17 +605,6 @@ public interface macParserListener extends ParseTreeListener {
 	void exitComments(@NotNull macParser.CommentsContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link macParser#znspaceCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link macParser#znspaceCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link macParser#expression}.
 	 * @param ctx the parse tree
 	 */
@@ -592,6 +614,17 @@ public interface macParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpression(@NotNull macParser.ExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link macParser#znspaceCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#znspaceCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link macParser#labelDef}.
@@ -647,6 +680,17 @@ public interface macParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLabelParameter(@NotNull macParser.LabelParameterContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link macParser#includeRtn}.
+	 * @param ctx the parse tree
+	 */
+	void enterIncludeRtn(@NotNull macParser.IncludeRtnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#includeRtn}.
+	 * @param ctx the parse tree
+	 */
+	void exitIncludeRtn(@NotNull macParser.IncludeRtnContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link macParser#mergeStatement}.
@@ -834,6 +878,17 @@ public interface macParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitGlobalVariable(@NotNull macParser.GlobalVariableContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link macParser#methodPublicVariables}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodPublicVariables(@NotNull macParser.MethodPublicVariablesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link macParser#methodPublicVariables}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodPublicVariables(@NotNull macParser.MethodPublicVariablesContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link macParser#doClass}.

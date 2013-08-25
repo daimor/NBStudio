@@ -19,11 +19,11 @@ import org.netbeans.spi.lexer.LexerRestartInfo;
  *
  * @author daimor
  */
-class macLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
+class clsLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
 
     private static List<ANTLRTokenId> tokens;
     private static Map<Integer, ANTLRTokenId> idToToken;
-    private static final Language<ANTLRTokenId> language = new macLanguageHierarchy().language();
+    private static final Language<ANTLRTokenId> language = new clsLanguageHierarchy().language();
 
     public static Language<ANTLRTokenId> getLanguage() {
         return language;
@@ -32,19 +32,18 @@ class macLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
     private static void init() {
         ANTLRTokenReader reader = new ANTLRTokenReader();
         HashMap<String, String> tokenTypes = new HashMap<String, String>();
-        tokenTypes.put("CMD", "command");
-        tokenTypes.put("Label", "label");
-
-        tokenTypes.put("ID", "localvariable");
-        tokenTypes.put("INT", "number");
-
-        tokenTypes.put("COMMENT", "comment");
-        tokenTypes.put("MACROCOMMENT", "comment");
-        tokenTypes.put("MULTILINECOMMENT", "comment");
-
-        tokenTypes.put("STRING", "character");
-
-        tokens = reader.readTokenFile("org/nbstudio/syntax/macLexer.tokens", tokenTypes);
+        tokenTypes.put("Class", "keyword");
+        tokenTypes.put("Include", "keyword");
+        tokenTypes.put("Property", "keyword");
+        tokenTypes.put("Method", "keyword");
+        tokenTypes.put("ClassMethod", "keyword");
+        tokenTypes.put("Parameter", "keyword");
+        tokenTypes.put("Extends", "keyword");
+        tokenTypes.put("As", "keyword");
+        tokenTypes.put("Comment", "comment");
+        tokenTypes.put("Description", "comment");
+        
+        tokens = reader.readTokenFile("org/nbstudio/syntax/clsLexer.tokens", tokenTypes);
         idToToken = new HashMap<Integer, ANTLRTokenId>();
         for (ANTLRTokenId token : tokens) {
             idToToken.put(token.ordinal(), token);
@@ -57,7 +56,6 @@ class macLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
         }
         return idToToken.get(id);
     }
-
     @Override
     protected Collection<ANTLRTokenId> createTokenIds() {
         if (tokens == null) {
@@ -68,11 +66,11 @@ class macLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
 
     @Override
     protected synchronized Lexer<ANTLRTokenId> createLexer(LexerRestartInfo<ANTLRTokenId> info) {
-        return new macEditorLexer(info);
+        return new clsEditorLexer(info);
     }
 
     @Override
     protected String mimeType() {
-        return "text/isc-mac";
+        return "text/isc-cls";
     }
 }

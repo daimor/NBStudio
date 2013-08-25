@@ -1,4 +1,4 @@
-// Generated from /mnt/disk3/NetBeansProjects/NBStudio/NBStudioCore/src/org/nbstudio/syntax/macParser.g4 by ANTLR 4.1
+// Generated from /home/daimor/Dropbox/myProjects/NBStudio/NBStudioCore/src/org/nbstudio/syntax/macParser.g4 by ANTLR 4.1
 
     package org.nbstudio.syntax; 
 
@@ -136,19 +136,6 @@ public class macParserBaseListener implements macParserListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterOpenStatement(@NotNull macParser.OpenStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitOpenStatement(@NotNull macParser.OpenStatementContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterOpenCommand(@NotNull macParser.OpenCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -162,6 +149,19 @@ public class macParserBaseListener implements macParserListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterOpenStatement(@NotNull macParser.OpenStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitOpenStatement(@NotNull macParser.OpenStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterCloseStatement(@NotNull macParser.CloseStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -169,6 +169,19 @@ public class macParserBaseListener implements macParserListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitCloseStatement(@NotNull macParser.CloseStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterMethodContent(@NotNull macParser.MethodContentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitMethodContent(@NotNull macParser.MethodContentContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -500,6 +513,32 @@ public class macParserBaseListener implements macParserListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterIncludeStatement(@NotNull macParser.IncludeStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIncludeStatement(@NotNull macParser.IncludeStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDefine(@NotNull macParser.DefineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDefine(@NotNull macParser.DefineContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterCloseCommand(@NotNull macParser.CloseCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -578,19 +617,6 @@ public class macParserBaseListener implements macParserListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterColonExpression(@NotNull macParser.ColonExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -598,6 +624,19 @@ public class macParserBaseListener implements macParserListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitColonExpression(@NotNull macParser.ColonExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZtrapCommand(@NotNull macParser.ZtrapCommandContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -630,19 +669,6 @@ public class macParserBaseListener implements macParserListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterElseCommand2(@NotNull macParser.ElseCommand2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitElseCommand2(@NotNull macParser.ElseCommand2Context ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterGotoStatement(@NotNull macParser.GotoStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -650,6 +676,19 @@ public class macParserBaseListener implements macParserListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitGotoStatement(@NotNull macParser.GotoStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterElseCommand2(@NotNull macParser.ElseCommand2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitElseCommand2(@NotNull macParser.ElseCommand2Context ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -682,19 +721,6 @@ public class macParserBaseListener implements macParserListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterExpression(@NotNull macParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -702,6 +728,19 @@ public class macParserBaseListener implements macParserListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitExpression(@NotNull macParser.ExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitZnspaceCommand(@NotNull macParser.ZnspaceCommandContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -767,6 +806,19 @@ public class macParserBaseListener implements macParserListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitLabelParameter(@NotNull macParser.LabelParameterContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIncludeRtn(@NotNull macParser.IncludeRtnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIncludeRtn(@NotNull macParser.IncludeRtnContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -988,6 +1040,19 @@ public class macParserBaseListener implements macParserListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitGlobalVariable(@NotNull macParser.GlobalVariableContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterMethodPublicVariables(@NotNull macParser.MethodPublicVariablesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitMethodPublicVariables(@NotNull macParser.MethodPublicVariablesContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

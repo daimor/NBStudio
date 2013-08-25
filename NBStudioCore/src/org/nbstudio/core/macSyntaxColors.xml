@@ -11,5 +11,4 @@
     <fontcolor name="character"     foreColor="ff008000" default="character"/>
     <fontcolor name="keyword"       default="keyword"/>
     <fontcolor name="label"       foreColor="red"/>
-    
 </fontscolors>

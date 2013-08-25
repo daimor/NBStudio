@@ -23,6 +23,9 @@ public class LangProvider extends LanguageProvider {
         if ("text/isc-mac".equals(mimeType)){
             return new macLanguageHierarchy().language();
         }
+        if ("text/isc-cls".equals(mimeType)){
+            return new clsLanguageHierarchy().language();
+        }
         return null;
     }
 

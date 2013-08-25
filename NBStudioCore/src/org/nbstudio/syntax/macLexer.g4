@@ -20,11 +20,8 @@ class lexerState extends Object
     int lastTokenType = 0;
     int mode = DEFAULT_MODE;
     IntegerStack modeStack;
+    boolean macroline = false;
     
-    @Override
-    public String toString() {
-       return "l:" + line + ", cp:" + (charPositionInLine+1) + ", cmd:" + isCommand + ", lt:" + lastTokenType;
-    }
 }
 public lexerState getLexerState() 
 {
@@ -43,6 +40,7 @@ public lexerState getLexerState()
     state.lastTokenType = lastTokenType;
     state.mode = _mode;
     state.modeStack = new IntegerStack();
+    state.macroline = macroline;
     for (int i = 0; i < _modeStack.size(); i++) {
         state.modeStack.push(_modeStack.get(i));
     }
@@ -68,6 +66,7 @@ public void setLexerState(lexerState state)
         pushMode(state.modeStack.get(i));
     }
     mode(state.mode);
+    macroline = state.macroline;
 }
 
     int nesting = 0;
@@ -78,6 +77,8 @@ public void setLexerState(lexerState state)
     boolean caret = false;
     boolean labelDef = false;
     int lastTokenType = 0;
+    boolean macroline = false;
+    
     void isCMD() {
         isCommand=true;
         setType(CMD);
@@ -91,12 +92,13 @@ public void emit(Token token) {
 
 ObjectMethod: {isClassMethod}? ID {isClass=false;isClassMethod=false;};
 ObjectName  : {nesting>0&&isClass}? '%'? ID ('.' ID )*;
-Label       : {((getCharPositionInLine()==0)||(doArg&&(lastTokenType==CommandSPACE)))}? ID { labelDef = (getCharPositionInLine()==0);}; 
+Label       : {((getCharPositionInLine()==0)||(doArg&&(lastTokenType==CommandSPACE)))}? ID { labelDef = (!doArg);}; 
 RoutineName : {doArg&&(lastTokenType==CARET)}? ID; 
 GlobalName : {(lastTokenType==CARET)}? ID; 
 SystemVariable: Dollar ID;
 SpecialGlobal: CARET Dollar ID;
-
+MACMethodPrivate: {labelDef}? [Pp][Rr][Ii][Vv][Aa][Tt][Ee];
+MACMethodPublic: {labelDef}? [Pp][Uu][Bb][Ll][Ii][Cc];
 
 ID  :	[a-zA-Z] [a-zA-Z0-9]*;
 
@@ -116,7 +118,7 @@ STRING
 fragment
 EXPONENT : [eE] [+\-]? [0-9]+ ;
 
-EOL : [\r\n]+ {isCommand=false;}
+EOL : [\r\n]+ {isCommand=false;macroline=false;}
     ;
    
 EQUAL       : WS*'='WS*;
@@ -137,7 +139,7 @@ SLASH       : '/';
 BACKSLASH   : '\\';
 Spaces      : WS+ 
             {
-             if (nesting==0){
+             if (nesting==0&&!macroline){
                 if (isCommand){isCommand=false;setType(CommandSPACE);} 
                 else {pushMode(COMMAND);}
              }
@@ -147,30 +149,37 @@ LPClass     : {isClass}? '(' {nesting++;};
 RPClass     : {isClass}? ').' {nesting--;isClassMethod=true;isClass=false;};
 LPAREN      : '('WS* {nesting++;};
 RPAREN      : WS*')'WS* {nesting--;};
-LBRACK      : '{'WSNL* {nesting==0}? ->pushMode(COMMAND);
-RBRACK      : WSNL*'}' {isCommand=false;};
+LBRACE      : '{'WS* {nesting==0&&!macroline}? ->pushMode(COMMAND);
+RBRACE      : WSNL*'}' {isCommand=false;};
+LBRACK      : WSNL*'[';
+RBRACK      : ']'WSNL* {isCommand=false;};
 FUNCTION    : '$'[a-zA-Z][a-zA-Z0-9]*;
 COMMENT     : WS+ (';'|'/''/'+) .*? [\r\n]+;
-MACROCOMMENT: WS* '#;' .*? [\r\n]+;
+MACROCOMMENT: {(getCharPositionInLine()==0)}? WS* '#;' .*? [\r\n]+;
+//MLINECOMMENT: WS* '/*' (.*?|[\r\n])* '*/';
 CARET       : '^' {caret=true;};
 VertBar     : '|';
 WS          : [ \t];
 WSNL        : [ \t\r\n];
 CondOper    : WS* ('&&'|'||'|'>='|'<='|'\'='|'>'|'<'|'\'<'|'\'>') WS*;
 Negative    : '\'';
-ObjectClass : '##class' {isClass=true;};
-ObjectSuper : '##super';
-ObjectThis  : '##this';
+//MACRO       : Spaces? '#' {macroline = true;System.out.println("MACRO");};
+ObjectClass : '##'[Cc][Ll][Aa][Ss][Ss] {isClass=true;};
+ObjectSuper : '##'[Ss][Uu][Pp][Ee][Rr];
+ObjectThis  : '##'[Tt][Hh][Ii][Ss];
+Define      : {(getCharPositionInLine()==0)}? WS*'#'[Dd][Ee][Ff][Ii][Nn][Ee] {macroline = true;};
+DefineExpression: Define .*? [\r\n]+;
+Include     : {(getCharPositionInLine()==0)}? WS*'#'[Ii][Nn][Cc][Ll][Uu][Dd][Ee] {macroline = true;};
 
 mode COMMAND;
 CommandDO   : [dD][oO]? {doArg = true;isCMD();};
 CommandGOTO : [gG]([oO][tT][oO])? {doArg = true;isCMD();};
 CommandJOB  : [jJ]([oO][bB])? {doArg = true;isCMD();};
 
-CMD  :	[a-zA-Z] [a-zA-Z0-9]* {doArg=false;isCMD();};
+CMD  :	[a-zA-Z] [a-zA-Z0-9]* {doArg=false;isCMD();labelDef=false;};
 CommandSPACE : [ ] {popMode();isCommand=false;};
 CommandCOLON : ':' -> popMode ;
 CommandEOL : [\r\n]+ {popMode();isCommand=false;};
-CommandLBRACK : '{'[ \r\n\t]*;
-CommandRBRACK : [ \r\n\t]*'}' {popMode();isCommand=false;};
+CommandLBRACE : '{'[ \t]*;
+CommandRBRACE : [ \r\n\t]*'}' {popMode();isCommand=false;};
 CommandCOMMA  : [ \t]*','[ \t]*;

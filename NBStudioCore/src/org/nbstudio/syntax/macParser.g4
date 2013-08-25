@@ -35,6 +35,8 @@ prog
 
 statement
 	:	Spaces? simpleStatement
+        |       Include Spaces includeStatement Spaces? (EOL|EOF)
+        |       define
         |       comments
 	|	(Spaces|EOL|CommandEOL)
         |       Label labelDef?
@@ -46,7 +48,7 @@ if(quitWithoutArgs) {loopLevel++;}
 @after{
 if(quitWithoutArgs) {loopLevel--;}
 }
-        :       (LBRACK|CommandLBRACK) statement* (RBRACK|CommandRBRACK)
+        :       (LBRACE|CommandLBRACE) statement* (RBRACE|CommandRBRACE)
         ;
 
 comments:       COMMENT|MACROCOMMENT
@@ -106,6 +108,18 @@ simpleStatement
         |   zsaveCommand
 	;
 
+includeStatement 
+        :   includeRtn 
+        |   LPAREN Spaces? ID ( Spaces? COMMA includeRtn )* Spaces? RPAREN
+        ;
+
+includeRtn:	PERCENT? ID
+	;
+
+define  :
+            DefineExpression
+        ;
+
 breakCommand            :{cmp("b,break")}? CMD;
 breakStatement
         :               expression
@@ -134,7 +148,7 @@ elseifCommand           :{cmp("elseif")}? CMD;
 
 forCommand              :{cmp("f,for")}? CMD;
 forStatement
-        :       (CommandSPACE variable (EQUAL forExpression)? )? Spaces? blockStatement[true]
+        :       CommandSPACE? ( variable (EQUAL forExpression)? )? Spaces? blockStatement[true]
         ;
 forExpression 
         :       expression ((Colon expression (Colon expression)? )? | (COMMA expression)*)
@@ -280,7 +294,7 @@ colonExpression: LPAREN (expression|Colon)* RPAREN
                ;
 expression
         :       simpleExpression
-        |       expression (UNDERSCORE|PLUS|MINUS|ASTERISK|SHARP|SLASH|BACKSLASH) expression
+        |       expression Spaces? (UNDERSCORE|PLUS|MINUS|ASTERISK|SHARP|SLASH|BACKSLASH) Spaces? expression
         |       LPAREN expression RPAREN
         |       condition
         ;
@@ -319,7 +333,14 @@ doArgument
 
 labelDef
         :   LPAREN ( labelParameter ( COMMA labelParameter)* )? RPAREN
+            (methodPublicVariables? (MACMethodPrivate|MACMethodPublic) Spaces? CommandEOL? methodContent  )?
         ;
+methodPublicVariables: LBRACK ID (COMMA ID)* RBRACK
+                     ;
+methodContent:   CommandLBRACE statement CommandRBRACE
+             |   LBRACE statement RBRACE
+             |   CommandLBRACE CommandEOL? statement? RBRACE
+             ;
 labelParameter
         :   ID
         |   ID EQUAL (STRING|INT)

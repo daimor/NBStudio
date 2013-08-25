@@ -31,15 +31,6 @@ public class ANTLRTokenReader {
      * language.
      */
     private void init() {
-        tokenTypes.put("CMD", "command");
-        tokenTypes.put("Label", "label");
-
-        tokenTypes.put("ID", "localvariable");
-        tokenTypes.put("INT", "number");
-
-        tokenTypes.put("COMMENT", "comment");
-        tokenTypes.put("MACROCOMMENT", "comment");
-
     }
 
     /**
@@ -48,7 +39,9 @@ public class ANTLRTokenReader {
      *
      * @return
      */
-    public List<ANTLRTokenId> readTokenFile(String resourceName) {
+    public List<ANTLRTokenId> readTokenFile(String resourceName, HashMap<String, String> tokenTypes) {
+        this.tokenTypes.clear();
+        this.tokenTypes.putAll(tokenTypes);
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         InputStream inp = classLoader.getResourceAsStream(resourceName);
         BufferedReader input = new BufferedReader(new InputStreamReader(inp));
