@@ -8,7 +8,7 @@ package com.intersys.classes.NBStudio;
 **/
 
 public class Routine extends com.intersys.classes.RegisteredObject implements java.io.Serializable {
-    private static final long serialVersionUID = 658;
+    private static final long serialVersionUID = 1146;
     private static String CACHE_CLASS_NAME = "%NBStudio.Routine";
     /**
            <p>NB: DO NOT USE IN APPLICATION(!!!).
