@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="%NBStudio.Routine">
+<Super>%RegisteredObject</Super>
+<TimeCreated>62916,1693.514147</TimeCreated>
+
+<Projection name="JavaProjection">
+<Type>%Projection.Java</Type>
+</Projection>
+
+<Property name="Manager">
+<Type>%RoutineMgr</Type>
+</Property>
+
+<Property name="ReadOnly">
+<Type>%Boolean</Type>
+</Property>
+
+<Property name="Name">
+<Type>%String</Type>
+</Property>
+
+<Method name="%OnNew">
+<FormalSpec>Name:%String</FormalSpec>
+<Private>1</Private>
+<ReturnType>%Status</ReturnType>
+<ServerOnly>1</ServerOnly>
+<Implementation><![CDATA[
+	s ..Name = Name
+	s ..Manager = ##class(%RoutineMgr).%OpenId(..Name)
+	s ..ReadOnly = ..Manager.Protected
+	q $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="getContents">
+<Description>
+Retrieves routine contents.</Description>
+<ReturnType>%BinaryStream</ReturnType>
+<Implementation><![CDATA[
+	s code=##class(%GlobalBinaryStream).%New()
+	d ..Manager.Code.Rewind()
+	d code.CopyFrom(..Manager.Code)
+	q code
+]]></Implementation>
+</Method>
+
+<Method name="setContents">
+<Description>
+Sets routine contents to those of
+specified character stream.</Description>
+<FormalSpec>contents:%CharacterStream</FormalSpec>
+<Implementation><![CDATA[
+	D contents.Rewind()
+	D ..Manager.Code.Rewind()
+	D ..Manager.Code.CopyFrom( contents )
+	D ..Manager.%Save()
+]]></Implementation>
+</Method>
+
+<Method name="compile">
+<Description>
+Compiles this routine.</Description>
+<ReturnType>%List</ReturnType>
+<Implementation><![CDATA[
+	d ..enableIOCapture()
+	S list = ""
+	S result = ..Manager.Compile("/keepsource")
+	D $system.Status.DecomposeStatus( result, .msgs )
+	;F i = 1:1:$g(msgs) S list = list _ $LB( msgs(i) )
+	s list=list_$lfs($g(%LogText),$c(13,10))
+	d ..disableIOCapture()
+	Q list
+]]></Implementation>
+</Method>
+
+<Method name="GetDate">
+<ReturnType>%TimeStamp</ReturnType>
+<Implementation><![CDATA[	q ..Manager.GetDate()
+]]></Implementation>
+</Method>
+
+<Method name="GetSize">
+<ReturnType>%Integer</ReturnType>
+<Implementation><![CDATA[	q ..Manager.Code.Size
+]]></Implementation>
+</Method>
+
+<Method name="enableIOCapture">
+<Description>
+Enable I/O capture</Description>
+<Internal>1</Internal>
+<Private>1</Private>
+<ProcedureBlock>0</ProcedureBlock>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Set %LogText = ""
+	
+	Use 0::("^"_$ZNAME)
+	
+	Do $ZU(82,12,1)
+	Quit $$$OK
+
+	#dim s
+	
+wchr(s)	;
+	Set %LogText = %LogText _ $CHAR(s)
+	Quit
+wff()	;
+	Set %LogText = %LogText _ $CHAR(12)
+	Quit
+wnl()	;
+	Set %LogText = %LogText _ $CHAR(13,10)
+	Quit
+	
+wstr(s)	;
+	New tLine
+	Set %LogText = %LogText _ s
+	Quit
+wtab(s)	;
+	Set:s>$L(%LogText) %LogText = %LogText _ $J("",s-$L(%LogText))
+	Quit
+]]></Implementation>
+</Method>
+
+<Method name="disableIOCapture">
+<Description>
+Disable I/O capture</Description>
+<Internal>1</Internal>
+<Private>1</Private>
+<ProcedureBlock>0</ProcedureBlock>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Do $ZU(82,12,0)
+	
+	Kill %LogText
+	
+	Quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+</Export>
