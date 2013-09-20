@@ -32,6 +32,7 @@
             <fileset dir="${src.dir}"  >
                 <include name="**/mac*.g4" />
                 <include name="**/cls*.g4" />
+                <include name="**/xdata*.g4" />
             </fileset>
             <param name="antlr.tool.src" value="${antlr.tool.src}"></param>
         </foreach>

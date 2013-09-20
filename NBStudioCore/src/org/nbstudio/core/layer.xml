@@ -37,8 +37,8 @@
             <folder name="isc-mac">
                 <!--<file name="org-nbstudio-core-mac-editorKit.instance"/>-->
                 <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
-                <file name="org-nbstudio-syntax-macParserFactory.instance"/>
-                <file name="org-nbstudio-syntax-macSyntaxErrorsHighlightingTaskFactory.instance"/>
+                <file name="org-nbstudio-syntax-mac-macEditorParser$Factory.instance"/>
+                <file name="org-nbstudio-syntax-SyntaxErrorsHighlightingTask$Factory.instance"/>
                 <file name="org-nbstudio-core-mac-macReformatTaskFactory.instance"/>
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
                 <folder name="FontsColors">
@@ -76,8 +76,11 @@
                     </file>
                 </folder>-->
                 <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
-                <file name="org-nbstudio-syntax-clsParserFactory.instance"/>
-                <file name="org-nbstudio-syntax-clsSyntaxErrorsHighlightingTaskFactory.instance"/>
+                <file name="org-nbstudio-syntax-cls-clsEditorParser$Factory.instance"/>
+                <file name="org-nbstudio-syntax-SyntaxErrorsHighlightingTask$Factory.instance"/>
+                <file name="org-nbstudio-syntax-cls-clsEmbeddingProvider$Factory.instance"> 
+                    <attr name="instanceOf" stringvalue="org.netbeans.modules.parsing.spi.TaskFactory"/> 
+                </file> 
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
                 <folder name="FontsColors">
                     <folder name="NetBeans">
@@ -88,6 +91,27 @@
                         </folder>
                     </folder>
                 </folder>
+            </folder>
+            <folder name="isc-xdata">
+                <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
+                <file name="org-nbstudio-syntax-xdata-xdataEditorParser$Factory.instance"/>
+                <file name="org-nbstudio-syntax-SyntaxErrorsHighlightingTask$Factory.instance"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
+                <folder name="FontsColors">
+                    <folder name="NetBeans">
+                        <folder name="Defaults">
+                            <file name="SyntaxColors.xml" url="xdataSyntaxColors.xml">
+                                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.nbstudio.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
+                </folder>
+            </folder>
+            <folder name="isc-js">
+                <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
+            </folder>
+            <folder name="isc-sql">
+                <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
             </folder>
             <folder name="isc-bas">
                 <file name="org-netbeans-modules-editor-NbEditorKit.instance"/>
@@ -105,6 +129,7 @@
             <folder name="text">
                 <file name="isc-mac" url="macExample.mac"/>
                 <file name="isc-cls" url="clsExample.cls"/>
+                <file name="isc-xdata" url="xdataExample.xdata"/>
             </folder>
         </folder>
     </folder>    

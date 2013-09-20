@@ -19,25 +19,26 @@ import java.util.List;
 public class Connection implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String name;
-    private String address;
-    private int port;
-    private String namespace;
+    public String name;
+    public final String address;
+    public final int port;
+    public final String namespace;
     private Database connection;
 
-    public Connection(String name) {
+    public Connection(String name, String address, int port, String namespace) {
         this.name = name;
-//        this.address = "127.0.0.1";
-//        this.port = 1972;
-//        this.namespace = "USER";
+        this.address = address;
+        if (port == 0) {
+            port = 1972;
+        }
+        this.port = port;
+        this.namespace = namespace;
     }
 
     public Database getAssociatedConnection() {
         if (this.connection == null) {
             try {
-                this.address = "127.0.0.1";
-                this.port = 1972;
-                this.namespace = "SAMPLES";
+                System.out.println("connect to cache");
                 String connString = "jdbc:Cache://" + this.address + ":" + this.port + "/" + this.namespace;
                 Logger.Log("Try to connect to " + connString);
                 this.connection = CacheDatabase.getDatabase(connString, "_SYSTEM", "SYS");

@@ -4,6 +4,8 @@
     
     <fontcolor name="number"        default="number"/>    
     <fontcolor name="comment"       foreColor="ff008000"/>
+    <fontcolor name="description"       foreColor="ff000080"/>
     <fontcolor name="character"     foreColor="ff008000" default="character"/>
-    <fontcolor name="keyword"       foreColor="ff000000"/>
+    <fontcolor name="keyword"       foreColor="ff000080">
+    </fontcolor>
 </fontscolors>

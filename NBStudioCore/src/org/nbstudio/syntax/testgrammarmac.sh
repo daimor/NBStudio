@@ -1,11 +1,13 @@
 
-ANTLR=../../../../release/modules/ext/antlr-4.1-complete.jar
+ANTLR=../../../../../release/modules/ext/antlr-4.1-complete.jar
 LEXER=macLexer.g4
 PARSER=macParser.g4
-PACKAGE=org.nbstudio.syntax
+PACKAGE=org.nbstudio.syntax.mac
 TEMPDIR=/tmp/antlrtestgrammar/
 ANTLROPT="-no-visitor -no-listener -o $TEMPDIR"
 EXAMPLE=macExample.mac
+
+cd mac
 
 if [ -e $TEMPDIR ] 
 then

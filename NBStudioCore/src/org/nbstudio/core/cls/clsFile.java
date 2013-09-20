@@ -14,25 +14,22 @@ import com.intersys.classes.Dictionary.QueryDefinition;
 import com.intersys.classes.Dictionary.TriggerDefinition;
 import com.intersys.classes.Dictionary.UDLTextDefinition;
 import com.intersys.classes.Dictionary.XDataDefinition;
-import com.intersys.classes.RelationshipObject;
 import com.intersys.objects.CacheException;
 import com.intersys.objects.Database;
 import com.intersys.objects.Id;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.nbstudio.core.CacheFile;
-import org.nbstudio.utils.Logger;
 import org.openide.util.Exceptions;
 
 /**
@@ -45,7 +42,9 @@ public class clsFile extends CacheFile {
 
     public clsFile(Database db, String name) throws CacheException {
         super(db, name);
-        cls = (ClassDefinition) ClassDefinition._open(db, new Id(name));
+        if(ClassDefinition._existsId(db, new Id(name))) {
+            cls = (ClassDefinition) ClassDefinition._open(db, new Id(name));
+        }
     }
 
     @Override
@@ -75,10 +74,12 @@ public class clsFile extends CacheFile {
     final class ClassText extends ByteArrayOutputStream {
 
         public ClassText() throws CacheException {
+            cls._reload();
             writeParensValue("Include %s\n\n", cls.getIncludeCode());
+            writeDescription(cls.getDescription());
             printf("Class %s", cls.getName());
             writeParensValue(" Extends %s", cls.getSuper());
-            printf("\n");
+            writeln();
             println("{");
 
             List<Object> list = new ArrayList();
@@ -91,7 +92,8 @@ public class clsFile extends CacheFile {
             list.addAll(cls.getProjections().asList());
             list.addAll(cls.getQueries().asList());
             list.addAll(cls.getTriggers().asList());
-            Collections.sort(list, new Comparator() {
+            list.addAll(cls.getUDLTexts().asList());
+            Collections.sort(list, new Comparator<Object>() {
                 @Override
                 public int compare(Object o1, Object o2) {
                     int seqNum1 = 0, seqNum2 = 0;
@@ -137,20 +139,21 @@ public class clsFile extends CacheFile {
             int pos = 0;
             for (Iterator<Object> it = list.iterator(); it.hasNext();) {
                 Object obj = it.next();
+                writeln();
                 if (obj instanceof PropertyDefinition) {
                     showElement((PropertyDefinition) obj);
-                } else if (obj instanceof ParameterDefinition) {
-                    showElement((ParameterDefinition) obj);
+                } else if (obj instanceof UDLTextDefinition) {
+                    showElement((UDLTextDefinition) obj);
                 } else if (obj instanceof MethodDefinition) {
                     showElement((MethodDefinition) obj);
+                } else if (obj instanceof ParameterDefinition) {
+                    showElement((ParameterDefinition) obj);
                 } else if (obj instanceof XDataDefinition) {
                     showElement((XDataDefinition) obj);
                 } else if (obj instanceof QueryDefinition) {
                     showElement((QueryDefinition) obj);
                 } else if (obj instanceof TriggerDefinition) {
                     showElement((TriggerDefinition) obj);
-                } else if (obj instanceof UDLTextDefinition) {
-                    showElement((UDLTextDefinition) obj);
                 } else if (obj instanceof IndexDefinition) {
                     showElement((IndexDefinition) obj);
                 } else if (obj instanceof ForeignKeyDefinition) {
@@ -165,15 +168,15 @@ public class clsFile extends CacheFile {
 //        }
         void showElement(PropertyDefinition obj) throws CacheException {
             writeDescription(obj.getDescription());
-            printf("\nProperty %s", obj.getName());
+            printf("Property %s", obj.getName());
             writeParensValue(" As %s", obj.getType());
             writeln(";");
         }
 
         void showElement(ParameterDefinition obj) throws CacheException {
             writeDescription(obj.getDescription());
-            printf("\nParameter %s", obj.getName());
-            if (!obj.getDefault().isEmpty()) {
+            printf("Parameter %s", obj.getName());
+            if ((obj.getDefault() != null) && (!obj.getDefault().isEmpty())) {
                 printf(" = \"%s\"", obj.getDefault());
             }
             writeln(";");
@@ -182,59 +185,62 @@ public class clsFile extends CacheFile {
         void showElement(MethodDefinition obj) throws CacheException {
             writeDescription(obj.getDescription());
             if (obj.getClassMethod()) {
-                printf("\nClassMethod %s", obj.getName());
+                printf("ClassMethod %s", obj.getName());
             } else {
-                printf("\nMethod %s", obj.getName());
+                printf("Method %s", obj.getName());
             }
             printf("()");
-            writeParensValue(" As %s", obj.getReturnType());
-            writeln("\n{");
-            try {
-                write(obj.getImplementationIn().read(32000));
-            } catch (IOException ex) {
-                Exceptions.printStackTrace(ex);
-            }
+//            writeParensValue(" As %s", obj.getReturnType());
+            writeln();
+            writeln("{");
+            writeReader(obj.getImplementationIn());
             writeln("}");
         }
 
         void showElement(XDataDefinition obj) throws CacheException {
             writeDescription(obj.getDescription());
-            printf("\nXData %s", obj.getName());
+            printf("XData %s", obj.getName());
             write("()");
+            writeln();
             writeln("{");
+            writeReader(obj.getDataIn());
             writeln("}");
         }
 
         void showElement(QueryDefinition obj) throws CacheException {
             writeDescription(obj.getDescription());
-            printf("\nQuery %s", obj.getName());
+            printf("Query %s", obj.getName());
             write("()");
+            writeln();
             writeln("{");
+            write(obj.getSqlQuery());
             writeln("}");
         }
 
         void showElement(TriggerDefinition obj) throws CacheException {
             writeDescription(obj.getDescription());
-            printf("\nTrigger %s", obj.getName());
+            printf("Trigger %s", obj.getName());
             write("()");
+            writeln();
             writeln("{");
+            write(obj.getCode());
             writeln("}");
         }
 
         void showElement(UDLTextDefinition obj) throws CacheException {
-            writeln("/// comment here");
+            writeReader(obj.getContentIn());
         }
 
         void showElement(IndexDefinition obj) throws CacheException {
             writeDescription(obj.getDescription());
-            printf("\nIndex %s", obj.getName());
+            printf("Index %s", obj.getName());
             writeParensValue(" On %s ", obj.getProperties());
             writeln(";");
         }
 
         void showElement(ForeignKeyDefinition obj) throws CacheException {
             writeDescription(obj.getDescription());
-            printf("\nForeignKey %s", obj.getName());
+            printf("ForeignKey %s", obj.getName());
             writeParensValue(" On %s ", obj.getProperties());
             writeln(";");
         }
@@ -243,9 +249,12 @@ public class clsFile extends CacheFile {
             if ((str == null) || (str.isEmpty())) {
                 return;
             }
-            write("\n/// ");
+            write("/// ");
             str = str.replace("\n", "\n/// ");
             write(str);
+            if (str != "") {
+                writeln();
+            }
         }
 
         void writeParensValue(String fmt, String str) {
@@ -267,13 +276,35 @@ public class clsFile extends CacheFile {
             writeln(String.format(string, args));
         }
 
+        public void writeln() {
+            write('\n');
+        }
+
         public void writeln(String string) {
             write(string + '\n');
         }
 
         public void write(String string) {
             try {
+//                write(string.getBytes("UTF-8"));
                 write(string.getBytes());
+            } catch (IOException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+
+        public void writeReader(Reader isr) {
+            try {
+                BufferedReader buff;
+                isr.reset();
+                buff = new BufferedReader(isr);
+                String str;
+                while ((str = buff.readLine()) != null) {
+                    if (str.isEmpty()) {
+                        continue;
+                    }
+                    writeln(str);
+                }
             } catch (IOException ex) {
                 Exceptions.printStackTrace(ex);
             }

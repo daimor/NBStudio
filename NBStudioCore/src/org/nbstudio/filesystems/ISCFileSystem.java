@@ -31,7 +31,6 @@ import org.nbstudio.core.cls.clsFile;
 import org.nbstudio.core.CacheFile;
 import org.nbstudio.core.CachePackage;
 import org.nbstudio.core.CacheRoutine;
-import org.nbstudio.utils.Logger;
 import org.openide.util.Enumerations;
 import org.openide.util.Exceptions;
 import org.openide.util.lookup.ServiceProvider;
@@ -81,7 +80,7 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
     private void refreshRoutines(FileObject root) {
         try {
             CacheQuery qrRoutines = new CacheQuery(db, "%Library.Routine", "RoutineList");
-            final ResultSet rsRoutines = qrRoutines.execute("");
+            final ResultSet rsRoutines = qrRoutines.execute("*.MAC");
             while (rsRoutines.next()) {
                 String rtnName = rsRoutines.getString("Name");
                 FileSystem fs = FileUtil.createMemoryFileSystem();
@@ -96,6 +95,7 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
 
     private void refreshClassess(FileObject root) {
         try {
+            System.out.println("init Classes");
             HashMap<String, FileObject> packages = new HashMap<String, FileObject>();
 
             CacheQuery qrRoutines = new CacheQuery(db, "%Dictionary.ClassDefinitionQuery", "Summary");
@@ -138,7 +138,7 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
 
     @Override
     public String getDisplayName() {
-        return "ISC";
+        return db.getConnectionString();
     }
 
     static final class Entry {

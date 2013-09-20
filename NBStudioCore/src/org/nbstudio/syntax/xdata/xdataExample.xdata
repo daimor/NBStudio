@@ -1,0 +1,14 @@
+
+<root>
+<top10><![CDATA[
+SELECT  {[zDate].[H1].[zDate2].CurrentMember.Properties("Name"),[MEASURES].[VOLUMESALE]} ON 0,NON EMPTY HEAD(ORDER([zDate].[H1].[zDate2].Members,Measures.[VolumeSale],BDESC),10) ON 1
+ FROM [FinamDataCube]
+]]></top10>
+<EURUSDPrice>
+<![CDATA[
+SELECT NON EMPTY NONEMPTYCROSSJOIN({[Ticker].[H1].[Ticker].&[RUBUTSTN=MCX],[Ticker].[H1].[Ticker].&[EURRUBTN=MCX]},
+{[Measures].[PriceMin],[Measures].[Price],[Measures].[PriceMax]}) ON 0,
+NON EMPTY HEAD(NONEMPTYCROSSJOIN([zDate].[H1].[zDate].Members,[zDate].[H1].[zDate1].Members),100) ON 1 
+FROM [FinamDataCube]
+]]></EURUSDPrice>
+</root>

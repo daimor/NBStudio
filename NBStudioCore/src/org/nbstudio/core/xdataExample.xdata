@@ -1,0 +1,59 @@
+<page xmlns="http://www.intersystems.com/zen" xmlns:demo="http://www.intersystems.com/zendemo" title="Zen Form Demo">
+<demo:demoTitle id="title" title="Form Demonstration"/>
+<locatorBar id="locator" OnGetQuickLinks="GetQuickLinks">
+<locatorLink caption="Home" title="Home page" href="ZENDemo.Home.cls"/>
+<locatorLink caption="Form Demo" title="Form Demo" />
+</locatorBar>
+<hgroup>
+<vgroup valign="top">
+<demo:sidebar text="This Zen form demonstrates the following features:">
+<demo:bullet text="Data-driven combobox" />
+<demo:bullet text="Data-driven radio buttons" />
+<demo:bullet text="Different flavors of date input controls" />
+<demo:bullet text="Custom component" />
+<demo:bullet text="Use of server-side methods to populate the form" />
+<demo:bullet text="Built-in form validation" />
+<demo:bullet text="Server-side submit logic" />
+<demo:bullet text="Expando box to hide and show the form" />
+</demo:sidebar>
+</vgroup>
+<spacer width="40"/>
+<vgroup valign="top" id="formGroup">
+<expando caption="Patient Record Form" framed="true" animate="true">
+<form id="patientForm" 
+width="100%" 
+layout="vertical"
+ labelPosition="top"
+cellStyle="padding: 3px;" 
+>
+<radioSet label="Sex:" id="Sex" name="Sex" displayList="Male,Female,Other" valueList="M,F,O"/>
+<radioSet label="Marital Status:" id="MaritalStatus" 
+name="MaritalStatus" 
+displayList="Single,Married,Divorced,Widowed,Other" 
+valueList="S,M,D,W,O"/>
+<fieldSet id="fieldSet" 
+legend="Home Address" 
+layout="vertical" 
+title="Patient's home address">
+<text label="Street:" id="HomeStreet" name="HomeStreet" size="40" />
+<text label="City:" id="HomeCity" name="HomeCity" size="25" />
+<hgroup>
+<text label="State:" id="HomeState" name="HomeState" size="2"  maxlength="2" />
+<spacer width="10"/>
+<text label="Zip Code:" id="HomeZip" name="HomeZip" size="10" />
+</hgroup>
+</fieldSet>
+<textarea label="Memo:" id="Memo" name="Memo" cols="80" rows="3"/>
+<spacer height="5" />
+<hgroup width="100%" cellAlign="right">
+<spacer width="5" />
+<submit caption="Save" action="save"/>
+<spacer width="5" />
+<button caption="Reset" onclick="zenPage.resetForm();"/>
+<spacer width="5" />
+</hgroup>
+</form>
+</expando>
+</vgroup>
+</hgroup>
+</page>

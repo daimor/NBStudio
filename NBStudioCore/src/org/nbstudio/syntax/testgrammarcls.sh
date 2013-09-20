@@ -1,12 +1,14 @@
 
-ANTLR=../../../../release/modules/ext/antlr-4.1-complete.jar
+ANTLR=../../../../../release/modules/ext/antlr-4.1-complete.jar
 LEXER=clsLexer.g4
 PARSER=clsParser.g4
-PACKAGE=org.nbstudio.syntax
+PACKAGE=org.nbstudio.syntax.cls
 TEMPDIR=/tmp/antlrtestgrammar/
 #-no-visitor -no-listener
 ANTLROPT=" -o $TEMPDIR"
 EXAMPLE=clsExample.cls
+
+cd cls
 
 if [ -e $TEMPDIR ] 
 then
@@ -22,7 +24,7 @@ rm -rf $TEMPDIR/*
 
 echo coping example
 cp $EXAMPLE $TEMPDIR
-cp clsMyParserListener.java $TEMPDIR
+#cp clsMyParserListener.java $TEMPDIR
 
 echo generate java files
 java -jar $ANTLR $ANTLROPT $LEXER

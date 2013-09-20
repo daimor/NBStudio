@@ -10,6 +10,7 @@ import org.nbstudio.utils.Logger;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.io.ObjectInput;
 import javax.swing.ActionMap;
 import org.nbstudio.filesystems.ISCFileSystem;
 import org.netbeans.api.settings.ConvertAsProperties;
@@ -37,7 +38,7 @@ import org.openide.util.NbBundle.Messages;
 @TopComponent.Description(
         preferredID = "navigatorTopComponent",
         //iconBase="SET/PATH/TO/ICON/HERE", 
-        persistenceType = TopComponent.PERSISTENCE_ALWAYS)
+        persistenceType = TopComponent.PERSISTENCE_NEVER)
 @TopComponent.Registration(
         mode = "explorer",
         openAtStartup = true)
@@ -56,15 +57,15 @@ import org.openide.util.NbBundle.Messages;
     "HINT_navigatorTopComponent=Projects"
 })
 public final class navigatorTopComponent extends TopComponent implements ExplorerManager.Provider, macEventListener {
-    
+
     private final ExplorerManager manager = new ExplorerManager();
-    
+
     public navigatorTopComponent() {
         initComponents();
         setName(Bundle.CTL_navigatorTopComponent());
         setToolTipText(Bundle.HINT_navigatorTopComponent());
         putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.TRUE);
-        
+
         setLayout(new BorderLayout());
         add(new BeanTreeView(), BorderLayout.CENTER);
         try {
@@ -110,29 +111,29 @@ public final class navigatorTopComponent extends TopComponent implements Explore
     public void componentOpened() {
         // TODO add custom code on component opening
     }
-    
+
     @Override
     public void componentClosed() {
         // TODO add custom code on component closing
     }
-    
+
     void writeProperties(java.util.Properties p) {
         // better to version settings since initial version as advocated at
         // http://wiki.apidesign.org/wiki/PropertyFiles
         p.setProperty("version", "1.0");
         // TODO store your settings
     }
-    
+
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
     }
-    
+
     @Override
     public ExplorerManager getExplorerManager() {
         return manager;
     }
-    
+
     private void openActionPerformed(ActionEvent evt) {
         Logger.Log("openActionPerformed");
     }

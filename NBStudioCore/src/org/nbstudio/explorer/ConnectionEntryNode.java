@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.beans.IntrospectionException;
 import javax.swing.Action;
 import org.nbstudio.core.Connection;
+import org.openide.actions.DeleteAction;
 import org.openide.actions.OpenAction;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
@@ -51,7 +52,8 @@ public class ConnectionEntryNode  extends AbstractNode {
     @Override
     public Action[] getActions(boolean popup) {
         return new Action[]{
-            SystemAction.get(OpenAction.class)
+            SystemAction.get(OpenAction.class),
+            SystemAction.get(DeleteAction.class)
         };
     }
 

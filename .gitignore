@@ -1,2 +1,4 @@
 /mac.editor/build/
 /dist/
+/NBStudioCore/src/org/nbstudio/syntax/clsParser.tokens
+/NBStudioCore/src/org/nbstudio/syntax/macParser.tokens

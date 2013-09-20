@@ -42,7 +42,7 @@ public class AddConnectionAction extends AbstractAction {
     }
 
     @Messages({
-        "FN_askurl_msg=Enter connection name",
+        "FN_askurl_msg=server:port/namespace",
         "FN_askurl_title=New Connection",
         "FN_askurl_err=Invalid URL: |",
         "FN_cannotConnect_err=Cannot Connect!"
@@ -57,8 +57,17 @@ public class AddConnectionAction extends AbstractAction {
         Object result = DialogDisplayer.getDefault().notify(nd);
         if (result.equals(NotifyDescriptor.OK_OPTION)) {
             String urlString = nd.getInputText();
+            String namespace = urlString.split("/")[1];
+            urlString = urlString.split("/")[0];
+            if (!urlString.contains(":")) {
+                urlString += ":1972";
+            }
+            String address = urlString.split(":")[0];
+            int port = Integer.parseInt(urlString.split(":")[1]);
 
-            Connection c = new Connection(urlString);
+
+            Connection conn = new Connection("conn", address, port, namespace);
+
             FileObject fld = folder.getPrimaryFile();
             String baseName = "Connection";
             int ix = 1;
@@ -71,7 +80,7 @@ public class AddConnectionAction extends AbstractAction {
                 try {
                     ObjectOutputStream str = new ObjectOutputStream(writeTo.getOutputStream(lock));
                     try {
-                        str.writeObject(c);
+                        str.writeObject(conn);
                     } finally {
                         str.close();
                     }
@@ -82,10 +91,5 @@ public class AddConnectionAction extends AbstractAction {
                 Exceptions.printStackTrace(ioe);
             }
         }
-    }
-
-    private static void checkConnection(final URL url) throws IOException {
-        InputStream is = url.openStream();
-        is.close();
     }
 }
