@@ -54,7 +54,7 @@ public class SyntaxErrorsHighlightingTask<T extends Result> extends ParserResult
 //            Logger.Log("getErrors: " + offset + ":" + cnt + " - " + parserResult.getParser().getGrammarFileName());
             HintsController.setErrors(document, "editor", errors);
         } catch (Exception ex) {
-            ex.printStackTrace();
+//            ex.printStackTrace();
         }
     }
 

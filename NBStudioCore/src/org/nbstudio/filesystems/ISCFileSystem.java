@@ -30,7 +30,7 @@ import java.lang.String;
 import org.nbstudio.core.cls.clsFile;
 import org.nbstudio.core.CacheFile;
 import org.nbstudio.core.CachePackage;
-import org.nbstudio.core.CacheRoutine;
+import org.nbstudio.core.mac.CacheRoutine;
 import org.openide.util.Enumerations;
 import org.openide.util.Exceptions;
 import org.openide.util.lookup.ServiceProvider;
@@ -79,13 +79,37 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
 
     private void refreshRoutines(FileObject root) {
         try {
+            HashMap<String, FileObject> packages = new HashMap<String, FileObject>();
+
             CacheQuery qrRoutines = new CacheQuery(db, "%Library.Routine", "RoutineList");
-            final ResultSet rsRoutines = qrRoutines.execute("*.MAC");
+            final ResultSet rsRoutines = qrRoutines.execute("*.MAC,*.INT");
             while (rsRoutines.next()) {
                 String rtnName = rsRoutines.getString("Name");
                 FileSystem fs = FileUtil.createMemoryFileSystem();
                 String ext = rtnName.substring(rtnName.lastIndexOf(".") + 1, rtnName.length()).toLowerCase();
-                FileObject fob = root.createData(rtnName.substring(0, rtnName.length() - 4), ext);
+
+                rtnName = rtnName.substring(0, rtnName.lastIndexOf("."));
+
+                String[] tmp = rtnName.split("\\.");
+                FileObject rootPKG = root;
+                for (int i = 0; i < (tmp.length - 1); i++) {
+                    String pkgName = "";
+                    for (int j = 0; j <= i; j++) {
+                        if (j > 0) {
+                            pkgName += ".";
+                        }
+                        pkgName += tmp[j];
+                    }
+                    if (packages.get(pkgName) == null) {
+                        rootPKG = rootPKG.createFolder(tmp[i]);
+                        packages.put(pkgName, rootPKG);
+                    } else {
+                        rootPKG = packages.get(pkgName);
+                    }
+                }
+                FileObject fob = rootPKG.createData(tmp[tmp.length - 1], ext);
+
+//                FileObject fob = root.createData(rtnName.substring(0, rtnName.length() - 4), ext);
             }
             rsRoutines.close();
         } catch (Exception ex) {
@@ -95,7 +119,6 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
 
     private void refreshClassess(FileObject root) {
         try {
-            System.out.println("init Classes");
             HashMap<String, FileObject> packages = new HashMap<String, FileObject>();
 
             CacheQuery qrRoutines = new CacheQuery(db, "%Dictionary.ClassDefinitionQuery", "Summary");

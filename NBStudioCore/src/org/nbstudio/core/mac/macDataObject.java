@@ -24,7 +24,7 @@ import org.openide.util.NbBundle.Messages;
 @MIMEResolver.ExtensionRegistration(
         displayName = "#LBL_mac_LOADER",
         mimeType = "text/isc-mac",
-        extension = {"mac", "MAC"})
+        extension = {"mac", "MAC", "int", "INT"})
 @DataObject.Registration(
         mimeType = "text/isc-mac",
         displayName = "#LBL_mac_LOADER",

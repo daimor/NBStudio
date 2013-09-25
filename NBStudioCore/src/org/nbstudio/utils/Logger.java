@@ -15,7 +15,7 @@ import org.openide.windows.InputOutput;
  */
 public class Logger {
 
-    private static InputOutput io = IOProvider.getDefault().getIO("Task", true);
+    private static InputOutput io = IOProvider.getDefault().getIO("Task", false);
 
     public Logger() {
     }

@@ -42,8 +42,11 @@ public class clsFile extends CacheFile {
 
     public clsFile(Database db, String name) throws CacheException {
         super(db, name);
-        if(ClassDefinition._existsId(db, new Id(name))) {
-            cls = (ClassDefinition) ClassDefinition._open(db, new Id(name));
+        try {
+            if (ClassDefinition._existsId(db, new Id(name))) {
+                cls = (ClassDefinition) ClassDefinition._open(db, new Id(name));
+            }
+        } catch (Exception ex) {
         }
     }
 
@@ -74,6 +77,9 @@ public class clsFile extends CacheFile {
     final class ClassText extends ByteArrayOutputStream {
 
         public ClassText() throws CacheException {
+            if (cls == null) {
+                return;
+            }
             cls._reload();
             writeParensValue("Include %s\n\n", cls.getIncludeCode());
             writeDescription(cls.getDescription());

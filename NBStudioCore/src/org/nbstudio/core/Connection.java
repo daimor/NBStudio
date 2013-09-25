@@ -8,15 +8,18 @@ import org.nbstudio.utils.Logger;
 import com.intersys.objects.CacheDatabase;
 import com.intersys.objects.CacheException;
 import com.intersys.objects.Database;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import org.openide.windows.IOProvider;
+import org.openide.windows.OutputWriter;
 
 /**
  *
  * @author daimor
  */
-public class Connection implements Serializable {
+public final class Connection implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public String name;
@@ -33,6 +36,8 @@ public class Connection implements Serializable {
         }
         this.port = port;
         this.namespace = namespace;
+
+//        this.connection = getAssociatedConnection();
     }
 
     public Database getAssociatedConnection() {
@@ -42,6 +47,27 @@ public class Connection implements Serializable {
                 String connString = "jdbc:Cache://" + this.address + ":" + this.port + "/" + this.namespace;
                 Logger.Log("Try to connect to " + connString);
                 this.connection = CacheDatabase.getDatabase(connString, "_SYSTEM", "SYS");
+
+                OutputStream out = new OutputStream() {
+                    private OutputWriter out = IOProvider.getDefault().getIO("Task", false).getOut();
+
+                    @Override
+                    public void write(int i) throws IOException {
+                        out.print(String.valueOf((char) i));
+                    }
+
+                    @Override
+                    public void write(byte[] bytes) throws IOException {
+                        out.print(new String(bytes));
+                    }
+
+                    @Override
+                    public void write(byte[] bytes, int off, int len) throws IOException {
+                        out.print(new String(bytes, off, len));
+                    }
+                };
+                PrintStream cacheOutput = new PrintStream(out, true);
+                this.connection.setConsoleOutput(cacheOutput);
             } catch (CacheException ce) {
                 ce.printStackTrace();
             }

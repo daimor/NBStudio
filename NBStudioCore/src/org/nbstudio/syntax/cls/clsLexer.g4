@@ -67,7 +67,6 @@ boolean isKeyword(String str)
          lastKeyword = keywords.get(str);
          result =  true;
     }
-    System.out.println("isKey: "+str+" - "+result);
     return result;
 }
 
@@ -277,7 +276,7 @@ ClassName: {(isClassName())}? PERCENT? ID ( DOT ID )* ;
 MethodName  : {isMethod()}? PERCENT? ID;
 XDataName: {(prevToken==XData)}? PERCENT? ID;
 QueryName: {(prevToken==Query)}? PERCENT? ID;
-PropertyName: {(isPropertyName())}? PERCENT? ID;
+PropertyName: {(isPropertyName())}? PERCENT? ID (DOT ID)*;
 ParameterName: {(prevToken==Parameter)}? PERCENT? ID;
 ForeignKeyName: {(prevToken==ForeignKey)}? PERCENT? ID;
 TriggerName: {(prevToken==Trigger)}? PERCENT? ID;
