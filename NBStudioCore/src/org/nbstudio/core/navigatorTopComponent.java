@@ -6,21 +6,17 @@ package org.nbstudio.core;
 
 import org.nbstudio.core.mac.macEventListener;
 import org.nbstudio.explorer.RootNode;
-import org.nbstudio.utils.Logger;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.io.ObjectInput;
 import javax.swing.ActionMap;
-import org.nbstudio.filesystems.ISCFileSystem;
 import org.netbeans.api.settings.ConvertAsProperties;
+import org.openide.actions.DeleteAction;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
 import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileSystem;
 import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
@@ -28,6 +24,7 @@ import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
+import org.openide.util.actions.SystemAction;
 
 /**
  * Top component which displays something.
@@ -69,9 +66,6 @@ public final class navigatorTopComponent extends TopComponent implements Explore
         setLayout(new BorderLayout());
         add(new BeanTreeView(), BorderLayout.CENTER);
         try {
-//            FileSystem fs = new ISCFileSystem();
-//            DataObject data = DataObject.find(fs.getRoot());
-//            manager.setRootContext(new RootNode(data.getNodeDelegate()));
             FileObject connectionsFolder = FileUtil.getConfigFile("Connections");
             Node connectionsNode = DataObject.find(connectionsFolder).getNodeDelegate();
             manager.setRootContext(new RootNode(connectionsNode));
@@ -81,7 +75,8 @@ public final class navigatorTopComponent extends TopComponent implements Explore
             Exceptions.printStackTrace(ex);
         }
         ActionMap map = getActionMap();
-        map.put("delete", ExplorerUtils.actionDelete(manager, true));
+//        DeleteAction delete = SystemAction.get(DeleteAction.class);
+//        map.put(delete.getActionMapKey(), ExplorerUtils.actionDelete(manager, true));
         associateLookup(ExplorerUtils.createLookup(manager, map));
     }
 
@@ -107,34 +102,26 @@ public final class navigatorTopComponent extends TopComponent implements Explore
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    @Override
-    public void componentOpened() {
-        // TODO add custom code on component opening
-    }
-
-    @Override
-    public void componentClosed() {
-        // TODO add custom code on component closing
-    }
-
+//    @Override
+//    public void componentOpened() {
+//        // TODO add custom code on component opening
+//    }
+//
+//    @Override
+//    public void componentClosed() {
+//        // TODO add custom code on component closing
+//    }
+//
     void writeProperties(java.util.Properties p) {
-        // better to version settings since initial version as advocated at
-        // http://wiki.apidesign.org/wiki/PropertyFiles
         p.setProperty("version", "1.0");
-        // TODO store your settings
     }
 
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
-        // TODO read your settings according to their version
     }
 
     @Override
     public ExplorerManager getExplorerManager() {
         return manager;
-    }
-
-    private void openActionPerformed(ActionEvent evt) {
-        Logger.Log("openActionPerformed");
     }
 }

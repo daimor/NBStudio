@@ -61,9 +61,9 @@ public class ConnectionNode extends AbstractNode {
             SystemAction.get(DeleteAction.class)
         };
     }
-//
-//    @Override
-//    public boolean canDestroy() {
-//        return true;
-//    }
+
+    @Override
+    public boolean canDestroy() {
+        return true;
+    }
 }

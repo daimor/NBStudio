@@ -4,23 +4,23 @@
  */
 package org.nbstudio.explorer;
 
+import com.intersys.objects.Database;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectOutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import javax.swing.AbstractAction;
-import org.nbstudio.core.Connection;
+import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionRegistration;
+import org.openide.loaders.DataFolder;
+import org.openide.util.NbBundle.Messages;
+import org.nbstudio.Localize;
+import org.nbstudio.core.Connection;
+import org.nbstudio.utils.Logger;
 import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
-import org.openide.loaders.DataFolder;
 import org.openide.util.Exceptions;
-import org.openide.util.NbBundle.Messages;
 
 /**
  *
@@ -36,38 +36,38 @@ import org.openide.util.NbBundle.Messages;
 public class AddConnectionAction extends AbstractAction {
 
     private final DataFolder folder;
+    private EditConnection editConnection = new EditConnection();
+    private DialogDescriptor d = null;
 
     public AddConnectionAction(DataFolder df) {
         folder = df;
     }
 
-    @Messages({
-        "FN_askurl_msg=server:port/namespace",
-        "FN_askurl_title=New Connection",
-        "FN_askurl_err=Invalid URL: |",
-        "FN_cannotConnect_err=Cannot Connect!"
-    })
     @Override
     public void actionPerformed(ActionEvent ae) {
-        NotifyDescriptor.InputLine nd = new NotifyDescriptor.InputLine(
-                Bundle.FN_askurl_msg(),
-                Bundle.FN_askurl_title(),
-                NotifyDescriptor.OK_CANCEL_OPTION,
-                NotifyDescriptor.PLAIN_MESSAGE);
-        Object result = DialogDisplayer.getDefault().notify(nd);
-        if (result.equals(NotifyDescriptor.OK_OPTION)) {
-            String urlString = nd.getInputText();
-            String namespace = urlString.split("/")[1];
-            urlString = urlString.split("/")[0];
-            if (!urlString.contains(":")) {
-                urlString += ":1972";
+        if ((ae.getSource() == DialogDescriptor.CANCEL_OPTION)
+                || (ae.getSource() == DialogDescriptor.CLOSED_OPTION)) {
+            d.setClosingOptions(null);
+        } else if (ae.getSource() == DialogDescriptor.OK_OPTION) {
+            editConnection.setErrorMsg("");
+            String name = editConnection.getServerName();
+            String address = editConnection.getAddr();
+            int superPort = editConnection.getSuperPort();
+            if ((address.isEmpty()) || (superPort == 0)) {
+                editConnection.setErrorMsg(Localize.getMessage("AddConnectionErrorAddress"));
+                return;
             }
-            String address = urlString.split(":")[0];
-            int port = Integer.parseInt(urlString.split(":")[1]);
-
-
-            Connection conn = new Connection("conn", address, port, namespace);
-
+            String namespace = editConnection.getNamespace();
+            String username = editConnection.getUsername();
+            String password = editConnection.getPassword();
+            Connection conn = new Connection(name, address, superPort, namespace, username, password);
+            Database db = conn.getAssociatedConnection();
+            if (db == null) {
+                editConnection.setErrorMsg(Localize.getMessage("AddConnectionErrorConnect"));
+                return;
+            }
+            d.setClosingOptions(null);
+            /// Save added connect
             FileObject fld = folder.getPrimaryFile();
             String baseName = "Connection";
             int ix = 1;
@@ -90,6 +90,11 @@ public class AddConnectionAction extends AbstractAction {
             } catch (IOException ioe) {
                 Exceptions.printStackTrace(ioe);
             }
+        } else {
+            d = new DialogDescriptor(editConnection, Localize.getMessage("AddConnectionTitle"), true, this);
+            d.setClosingOptions(new Object[]{}); // not closeable
+            editConnection.setErrorMsg("");
+            DialogDisplayer.getDefault().notifyLater(d);
         }
     }
 }

@@ -93,5 +93,4 @@ public class pkgDataObject extends MultiDataObject {
     protected int associateLookup() {
         return 1;
     }
-
 }

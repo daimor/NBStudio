@@ -23,8 +23,6 @@ public class macDataLoader extends UniFileLoader {
 
     public macDataLoader() {
         super("org.nbstudio.core.mac.macDataObject");
-        Logger.Log("macDataLoader");
-        System.out.println("macDataLoader" + this);
     }
     
     

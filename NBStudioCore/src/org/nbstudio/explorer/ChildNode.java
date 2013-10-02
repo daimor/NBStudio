@@ -49,6 +49,7 @@ public class ChildNode extends FilterNode.Children {
                 try {
                     DataObject data = DataObject.find(fob);
                     Node tmpNode = data.getNodeDelegate();
+                    tmpNode.setDisplayName(conn.name);
                     Logger.Log("node: " + tmpNode);
                     return new Node[]{
                         tmpNode
@@ -68,8 +69,7 @@ public class ChildNode extends FilterNode.Children {
     private static Connection getConnection(Lookup lkp) {
         InstanceCookie ck = lkp.lookup(InstanceDataObject.class);
         if (ck == null) {
-            throw new IllegalStateException("Bogus file in feeds folder: "
-                    + lkp.lookup(FileObject.class));
+            return null;
         }
         try {
             return (Connection) ck.instanceCreate();
@@ -80,4 +80,5 @@ public class ChildNode extends FilterNode.Children {
         }
         return null;
     }
+    
 }

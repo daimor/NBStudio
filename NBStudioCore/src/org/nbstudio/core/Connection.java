@@ -21,14 +21,16 @@ import org.openide.windows.OutputWriter;
  */
 public final class Connection implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 12L;
     public String name;
     public final String address;
     public final int port;
     public final String namespace;
-    private Database connection;
+    private static Database connection;
+    public final String username;
+    public final String password;
 
-    public Connection(String name, String address, int port, String namespace) {
+    public Connection(String name, String address, int port, String namespace, String username, String password) {
         this.name = name;
         this.address = address;
         if (port == 0) {
@@ -36,6 +38,8 @@ public final class Connection implements Serializable {
         }
         this.port = port;
         this.namespace = namespace;
+        this.username = username.isEmpty() ? "_SYSTEM" : username;
+        this.password = password.isEmpty() ? "SYS" : password;
 
 //        this.connection = getAssociatedConnection();
     }
@@ -43,11 +47,9 @@ public final class Connection implements Serializable {
     public Database getAssociatedConnection() {
         if (this.connection == null) {
             try {
-                System.out.println("connect to cache");
                 String connString = "jdbc:Cache://" + this.address + ":" + this.port + "/" + this.namespace;
                 Logger.Log("Try to connect to " + connString);
-                this.connection = CacheDatabase.getDatabase(connString, "_SYSTEM", "SYS");
-
+                this.connection = CacheDatabase.getDatabase(connString, username, password);
                 OutputStream out = new OutputStream() {
                     private OutputWriter out = IOProvider.getDefault().getIO("Task", false).getOut();
 
@@ -74,11 +76,6 @@ public final class Connection implements Serializable {
         }
 
         return this.connection;
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 
     public String getTitle() {
