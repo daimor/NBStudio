@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <meta name="description" content="Alternative Studio/IDE for InterSystems Caché.">
+    <meta name="keywords" content="Alternative Studio intersystems,IDE InterSystems Caché,alternative IDE InterSystems">
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,14 +33,37 @@
           <p>It is unfinished project. Currently only possible view and simple editing MAC-routines, and view CLS-files without editing. Simple syntax highlighting and check errors. This project based on NetBeans Platform.</p>
 
 <h3>
-<a name="running" class="anchor" href="#running"><span class="octicon octicon-link"></span></a>Running</h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+<p>Before installation you must have installed Java JRE6 or above. </p>
+<h5>
+<a name="installationWindows" class="anchor" href="#installationWindows"><span class="octicon octicon-link"></span></a>Windows</h5>
+<p>
+Download nbstudio-windows.exe, run this file, perform the installation. After that you will have a link on desktop.
+</p>
+<h5>
+<a name="installationLinux" class="anchor" href="#installationWindows"><span class="octicon octicon-link"></span></a>Linux</h5>
+<p>
+Download nbstudio-linux.sh, run this file in terminal with command:<pre>sh ./nbstudio-linux.sh</pre>
+Perform the installation in showed window. After that you will have a link on desktop.
+</p>
 
-<p>Download or clone project, open in NetBeans, and Run project NBStudio.</p>
+<h3>
+<a name="running" class="anchor" href="#running"><span class="octicon octicon-link"></span></a>Running without installation</h3>
+
+<p>Download nbstudio.zip, extract. Run in linux in extracted folder file <font face='monospace'>bin/nbstudio</font>. 
+In Windows with JRE x86-64 you can run <font face='monospace'>bin/nbstudio64.exe</font> or <font face='monospace'>bin/nbstudio.exe</font>.
+In Windows with JRE x86 you can run <font face='monospace'>bin/nbstudio.exe</font>. </p>
 
 <h3>
 <a name="screenshots" class="anchor" href="#screenshots"><span class="octicon octicon-link"></span></a>Screenshots</h3>
+<p>Add connection dialog (opens by right click on Connections)
+<img src="images/NBStudioAddConnection.png" alt="Add connection"/>
+</p>
 
-<p><img src="images/NBStudioEditClass.png" alt="Edit Class"><img src="images/NBStudioEditRtn.png" alt="Edit Routine"></p>
+<p>Editing routine
+<img src="images/NBStudioEditClass.png" alt="Edit Class">
+Editing class
+<img src="images/NBStudioEditRtn.png" alt="Edit Routine"></p>
 
 <h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
@@ -52,7 +77,7 @@
         </section>
 
         <aside id="sidebar">
-          <a href="https://github.com/daimor/NBStudio/zipball/master" class="button">
+<!--           <a href="https://github.com/daimor/NBStudio/zipball/master" class="button">
             <small>Download</small>
             .zip file
           </a>
@@ -61,13 +86,14 @@
             .tar.gz file
           </a>
 
-          <a href="https://github.com/daimor/NBStudio/releases" class="button">
+ -->          <a href="https://github.com/daimor/NBStudio/releases" class="button">
             <small>Download</small>
             latest version
           </a>
           
 
           <p class="repo-owner"><a href="https://github.com/daimor/NBStudio"></a> is maintained by <a href="https://github.com/daimor">daimor</a>.</p>
+          Please donate me, if you want to help me with project.
           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick">
             <input type="hidden" name="hosted_button_id" value="UCSACWJYE5EX2">
