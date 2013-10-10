@@ -87,7 +87,7 @@ public class clsFile extends CacheFile {
             writeParensValue(" Extends %s", cls.getSuper());
             writeln();
             println("{");
-
+            
             List<Object> list = new ArrayList();
             list.addAll(cls.getProperties().asList());
             list.addAll(cls.getMethods().asList());
@@ -258,7 +258,7 @@ public class clsFile extends CacheFile {
             write("/// ");
             str = str.replace("\n", "\n/// ");
             write(str);
-            if (str != "") {
+            if (!str.isEmpty()) {
                 writeln();
             }
         }

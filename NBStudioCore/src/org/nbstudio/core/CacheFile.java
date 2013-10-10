@@ -15,8 +15,8 @@ import java.util.Date;
  */
 public class CacheFile {
 
-    static String name;
-    public static Database db;
+    String name;
+    public Database db;
 
     public CacheFile(Database db, String name) {
         this.name = name;

@@ -19,6 +19,17 @@
     </target>
 
     <target name="build-init" depends="-getAntContrib,harness.build-init">
+        <property name="versionProperties" value="${src.dir}/org/nbstudio/version.properties"/>
+        <propertyfile file="${versionProperties}"> 
+            <entry key="BUILD" value="1" type="int" operation="+"/> 
+        </propertyfile>
+        <property file="${versionProperties}"/>
+        <propertyfile file="${versionProperties}"> 
+            <entry key="FULLVERSION" type="string" value="${MAJOR}.${MINOR}.${PATCH}-${BUILD}" operation="="/> 
+        </propertyfile>
+        <property name="buildVersion" value="${MAJOR}.${MINOR}.${PATCH}-${BUILD}"/>
+        <echo level="info">Build version ${buildVersion}</echo>
+
         <echo level="info">generating java for grammar files</echo>
         <!-- antlr.tool jar file -->
         <pathconvert property="antlr.tool.src">

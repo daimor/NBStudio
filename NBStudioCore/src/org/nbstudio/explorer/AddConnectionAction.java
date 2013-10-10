@@ -7,7 +7,8 @@ package org.nbstudio.explorer;
 import com.intersys.objects.Database;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.util.Properties;
 import javax.swing.AbstractAction;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
@@ -17,7 +18,6 @@ import org.openide.loaders.DataFolder;
 import org.openide.util.NbBundle.Messages;
 import org.nbstudio.Localize;
 import org.nbstudio.core.Connection;
-import org.nbstudio.utils.Logger;
 import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
 import org.openide.util.Exceptions;
@@ -69,18 +69,28 @@ public class AddConnectionAction extends AbstractAction {
             d.setClosingOptions(null);
             /// Save added connect
             FileObject fld = folder.getPrimaryFile();
-            String baseName = "Connection";
-            int ix = 1;
-            while (fld.getFileObject(baseName + ix, "ser") != null) {
-                ix++;
+            Properties properties = new Properties();
+            properties.setProperty("Name", name);
+            properties.setProperty("Server", address);
+            properties.setProperty("SuperPort", "" + superPort);
+            properties.setProperty("Namespace", namespace);
+            properties.setProperty("Username", username);
+            properties.setProperty("Password", password);
+            String baseName = name;
+            if (fld.getFileObject(baseName, "properties") != null) {
+                int ix = 1;
+                while (fld.getFileObject(baseName + ix, "properties") != null) {
+                    ix++;
+                }
+                baseName += ix;
             }
             try {
-                FileObject writeTo = fld.createData(baseName + ix, "ser");
+                FileObject writeTo = fld.createData(baseName, "properties");
                 FileLock lock = writeTo.lock();
                 try {
-                    ObjectOutputStream str = new ObjectOutputStream(writeTo.getOutputStream(lock));
+                    OutputStream str = writeTo.getOutputStream(lock);
                     try {
-                        str.writeObject(conn);
+                        properties.store(str, "");
                     } finally {
                         str.close();
                     }

@@ -4,13 +4,14 @@
  */
 package org.nbstudio.core;
 
+import java.util.ResourceBundle;
 import org.openide.modules.ModuleInstall;
-import com.intersys.cache.*;
 
 public class Installer extends ModuleInstall {
 
     @Override
     public void restored() {
-
+        ResourceBundle rb = ResourceBundle.getBundle("org/nbstudio/version");
+        System.setProperty("netbeans.buildnumber", rb.getString("FULLVERSION"));
     }
 }

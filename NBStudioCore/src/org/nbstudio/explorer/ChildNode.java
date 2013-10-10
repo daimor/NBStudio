@@ -4,22 +4,19 @@
  */
 package org.nbstudio.explorer;
 
-import org.nbstudio.explorer.RootNode;
 import com.intersys.objects.Database;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Properties;
 import org.nbstudio.core.Connection;
 import org.nbstudio.filesystems.ISCFileSystem;
-import org.nbstudio.utils.Logger;
-import org.openide.cookies.InstanceCookie;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileSystem;
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
-import org.openide.loaders.InstanceDataObject;
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
-import org.openide.util.Lookup;
 
 /**
  *
@@ -34,6 +31,7 @@ public class ChildNode extends FilterNode.Children {
     @Override
     protected Node[] createNodes(Node n) {
         FileObject fo = n.getLookup().lookup(FileObject.class);
+        boolean wrongFile = false;
         if (fo != null && fo.isFolder()) {
             try {
                 return new Node[]{new RootNode(n)};
@@ -41,16 +39,32 @@ public class ChildNode extends FilterNode.Children {
                 Exceptions.printStackTrace(ex);
             }
         } else {
-            Connection conn = getConnection(fo.getLookup());
-            Database db = conn.getAssociatedConnection();
-            FileSystem fs = new ISCFileSystem(db);
-            FileObject fob = fs.getRoot();
-            if (conn != null) {
+            try {
+                if (!fo.getExt().equalsIgnoreCase("properties")) {
+                    throw new InternalError("IncompatibleExtFile");
+                }
+                Properties properties = new Properties();
+                properties.load(fo.getInputStream());
+                String name = properties.getProperty("Name");
+                String addr = properties.getProperty("Server");
+                String sSuperPort = properties.getProperty("SuperPort");
+                int superPort = ((sSuperPort == null) || (sSuperPort.isEmpty())) ? 1972 : Integer.parseInt(sSuperPort);
+                String namespace = properties.getProperty("Namespace");
+                String username = properties.getProperty("Username");
+                String password = properties.getProperty("Password");
+
+                Connection conn = new Connection(name, addr, superPort, namespace, username, password);
+
+                if (conn == null) {
+                    throw new InternalError();
+                }
+                Database db = conn.getAssociatedConnection();
+                FileSystem fs = new ISCFileSystem(db);
+                FileObject fob = fs.getRoot();
                 try {
                     DataObject data = DataObject.find(fob);
                     Node tmpNode = data.getNodeDelegate();
                     tmpNode.setDisplayName(conn.name);
-                    Logger.Log("node: " + tmpNode);
                     return new Node[]{
                         tmpNode
 //                        new ConnectionNode(conn)
@@ -58,27 +72,16 @@ public class ChildNode extends FilterNode.Children {
                 } catch (Exception ioe) {
                     Exceptions.printStackTrace(ioe);
                 }
+            } catch (FileNotFoundException ex) {
+            } catch (IOException ex) {
+            } catch (InternalError ex) {
+                try {
+                    fo.delete();
+                } catch (IOException ex1) {
+                }
+                return new Node[]{};
             }
         }
         return new Node[]{new FilterNode(n)};
     }
-
-    /**
-     * Looking up a feed
-     */
-    private static Connection getConnection(Lookup lkp) {
-        InstanceCookie ck = lkp.lookup(InstanceDataObject.class);
-        if (ck == null) {
-            return null;
-        }
-        try {
-            return (Connection) ck.instanceCreate();
-        } catch (ClassNotFoundException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        }
-        return null;
-    }
-    
 }
