@@ -4,7 +4,7 @@
  */
 package org.nbstudio.syntax;
 
-import org.nbstudio.syntax.cls.clsLanguageHierarchy;
+import org.nbstudio.syntax.cls.CLSLanguageHierarchy;
 import org.nbstudio.syntax.cls.clsLexer;
 import org.nbstudio.syntax.mac.macLanguageHierarchy;
 import org.nbstudio.syntax.xdata.xdataLanguageHierarchy;
@@ -29,7 +29,7 @@ public class LangProvider extends LanguageProvider {
             return new macLanguageHierarchy().language();
         }
         if ("text/isc-cls".equals(mimeType)) {
-            return new clsLanguageHierarchy().language();
+            return new CLSLanguageHierarchy().language();
         }
         if ("text/isc-xdata".equals(mimeType)) {
             return new xdataLanguageHierarchy().language();
@@ -41,9 +41,9 @@ public class LangProvider extends LanguageProvider {
     public LanguageEmbedding<?> findLanguageEmbedding(Token<?> token, LanguagePath languagePath, InputAttributes inputAttributes) {
 //        Logger.Log("findEmbedding: " + languagePath.mimePath() + " - " + token.id().name());
         if (languagePath.mimePath().equals("text/isc-cls")) {
-            if (clsLanguageHierarchy.getToken(clsLexer.MethodDeclaration) == token.id()) {
+            if (CLSLanguageHierarchy.getToken(clsLexer.MethodDeclaration) == token.id()) {
                 return LanguageEmbedding.create(new macLanguageHierarchy().language(), 1, 1);
-            } else if (clsLanguageHierarchy.getToken(clsLexer.XDataDeclaration) == token.id()) {
+            } else if (CLSLanguageHierarchy.getToken(clsLexer.XDataDeclaration) == token.id()) {
                 return LanguageEmbedding.create(new xdataLanguageHierarchy().language(), 1, 1);
             }
         }

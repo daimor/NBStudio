@@ -40,7 +40,7 @@ public class ChildNode extends FilterNode.Children {
             }
         } else {
             try {
-                if (!fo.getExt().equalsIgnoreCase("properties")) {
+                if ((fo == null) || (!fo.getExt().equalsIgnoreCase("properties"))) {
                     throw new InternalError("IncompatibleExtFile");
                 }
                 Properties properties = new Properties();

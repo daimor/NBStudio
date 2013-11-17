@@ -5,6 +5,7 @@
 package org.nbstudio.core.mac;
 
 import com.intersys.classes.RoutineMgr;
+import com.intersys.objects.BooleanHolder;
 import com.intersys.objects.CacheException;
 import com.intersys.objects.Database;
 import java.io.BufferedReader;
@@ -66,17 +67,13 @@ public class CacheRoutine extends CacheFile {
     public void save(byte[] data) {
         try {
             this.rtnMgr.getCodeOut().write(new String(data));
+            this.rtnMgr.sys_Save(new BooleanHolder(true));
             this.rtnMgr.Compile("/keepsource");
-//            SList result = this.rtn.compile();
-//            Logger.Log(result);
 
         } catch (CacheException ex) {
-            Exceptions.printStackTrace(ex);
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
         }
     }
-
 
     final class RoutineText extends ByteArrayOutputStream {
 

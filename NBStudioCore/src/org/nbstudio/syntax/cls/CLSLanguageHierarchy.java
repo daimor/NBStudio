@@ -19,11 +19,11 @@ import org.netbeans.spi.lexer.LexerRestartInfo;
  *
  * @author daimor
  */
-public class clsLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
+public class CLSLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
 
     private static List<ANTLRTokenId> tokens;
     private static Map<Integer, ANTLRTokenId> idToToken;
-    private static final Language<ANTLRTokenId> language = new clsLanguageHierarchy().language();
+    private static final Language<ANTLRTokenId> language = new CLSLanguageHierarchy().language();
 
     public static Language<ANTLRTokenId> getLanguage() {
         return language;
@@ -35,6 +35,7 @@ public class clsLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
         tokenTypes.put("Class", "keyword");
         tokenTypes.put("Include", "keyword");
         tokenTypes.put("Property", "keyword");
+        tokenTypes.put("Relationship", "keyword");
         tokenTypes.put("Method", "keyword");
         tokenTypes.put("ClassMethod", "keyword");
         tokenTypes.put("Parameter", "keyword");
@@ -50,6 +51,8 @@ public class clsLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
         
         tokenTypes.put("Comment", "comment");
         tokenTypes.put("Description", "description");
+        
+        tokenTypes.put("STRING", "string");
         
         tokens = reader.readTokenFile("org/nbstudio/syntax/cls/clsLexer.tokens", tokenTypes);
         idToToken = new HashMap<Integer, ANTLRTokenId>();

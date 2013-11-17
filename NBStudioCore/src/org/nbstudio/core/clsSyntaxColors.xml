@@ -8,4 +8,5 @@
     <fontcolor name="character"     foreColor="ff008000" default="character"/>
     <fontcolor name="keyword"       foreColor="ff000080">
     </fontcolor>
+    <fontcolor name="string"       foreColor="ff800080"/>
 </fontscolors>

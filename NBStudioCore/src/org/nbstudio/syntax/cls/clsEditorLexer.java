@@ -36,10 +36,10 @@ class clsEditorLexer implements Lexer<ANTLRTokenId> {
         Token<ANTLRTokenId> createdToken = null;
 
         if (token.getType() != -1) {
-            ANTLRTokenId tokenId = clsLanguageHierarchy.getToken(token.getType());
+            ANTLRTokenId tokenId = CLSLanguageHierarchy.getToken(token.getType());
             createdToken = info.tokenFactory().createToken(tokenId);
         } else if (info.input().readLength() > 0) {
-            ANTLRTokenId tokenId = clsLanguageHierarchy.getToken(clsLexer.WS);
+            ANTLRTokenId tokenId = CLSLanguageHierarchy.getToken(clsLexer.WS);
             createdToken = info.tokenFactory().createToken(tokenId);
         }
         return createdToken;

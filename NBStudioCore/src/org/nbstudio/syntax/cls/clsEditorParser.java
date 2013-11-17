@@ -34,7 +34,7 @@ public class clsEditorParser extends Parser {
 
     private Snapshot snapshot;
     private clsParser clsParser;
-    public static List<SyntaxError> syntaxErrors = new ArrayList<SyntaxError>();
+    public List<SyntaxError> syntaxErrors = new ArrayList<SyntaxError>();
 
     @Override
     public void parse(Snapshot snapshot, Task task, SourceModificationEvent event) {
@@ -46,7 +46,6 @@ public class clsEditorParser extends Parser {
             document.putProperty("syntaxErrors", syntaxErrors);
         }
         embeddedOffset = snapshot.getOriginalOffset(0);
-//        Logger.Log("clsparse: " + syntaxErrors.size() + " - " + embeddedOffset);
         if (embeddedOffset <= 0) {
             syntaxErrors.clear();
         }

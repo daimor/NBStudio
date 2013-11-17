@@ -55,7 +55,7 @@ public void setLexerState(lexerState state)
     
     nesting = state.nesting;
     isCommand = state.isCommand;
-    isClass = state.isClass = isClass;
+    isClass = state.isClass;
     isClassMethod = state.isClassMethod;
     doArg = state.doArg;
     caret = state.caret;

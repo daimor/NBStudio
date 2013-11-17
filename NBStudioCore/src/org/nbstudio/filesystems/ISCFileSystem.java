@@ -4,6 +4,7 @@
  */
 package org.nbstudio.filesystems;
 
+import com.intersys.classes.RoutineMgr;
 import com.intersys.objects.CacheException;
 import com.intersys.objects.CacheQuery;
 import com.intersys.objects.Database;
@@ -27,7 +28,7 @@ import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileSystem;
 import org.openide.filesystems.FileUtil;
 import java.lang.String;
-import org.nbstudio.core.cls.clsFile;
+import org.nbstudio.core.cls.CLSFile;
 import org.nbstudio.core.CacheFile;
 import org.nbstudio.core.CachePackage;
 import org.nbstudio.core.mac.CacheRoutine;
@@ -81,14 +82,25 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
         try {
             HashMap<String, FileObject> packages = new HashMap<String, FileObject>();
 
-            CacheQuery qrRoutines = new CacheQuery(db, "%Library.Routine", "RoutineList");
+            CacheQuery qrRoutines = RoutineMgr.query_StudioOpenDialog(db);
+
+//            CacheQuery qrRoutines = new CacheQuery(db, "%Library.Routine", "RoutineList");
             final ResultSet rsRoutines = qrRoutines.execute("*.MAC,*.INT");
             while (rsRoutines.next()) {
+                int rtnType = rsRoutines.getInt("Type");
+                if (rtnType == 9) {
+                    continue;
+                }
                 String rtnName = rsRoutines.getString("Name");
                 FileSystem fs = FileUtil.createMemoryFileSystem();
                 String ext = rtnName.substring(rtnName.lastIndexOf(".") + 1, rtnName.length()).toLowerCase();
 
                 rtnName = rtnName.substring(0, rtnName.lastIndexOf("."));
+                if ("int".equals(ext)) {
+                    if (RoutineMgr.Exists(db, rtnName + ".MAC")) {
+                        continue;
+                    }
+                }
 
                 String[] tmp = rtnName.split("\\.");
                 FileObject rootPKG = root;
@@ -320,7 +332,7 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
                 obj = new CacheRoutine(db, name);
             } else if (ext.equals("cls")) {
                 name = name.substring(0, name.length() - 4);
-                obj = new clsFile(db, name);
+                obj = new CLSFile(db, name);
             }
             entry.obj = obj;
             entry.isFolder = isFolder;

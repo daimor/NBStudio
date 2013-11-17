@@ -4,7 +4,10 @@
  */
 package org.nbstudio.core.cls;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import javax.swing.text.Document;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
@@ -14,6 +17,10 @@ import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
 import org.openide.loaders.MultiFileLoader;
+import org.openide.nodes.CookieSet;
+import org.openide.nodes.Node;
+import org.openide.text.CloneableEditorSupport;
+import org.openide.text.DataEditorSupport;
 import org.openide.util.NbBundle.Messages;
 
 @Messages({
@@ -84,14 +91,44 @@ public class clsDataObject extends MultiDataObject {
 
     public clsDataObject(FileObject pf, MultiFileLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
-        registerEditor("text/isc-cls", false);
+//        registerEditor("text/isc-cls", false);
+        CookieSet cookies = getCookieSet();
+//        observer = new GlslShaderFileObserver(this);
+
+        final CloneableEditorSupport support = DataEditorSupport.create(this, getPrimaryEntry(), cookies);
+        support.addPropertyChangeListener(
+                new PropertyChangeListenerImpl(support));
+        cookies.add((Node.Cookie) support);
+    }
+
+//    @Override
+//    protected Node createNodeDelegate() {
+//    }
+
+    private class PropertyChangeListenerImpl implements PropertyChangeListener {
+
+        private final CloneableEditorSupport support;
+
+        public PropertyChangeListenerImpl(CloneableEditorSupport support) {
+            this.support = support;
+        }
+
+        public void propertyChange(PropertyChangeEvent event) {
+            if ("document".equals(event.getPropertyName())) {
+                if (event.getNewValue() != null) {
+//                    support.getDocument().addDocumentListener(observer);
+//                    observer.runCompileTask();
+                } else if (event.getOldValue() != null) {
+//                    ((Document) event.getOldValue()).removeDocumentListener(observer);
+                }
+            }
+        }
     }
 
     @Override
     protected int associateLookup() {
         return 1;
     }
-    
 //    @MultiViewElement.Registration(
 //            displayName = "#LBL_cls_EDITOR",
 //            iconBase = "org/nbstudio/core/cls/class.png",

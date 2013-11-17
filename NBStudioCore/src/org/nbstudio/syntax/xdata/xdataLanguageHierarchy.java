@@ -24,7 +24,7 @@ public class xdataLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
 
     private static List<ANTLRTokenId> tokens;
     private static Map<Integer, ANTLRTokenId> idToToken;
-    private static final Language<ANTLRTokenId> language = new clsLanguageHierarchy().language();
+    private static final Language<ANTLRTokenId> language = new CLSLanguageHierarchy().language();
 
     public static Language<ANTLRTokenId> getLanguage() {
         return language;

@@ -1,5 +1,11 @@
+#! /bin/sh
+
+DIR="$(dirname "$(readlink -f "$0")")"
+cd $DIR 
 
 ANTLR=../../../../../release/modules/ext/antlr-4.1-complete.jar
+CACHEDB=../../../../../../lib/cachedb.jar
+CACHEJDBC=../../../../../../lib/cachejdbc.jar
 LEXER=clsLexer.g4
 PARSER=clsParser.g4
 PACKAGE=org.nbstudio.syntax.cls
@@ -24,14 +30,20 @@ rm -rf $TEMPDIR/*
 
 echo coping example
 cp $EXAMPLE $TEMPDIR
-#cp clsMyParserListener.java $TEMPDIR
+cp ../../core/cls/CLSParserListerer4Save.java $TEMPDIR
+cp ../../core/cls/CLSFile.java $TEMPDIR
+cp ../../core/cls/CLSUtils.java $TEMPDIR
+cp ../../core/CacheFile.java $TEMPDIR
 
 echo generate java files
 java -jar $ANTLR $ANTLROPT $LEXER
 java -jar $ANTLR $ANTLROPT $PARSER
 
 echo compile generated java files
-javac -cp $ANTLR -s $TEMPDIR -d $TEMPDIR ${TEMPDIR}*.java
+javac -cp $ANTLR:$CACHEDB:$CACHEJDBC -s $TEMPDIR -d $TEMPDIR ${TEMPDIR}*.java
 
 echo TestRig
 java -cp $ANTLR:${TEMPDIR} org.antlr.v4.runtime.misc.TestRig ${PACKAGE}.cls prog $EXAMPLE -tokens $1
+
+java -cp $ANTLR:$CACHEDB:$CACHEJDBC:${TEMPDIR} org.nbstudio.core.cls.CLSParserListerer4Save  < $EXAMPLE
+

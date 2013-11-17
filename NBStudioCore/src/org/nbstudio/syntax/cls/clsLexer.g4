@@ -29,15 +29,33 @@ int lastKeyword = 0;
 int prevToken = 0;
 boolean isClassName = false;
 boolean isPropertyName = false;
+boolean isPropertiesList = false;
+
+private boolean isExpr() {
+    return ((prevToken==InitialExpression)||(prevToken==SqlComputeCode));
+}
 
 private boolean isMethod() {
     return ((lastKeyword==Method)||(lastKeyword==ClassMethod));
 }
 private boolean isClassName() {
-    return ((prevToken==Class)||(prevToken==Extends)||(prevToken==As)||isClassName);
+    return ((prevToken==Class)||(prevToken==Extends)||(prevToken==As)||(prevToken==Of)||(prevToken==References)||isClassName);
 }
 private boolean isPropertyName() {
-    return ((prevToken==Property)||(prevToken==On)||isPropertyName);
+    return (
+        (prevToken==Property)||
+        (prevToken==Relationship)||
+        (prevToken==On)||
+        ((lastKeyword==Index)&&(prevToken==Data))||
+        isPropertyName
+        );
+}
+private boolean isMethodName() {
+    return ((prevToken==Method)||(prevToken==ClassMethod));
+}
+
+private boolean isIncludeFile() {
+    return ((prevToken==Include)||(prevToken==Import)||(prevToken==IncludeGenerator));
 }
 
 private void toggleList(){
@@ -54,12 +72,18 @@ private void resetKeyword()
 }
 public void emit(Token token) {
     super.emit(token);
-    prevToken = token.getType();
+    if((token.getType() != EQUAL)&&(token.getType() != LParen)) {
+        prevToken = token.getType();
+    }
 }
 
 boolean isKeyword(String str)
 {
     boolean result = false;
+    if(isPropertiesList) 
+    {
+         return false;
+    }
     str = str.trim();
     if ( keywords.containsKey(str) )
     {
@@ -80,6 +104,7 @@ class lexerState extends Object
     int prevToken = 0;
     boolean isClassName = false;
     boolean isPropertyName = false;
+    boolean isPropertiesList = false;
     
 }
 public lexerState getLexerState() 
@@ -93,6 +118,7 @@ public lexerState getLexerState()
     state.prevToken = prevToken;
     state.isClassName = isClassName;
     state.isPropertyName = isPropertyName;
+    state.isPropertiesList = isPropertiesList;
 
     return state;
 }
@@ -105,22 +131,51 @@ public void setLexerState(lexerState state)
     
     lastKeyword = state.lastKeyword;
     prevToken = state.prevToken;
-    isClassName = isClassName;
-    isPropertyName = isPropertyName;
+    isClassName = state.isClassName;
+    isPropertyName = state.isPropertyName;
+    isPropertiesList = state.isPropertiesList;
 }
 
 }
+
+PropertyCollection: {(prevToken==As)}? ('array'|'list');
+MethodLanguage: {(prevToken==Language)}? ('cache'|'basic'|'java'|'javascript'|'mvbasic'|'tsql');
+MethodCodeMode: {(prevToken==CodeMode)}? ('call'|'code'|'expression'|'objectgenerator');
+
+ClassName: {(isClassName())}? PERCENT? ID ( DOT ID )*;
+MethodName  : {isMethodName()}? PERCENT? ID;
+XDataName: {(prevToken==XData)}? PERCENT? ID;
+QueryName: {(prevToken==Query)}? PERCENT? ID;
+PropertyName: {(isPropertyName())}? PERCENT? ID (DOT ID)*;
+ParameterName: {(prevToken==Parameter)}? PERCENT? ID;
+ForeignKeyName: {(prevToken==ForeignKey)}? PERCENT? ID;
+TriggerName: {(prevToken==Trigger)}? PERCENT? ID;
+ProjectionName: {(prevToken==Projection)}? PERCENT? ID;
+IndexName: {(prevToken==Index)}? PERCENT? ID;
+IncludeFile: {isIncludeFile()}? PERCENT? ID;
+SqlNameVal : {(prevToken==SqlName)}? ID? ( Underscore+ ID )+;
+ClientNameVal : {(prevToken==ClientName)}? ID? ( Underscore+ ID )+;
+
+ByRef:
+      [Bb][Yy][Rr][Ee][Ff];
+
+Output:
+      [Oo][Uu][Tt][Pp][Uu][Tt];
+Not: 
+			[Nn][Oo][Tt];
 
 Include: 
 			[Ii][Nn][Cc][Ll][Uu][Dd][Ee];
 Extends: 
 			[Ee][Xx][Tt][Ee][Nn][Dd][Ss];
 On:                     
-                        [Oo][Nn];
+      [Oo][Nn];
 Projection: 
 			[Pp][Rr][Oo][Jj][Ee][Cc][Tt][Ii][Oo][Nn];
 As:
-                        [Aa][Ss];
+      [Aa][Ss];
+Of:                     
+      [Oo][Ff];
 Abstract: 
 			[Aa][Bb][Ss][Tt][Rr][Aa][Cc][Tt];
 ClassType: 
@@ -131,6 +186,8 @@ ClientName:
 			[Cc][Ll][Ii][Ee][Nn][Tt][Nn][Aa][Mm][Ee];
 CompileAfter: 
 			[Cc][Oo][Mm][Pp][Ii][Ll][Ee][Aa][Ff][Tt][Ee][Rr];
+Cardinality:
+      [Cc][Aa][Rr][Dd][Ii][Nn][Aa][Ll][Ii][Tt][Yy];
 DdlAllowed: 
 			[Dd][Dd][Ll][Aa][Ll][Ll][Oo][Ww][Ee][Dd];
 DependsOn: 
@@ -265,22 +322,25 @@ Time:
 			[Tt][Ii][Mm][Ee];
 UpdateColumnList: 
 			[Uu][Pp][Dd][Aa][Tt][Ee][Cc][Oo][Ll][Uu][Mm][Nn][Ll][Ii][Ss][Tt];
+References:
+      [Rr][Ee][Ff][Ee][Rr][Ee][Nn][Cc][Ee][Ss];
 OnDelete: 
 			[Oo][Nn][Dd][Ee][Ll][Ee][Tt][Ee];
 OnUpdate: 
 			[Oo][Nn][Uu][Pp][Dd][Aa][Tt][Ee];
+Flags:
+      [Ff][Ll][Aa][Gg][Ss];
+Constraint:
+      [Cc][Oo][Nn][Ss][Tt][Rr][Aa][Ii][Nn][Tt];
 
-Storage     : [Ss][Tt][Oo][Rr][Aa][Gg][Ee];
+Storage:
+      [Ss][Tt][Oo][Rr][Aa][Gg][Ee];
 
-ClassName: {(isClassName())}? PERCENT? ID ( DOT ID )* ;
-MethodName  : {isMethod()}? PERCENT? ID;
-XDataName: {(prevToken==XData)}? PERCENT? ID;
-QueryName: {(prevToken==Query)}? PERCENT? ID;
-PropertyName: {(isPropertyName())}? PERCENT? ID (DOT ID)*;
-ParameterName: {(prevToken==Parameter)}? PERCENT? ID;
-ForeignKeyName: {(prevToken==ForeignKey)}? PERCENT? ID;
-TriggerName: {(prevToken==Trigger)}? PERCENT? ID;
-IndexName: {(prevToken==Index)}? PERCENT? ID;
+SchemaSpec:
+      [Ss][Cc][Hh][Re][Mm][Aa][Ss][Pp][Ee][Cc];
+XMLNamespace:
+      [Xx][Mm][Ll][Nn][Aa][Mm][Ee][Ss][Pp][Aa][Cc][Ee];
+
 
 ID  :	[a-zA-Z] [a-zA-Z0-9]*
         {
@@ -299,7 +359,7 @@ FLOAT
     ;
 
 STRING
-    :  '"' ~["]* '"'
+    : '"' (~[\r\n"] | '""')* '"'
     ;
 
 fragment
@@ -324,10 +384,16 @@ XDataDeclaration : {(lastKeyword==XData)}? Block {resetKeyword();};
 QueryDeclaration : {(lastKeyword==Query)}? Block {resetKeyword();};
 TriggerDeclaration : {(lastKeyword==Trigger)}? Block {resetKeyword();};
 
+Expression : {isExpr()}? Block;
+
 LBrace: '{';
 RBrace: '}';
 LParen: '(' { toggleList();};
 RParen: ')' { toggleList();};
+LBracket: '[' { isPropertiesList = true;};
+RBracket: ']' { isPropertiesList = false;};
+Underscore: '_';
+
 
 //MLineComment: '/*' .*? ( '*/' | EOF );
 Comment     : ('/*' .*? ( '*/' | EOF )) 

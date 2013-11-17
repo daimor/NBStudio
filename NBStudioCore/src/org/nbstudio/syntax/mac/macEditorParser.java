@@ -32,7 +32,7 @@ public class macEditorParser extends Parser {
 
     private Snapshot snapshot;
     private macParser macParser;
-    public static List<SyntaxError> syntaxErrors = new ArrayList<SyntaxError>();
+    public List<SyntaxError> syntaxErrors = new ArrayList<SyntaxError>();
     public static int embeddedOffset;
 
     @Override

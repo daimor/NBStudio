@@ -26,7 +26,7 @@ public final class Connection implements Serializable {
     public final String address;
     public final int port;
     public final String namespace;
-    private static Database connection;
+    private Database connection;
     public final String username;
     public final String password;
 
