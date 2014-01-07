@@ -18,27 +18,26 @@ import org.openide.nodes.Node;
  *
  * @author daimor
  */
-public class RoutinesNode extends ConnectionFolderNode {
+public class ClassesNode extends ConnectionFolderNode {
 
-    public RoutinesNode(Connection conn) throws IntrospectionException {
+    public ClassesNode(Connection conn) throws IntrospectionException {
         this(conn, null);
     }
 
-    public RoutinesNode(Connection conn, CacheFileObject folder) throws IntrospectionException {
-        super(conn, (folder == null) ? "Routines" : folder.getName());
+    public ClassesNode(Connection conn, CacheFileObject folder) throws IntrospectionException {
+        super(conn, (folder == null) ? "Classess" : folder.getName());
         Children.Array children = new Children.Array();
         ArrayList<Node> nodes = new ArrayList<Node>();
         folder = (folder == null) ? (CacheFileObject) conn.getFileSystem().getRoot() : folder;
-        CacheFileObject[] routines = folder.getChildren("*.mac,*.int");
-        for (CacheFileObject fileObject : routines) {
+        CacheFileObject[] classes = folder.getChildren("*.cls");
+        for (CacheFileObject fileObject : classes) {
             try {
                 if (fileObject.isFolder()) {
-                    nodes.add(new RoutinesNode(conn, fileObject));
+                    nodes.add(new ClassesNode(conn, fileObject));
                 } else {
                     nodes.add(DataObject.find(fileObject).getNodeDelegate());
                 }
             } catch (DataObjectNotFoundException ex) {
-                System.out.println("routinesNode: " + ex.getLocalizedMessage());
             }
         }
         children.add(nodes.toArray(new Node[nodes.size()]));

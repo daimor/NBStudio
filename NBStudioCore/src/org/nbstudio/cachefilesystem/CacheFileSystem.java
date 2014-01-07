@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.nbstudio.filesystems;
+package org.nbstudio.cachefilesystem;
 
 import com.intersys.classes.RoutineMgr;
-import com.intersys.objects.CacheException;
 import com.intersys.objects.CacheQuery;
 import com.intersys.objects.Database;
 import java.io.ByteArrayInputStream;
@@ -21,48 +20,38 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.Iterator;
+import org.nbstudio.cachefilesystem.CacheRootFile;
 import org.openide.filesystems.AbstractFileSystem;
 import org.openide.filesystems.AbstractFileSystem.Attr;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileSystem;
 import org.openide.filesystems.FileUtil;
-import java.lang.String;
-import org.nbstudio.core.cls.CLSFile;
 import org.nbstudio.core.CacheFile;
-import org.nbstudio.core.CachePackage;
-import org.nbstudio.core.mac.CacheRoutine;
+import org.nbstudio.core.Connection;
 import org.openide.util.Enumerations;
 import org.openide.util.Exceptions;
-import org.openide.util.lookup.ServiceProvider;
-import org.openide.util.lookup.ServiceProviders;
 
-@ServiceProviders({
-    @ServiceProvider(service = FileSystem.class),
-    @ServiceProvider(service = ISCFileSystem.class)
-})
-public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSystem.Info, AbstractFileSystem.Change, AbstractFileSystem.List, Attr {
+//@ServiceProviders({
+//    @ServiceProvider(service = FileSystem.class),
+//    @ServiceProvider(service = CacheFileSystem.class)
+//})
+public class CacheFileSystem extends AbstractFileSystem implements AbstractFileSystem.Info, AbstractFileSystem.Change, AbstractFileSystem.List, Attr {
 
-    Database db;
-    String name;
+    private final Database db;
+    private final Connection conn;
+    private String name;
     private java.util.Date created = new java.util.Date();
 
-    public ISCFileSystem() {
-        attr = this;
-        list = this;
-        change = this;
-        info = this;
-    }
-
-    public ISCFileSystem(Database db) {
+    public CacheFileSystem(Connection conn) {
         attr = this;
         list = this;
         change = this;
         info = this;
 
-        this.db = db;
+        this.conn = conn;
+        this.db = conn.getAssociatedConnection();
 
-        refresh();
+//        refresh();
     }
 
     public void refresh() {
@@ -173,7 +162,7 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
 
     @Override
     public String getDisplayName() {
-        return db.getConnectionString();
+        return conn.getTitle();
     }
 
     static final class Entry {
@@ -245,21 +234,18 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
 
     @Override
     public InputStream inputStream(String name) throws FileNotFoundException {
-        InputStream is = null;
-        Entry entry = e(name);
-        if (entry.obj != null) {
+        InputStream is = new ByteArrayInputStream(new byte[0]);
+        CacheRootFile file = new CacheRootFile(conn.getTitle() + "/" + name);
+
+        if (file != null) {
             try {
-                is = entry.obj.open();
+                is = file.open(); // entry.obj.open();
             } catch (Exception ex) {
-                Exceptions.printStackTrace(ex);
+                ex.printStackTrace();
             }
             return is;
         }
-        byte[] arr = new byte[0];
-        if (arr == null) {
-            arr = new byte[0];
-        }
-        return new ByteArrayInputStream(arr);
+        return is;
     }
 
     @Override
@@ -269,10 +255,10 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
             @Override
             public void close() throws IOException {
                 super.close();
-                Entry entry = e(name);
-                if (entry.obj != null) {
+                CacheRootFile file = new CacheRootFile(conn.getTitle() + "/" + name);
+                if (file != null) {
                     try {
-                        entry.obj.save(toByteArray());
+                        file.save(toByteArray());
                     } catch (Exception ex) {
                         Exceptions.printStackTrace(ex);
                     }
@@ -298,49 +284,49 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
 
     @Override
     public void createFolder(String name) throws IOException {
-        if (is(name)) {
-            throw new IOException("File already exists");
-        }
-        Entry entry = e(name);
-        entry.isFolder = true;
-        if (name.indexOf("/") > 0) {
-            name = name.substring(name.indexOf("/") + 1, name.length());
-            name = name.replace('/', '.');
-            try {
-                CacheFile obj;
-                obj = new CachePackage(db, name);
-                entry.obj = obj;
-            } catch (CacheException ex) {
-                Exceptions.printStackTrace(ex);
-            }
-        }
+//        if (is(name)) {
+//            throw new IOException("File already exists");
+//        }
+//        Entry entry = e(name);
+//        entry.isFolder = true;
+//        if (name.indexOf("/") > 0) {
+//            name = name.substring(name.indexOf("/") + 1, name.length());
+//            name = name.replace('/', '.');
+//            try {
+//                CacheFile obj;
+//                obj = new CachePackage(db, name);
+//                entry.obj = obj;
+//            } catch (CacheException ex) {
+//                Exceptions.printStackTrace(ex);
+//            }
+//        }
     }
 
     @Override
     public void createData(String name) throws IOException {
-        if (is(name)) {
-            throw new IOException("File already exists");
-        }
-        String ext = name.substring(name.lastIndexOf(".") + 1, name.length()).toLowerCase();
-        CacheFile obj = null;
-        try {
-            Entry entry = e(name);
-            name = name.substring(name.indexOf("/") + 1, name.length());
-            name = name.replace('/', '.');
-            Boolean isFolder = false;
-            if ((ext.equals("mac")) || (ext.equals("bas")) || (ext.equals("int"))) {
-                obj = new CacheRoutine(db, name);
-            } else if (ext.equals("cls")) {
-                name = name.substring(0, name.length() - 4);
-                obj = new CLSFile(db, name);
-            }
-            entry.obj = obj;
-            entry.isFolder = isFolder;
-            entry.extension = ext;
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+//        if (is(name)) {
+//            throw new IOException("File already exists");
+//        }
+//        String ext = name.substring(name.lastIndexOf(".") + 1, name.length()).toLowerCase();
+//        CacheFile obj = null;
+//        try {
+//            Entry entry = e(name);
+//            name = name.substring(name.indexOf("/") + 1, name.length());
+//            name = name.replace('/', '.');
+//            Boolean isFolder = false;
+//            if ((ext.equals("mac")) || (ext.equals("bas")) || (ext.equals("int"))) {
+//                obj = new RoutineFile(db, name);
+//            } else if (ext.equals("cls")) {
+//                name = name.substring(0, name.length() - 4);
+//                obj = new CLSFile(db, name);
+//            }
+//            entry.obj = obj;
+//            entry.isFolder = isFolder;
+//            entry.extension = ext;
+//
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     @Override
@@ -353,33 +339,34 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
 
     @Override
     public String[] children(String f) {
-        if (f.length() > 0 && f.charAt(0) == '/') {
-            f = f.substring(1);
-        }
-        if (f.length() > 0 && !f.endsWith("/")) {
-            f = f + "/";
-        }
-
+//        System.out.println("fsChildren: " + f);
+//        if (f.length() > 0 && f.charAt(0) == '/') {
+//            f = f.substring(1);
+//        }
+//        if (f.length() > 0 && !f.endsWith("/")) {
+//            f = f + "/";
+//        }
+//
         HashSet<String> l = new HashSet<String>();
-
-        Iterator<String> it = entries.keySet().iterator();
-        while (it.hasNext()) {
-            String name = it.next();
-
-            if (name.startsWith(f) || f.trim().length() == 0) {
-                int i = name.indexOf('/', f.length());
-                String child = null;
-                if (i > 0) {
-                    child = name.substring(f.length(), i);
-                } else {
-                    child = name.substring(f.length());
-                }
-
-                if (child.trim().length() > 0) {
-                    l.add(child);
-                }
-            }
-        }
+//
+//        Iterator<String> it = entries.keySet().iterator();
+//        while (it.hasNext()) {
+//            String name = it.next();
+//
+//            if (name.startsWith(f) || f.trim().length() == 0) {
+//                int i = name.indexOf('/', f.length());
+//                String child = null;
+//                if (i > 0) {
+//                    child = name.substring(f.length(), i);
+//                } else {
+//                    child = name.substring(f.length());
+//                }
+//
+//                if (child.trim().length() > 0) {
+//                    l.add(child);
+//                }
+//            }
+//        }
         return l.toArray(new String[0]);
     }
 
@@ -409,4 +396,15 @@ public class ISCFileSystem extends AbstractFileSystem implements AbstractFileSys
     @Override
     public void deleteAttributes(String name) {
     }
+
+    public Connection getConnection() {
+        return conn;
+    }
+
+    @Override
+    public FileObject getRoot() {
+        CacheFileObject root = new CacheFileObject(this, null, "");
+        return root;
+    }
+    
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.nbstudio.filesystems;
+package org.nbstudio.cachefilesystem;
 
 import java.nio.charset.Charset;
 import org.netbeans.spi.queries.FileEncodingQueryImplementation;

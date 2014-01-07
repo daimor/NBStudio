@@ -89,7 +89,7 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
         String className = extractor.GetClassName();
         System.out.println("ClassName: " + className);
 
-        CLSFile clsFile = new CLSFile(db, className);
+        ClassFile clsFile = new ClassFile(db, className);
         InputStream clsText = clsFile.open();
 
         BufferedReader in = new BufferedReader(new InputStreamReader(clsText));

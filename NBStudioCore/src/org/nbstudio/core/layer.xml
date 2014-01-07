@@ -147,6 +147,9 @@
     </folder>
     <folder name="Keymaps">
         <folder name="NetBeans">
+            <file name="D-O.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/org-mycore-OpenFileAction.instance"/>
+            </file>
             <file name="D-S.shadow">
                 <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-SaveAction.instance"/>
             </file>

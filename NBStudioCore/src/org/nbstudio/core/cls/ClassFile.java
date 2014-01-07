@@ -28,7 +28,6 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,7 +36,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -51,7 +49,7 @@ import org.nbstudio.syntax.cls.clsParser;
  *
  * @author daimor
  */
-public class CLSFile extends CacheFile {
+public class ClassFile extends CacheFile {
 
     ClassDefinition cls;
     Charset charset = Charset.forName("UTF-8");
@@ -66,7 +64,7 @@ public class CLSFile extends CacheFile {
     private ClassDefinition parameterDef;
     private ClassDefinition xdataDef;
 
-    public CLSFile(Database db, String name) throws CacheException {
+    public ClassFile(Database db, String name) throws CacheException {
         super(db, name);
         try {
             if (ClassDefinition._existsId(db, new Id(name))) {
@@ -74,6 +72,7 @@ public class CLSFile extends CacheFile {
             } else {
                 cls = new ClassDefinition(db, name);
             }
+            System.out.println("class: " + name + " - " + cls + " - " + (ClassDefinition._existsId(db, new Id(name))));
             Field privateStringField = CacheRootObject.class.getDeclaredField("mInternal");
             privateStringField.setAccessible(true);
             mInternal = (CacheObject) privateStringField.get(cls);
@@ -525,11 +524,16 @@ public class CLSFile extends CacheFile {
                 }
                 String paramName = entry.getKey();
                 String paramVal = (String) entry.getValue();
-                if (!paramVal.matches("^\\d*$")) {
-                    paramVal = paramVal.replaceAll("\"", "\"\"");
-                    paramVal = "\"" + paramVal + "\"";
+                if (paramVal != null) {
+                    if (!paramVal.matches("^\\d*$")) {
+                        paramVal = paramVal.replaceAll("\"", "\"\"");
+                        paramVal = "\"" + paramVal + "\"";
+                    }
+                    sepValueBuilder.append(paramName + " = " + paramVal);
+                } else {
+                    sepValueBuilder.append(paramName);
                 }
-                sepValueBuilder.append(paramName + " = " + paramVal);
+
             }
             if (sepValueBuilder.length() > 0) {
                 printf("(%s)", sepValueBuilder.toString());

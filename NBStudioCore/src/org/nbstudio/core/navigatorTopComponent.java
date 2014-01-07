@@ -5,12 +5,16 @@
 package org.nbstudio.core;
 
 import org.nbstudio.core.mac.macEventListener;
-import org.nbstudio.explorer.RootNode;
 import java.awt.BorderLayout;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.swing.Action;
 import javax.swing.ActionMap;
+import org.nbstudio.explorer.ConnectionNode;
+import org.nbstudio.explorer.ConnectionsNode;
+import org.nbstudio.explorer.RootNode;
 import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.actions.DeleteAction;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
@@ -19,12 +23,11 @@ import org.openide.explorer.view.BeanTreeView;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataObject;
-import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
-import org.openide.util.actions.SystemAction;
+import org.openide.util.Utilities;
 
 /**
  * Top component which displays something.
@@ -67,11 +70,8 @@ public final class navigatorTopComponent extends TopComponent implements Explore
         add(new BeanTreeView(), BorderLayout.CENTER);
         try {
             FileObject connectionsFolder = FileUtil.getConfigFile("Connections");
-            Node connectionsNode = DataObject.find(connectionsFolder).getNodeDelegate();
-            manager.setRootContext(new RootNode(connectionsNode));
-        } catch (DataObjectNotFoundException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (IOException ex) {
+            manager.setRootContext(new ConnectionsNode(connectionsFolder, "Connections"));
+        } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }
         ActionMap map = getActionMap();

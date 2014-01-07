@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import org.nbstudio.core.Connection;
-import org.nbstudio.filesystems.ISCFileSystem;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileSystem;
 import org.openide.loaders.DataObject;
@@ -43,28 +42,18 @@ public class ChildNode extends FilterNode.Children {
                 if ((fo == null) || (!fo.getExt().equalsIgnoreCase("properties"))) {
                     throw new InternalError("IncompatibleExtFile");
                 }
-                Properties properties = new Properties();
-                properties.load(fo.getInputStream());
-                String name = properties.getProperty("Name");
-                String addr = properties.getProperty("Server");
-                String sSuperPort = properties.getProperty("SuperPort");
-                int superPort = ((sSuperPort == null) || (sSuperPort.isEmpty())) ? 1972 : Integer.parseInt(sSuperPort);
-                String namespace = properties.getProperty("Namespace");
-                String username = properties.getProperty("Username");
-                String password = properties.getProperty("Password");
-
-                Connection conn = new Connection(name, addr, superPort, namespace, username, password);
+                Connection conn = new Connection(fo);
 
                 if (conn == null) {
                     throw new InternalError();
                 }
                 Database db = conn.getAssociatedConnection();
-                FileSystem fs = new ISCFileSystem(db);
+                FileSystem fs = conn.getFileSystem();
                 FileObject fob = fs.getRoot();
                 try {
                     DataObject data = DataObject.find(fob);
                     Node tmpNode = data.getNodeDelegate();
-                    tmpNode.setDisplayName(conn.name);
+                    tmpNode.setDisplayName(conn.getTitle());
                     return new Node[]{
                         tmpNode
 //                        new ConnectionNode(conn)

@@ -23,13 +23,14 @@ import org.openide.util.Exceptions;
  *
  * @author daimor
  */
-public class CacheRoutine extends CacheFile {
+public class RoutineFile extends CacheFile {
 
     RoutineMgr rtnMgr;
 
-    public CacheRoutine(Database db, String name) throws CacheException {
+    public RoutineFile(Database db, String name) throws CacheException {
         super(db, name);
         rtnMgr = new RoutineMgr(db, name);
+        System.out.println("RoutineFile: " + name + " - " + rtnMgr);
     }
 
     @Override

@@ -73,6 +73,8 @@ public class EditConnection extends javax.swing.JPanel {
         labelUsername = new javax.swing.JLabel();
         connPass = new javax.swing.JPasswordField();
         labelPass = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         connName.setText(org.openide.util.NbBundle.getMessage(EditConnection.class, "EditConnection.connName.text")); // NOI18N
 
@@ -111,6 +113,10 @@ public class EditConnection extends javax.swing.JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(labelPass, org.openide.util.NbBundle.getMessage(EditConnection.class, "EditConnection.labelPass.text")); // NOI18N
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "default" }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(EditConnection.class, "EditConnection.jLabel1.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,7 +133,8 @@ public class EditConnection extends javax.swing.JPanel {
                             .addComponent(labelWebPort)
                             .addComponent(labelNamespace)
                             .addComponent(labelUsername)
-                            .addComponent(labelPass))
+                            .addComponent(labelPass)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -135,13 +142,14 @@ public class EditConnection extends javax.swing.JPanel {
                                     .addComponent(superPort, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(webPort, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(connName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(connAddr, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(connNamespace, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(connUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                    .addComponent(connPass))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(connName)
+                                    .addComponent(connAddr)
+                                    .addComponent(connNamespace)
+                                    .addComponent(connUser, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                    .addComponent(connPass, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())))))
         );
         layout.setVerticalGroup(
@@ -176,9 +184,15 @@ public class EditConnection extends javax.swing.JPanel {
                     .addComponent(connPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPass))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errMessage)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        jLabel1.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(EditConnection.class, "EditConnection.jLabel1.AccessibleContext.accessibleName")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField connAddr;
@@ -187,6 +201,8 @@ public class EditConnection extends javax.swing.JPanel {
     private javax.swing.JPasswordField connPass;
     private javax.swing.JTextField connUser;
     private javax.swing.JLabel errMessage;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelAddress;
     private javax.swing.JLabel labelNamespace;
     private javax.swing.JLabel labelPass;
