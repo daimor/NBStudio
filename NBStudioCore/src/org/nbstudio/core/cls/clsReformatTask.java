@@ -15,7 +15,7 @@ import org.openide.awt.StatusDisplayer;
  * @author daimor
  */
 public class clsReformatTask implements ReformatTask {
-    private Context context;
+    private final Context context;
 
     public clsReformatTask(Context context) {
         this.context = context;

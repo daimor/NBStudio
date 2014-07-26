@@ -23,7 +23,7 @@ import org.openide.util.lookup.Lookups;
  */
 public class ConnectionEntryNode  extends AbstractNode {
 
-    private Connection conn;
+    private final Connection conn;
 
     public ConnectionEntryNode(Connection conn, String name) throws IntrospectionException {
         super(Children.LEAF, Lookups.fixed(conn));

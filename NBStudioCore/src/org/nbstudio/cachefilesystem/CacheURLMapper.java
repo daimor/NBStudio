@@ -4,11 +4,13 @@
  */
 package org.nbstudio.cachefilesystem;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import org.nbstudio.core.Connection;
 import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileStateInvalidException;
 import org.openide.filesystems.FileSystem;
 import org.openide.filesystems.URLMapper;
 import org.openide.util.Exceptions;
@@ -25,6 +27,15 @@ public class CacheURLMapper extends URLMapper {
 
     @Override
     public URL getURL(FileObject fo, int type) {
+        if (fo instanceof CacheFileObject) {
+            try {
+                CacheFileObject cfo = (CacheFileObject) fo;
+                CacheFileSystem fs = (CacheFileSystem) cfo.getFileSystem();
+                String connName = fs.getConnection().getTitle();
+                return new URL(PROTOCOL, connName, cfo.getFullPath());
+            } catch (MalformedURLException | FileStateInvalidException ex) {
+            }
+        }
         return null;
     }
 
@@ -49,15 +60,14 @@ public class CacheURLMapper extends URLMapper {
                 String path = uri.getPath();
                 try {
                     Connection conn = Connection.getConnection(connectionName);
-                    CacheRootFile file = new CacheRootFile(connectionName + path);
-                    if (file != null) {
+                    if (conn != null) {
+                        CacheRootFile file = new CacheRootFile(connectionName + path);
                         FileSystem fs = conn.getFileSystem();
                         if (fs.getRoot() != null) {
                             FileObject fo = fs.getRoot().getFileObject(path);
                             return new FileObject[]{fo};
                         }
                     }
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

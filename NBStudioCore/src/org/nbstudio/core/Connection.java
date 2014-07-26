@@ -9,18 +9,19 @@ import com.intersys.objects.CacheDatabase;
 import com.intersys.objects.CacheException;
 import com.intersys.objects.Database;
 import java.io.IOException;
-import java.io.InvalidObjectException;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import org.nbstudio.cachefilesystem.CacheFileSystem;
-import org.openide.filesystems.FileAlreadyLockedException;
+import org.netbeans.api.project.Project;
+import org.netbeans.api.project.ProjectManager;
+import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
-import org.openide.util.Exceptions;
 import org.openide.windows.IOProvider;
 import org.openide.windows.OutputWriter;
 
@@ -30,7 +31,7 @@ import org.openide.windows.OutputWriter;
  */
 public final class Connection {
 
-    private static Map<String, Connection> connections = new HashMap<>();
+    private static Map<FileObject, Connection> connections = new HashMap<>();
     private final String name;
     private final String address;
     private final int port;
@@ -41,49 +42,56 @@ public final class Connection {
     private CacheFileSystem fs;
     private Properties props;
     private final FileObject propsFile;
+    private CacheProject rootProject;
+    private List<CacheProject> projects;
 
-    public Connection(FileObject propsFile, String name, String address, int port, String namespace, String username, String password) {
+    private Connection(FileObject propsFile, String name, String address, int port, String namespace, String username, String password) throws InternalError {
+        this.projects = new ArrayList<>();
         this.propsFile = propsFile;
         this.name = name;
         this.address = address;
-        if (port == 0) {
-            port = 1972;
-        }
-        this.port = port;
         this.namespace = namespace;
-        this.username = username.isEmpty() ? "_SYSTEM" : username;
-        this.password = password.isEmpty() ? "SYS" : password;
-        fs = new CacheFileSystem(this);
-
-        addConnection(this);
-        this.props = getProperties();
-    }
-
-    public Connection(FileObject propsFile) throws IOException, InternalError {
-        this.propsFile = propsFile;
-        this.props = new Properties();
-        this.props.load(propsFile.getInputStream());
-        this.name = propsFile.getName(); //props.getProperty("Name");
-        this.address = props.getProperty("Server");
-        String sSuperPort = props.getProperty("SuperPort");
-        this.port = ((sSuperPort == null) || (sSuperPort.isEmpty())) ? 1972 : Integer.parseInt(sSuperPort);
-        this.namespace = props.getProperty("Namespace");
-        this.username = props.getProperty("Username");
-        this.password = props.getProperty("Password");
-
-        for (Map.Entry<String, Connection> entry : connections.entrySet()) {
-            Connection connection = entry.getValue();
-            if (connection.getConnectionString().equals(this.getConnectionString())) {
-                throw new InternalError("Not unique connection");
-            }
-        }
-
         if ((this.address == null) || (this.namespace == null)) {
             throw new InternalError("Error serverName or namespace");
         }
 
+        this.port = port;
+        this.username = ((username == null) || username.isEmpty()) ? "_SYSTEM" : username;
+        this.password = ((password == null) || password.isEmpty()) ? "SYS" : password;
         fs = new CacheFileSystem(this);
-        addConnection(this);
+        for (Map.Entry<FileObject, Connection> entry : connections.entrySet()) {
+            Connection conn = entry.getValue();
+            if (conn.getConnectionString().equals(this.getConnectionString())) {
+                throw new InternalError("Connection already addedd");
+            }
+        }
+
+        this.props = getProperties();
+
+        Database testDB = getAssociatedConnection();
+        if (testDB == null) {
+            throw new InternalError("Error connect to " + getConnectionString());
+        }
+
+        getRootProject();
+    }
+
+    private Connection(FileObject propsFile, Properties props) throws IOException, InternalError {
+        this(propsFile,
+                propsFile.getName(),
+                props.getProperty("Server"),
+                ((props.getProperty("SuperPort") == null) || (props.getProperty("SuperPort").isEmpty())) ? 1972 : Integer.parseInt(props.getProperty("SuperPort")),
+                props.getProperty("Namespace"),
+                props.getProperty("Username"),
+                props.getProperty("Password"));
+    }
+
+    private Connection(final FileObject propsFile) throws IOException, InternalError {
+        this(propsFile, new Properties() {
+            {
+                load(propsFile.getInputStream());
+            }
+        });
     }
 
     public String getConnectionString() {
@@ -98,7 +106,7 @@ public final class Connection {
                 Logger.Log("Try to connect to " + connString);
                 this.db = CacheDatabase.getDatabase(connString, username, password);
                 OutputStream out = new OutputStream() {
-                    private OutputWriter out = IOProvider.getDefault().getIO("Task", false).getOut();
+                    private final OutputWriter out = IOProvider.getDefault().getIO("Task", false).getOut();
 
                     @Override
                     public void write(int i) throws IOException {
@@ -140,30 +148,61 @@ public final class Connection {
         return name;
     }
 
-    private static void addConnection(Connection conn) {
-        String connName = conn.getTitle();
-        if (connections.containsKey(connName)) {
-            int i;
-            for (i = 1;; i++) {
-                if (!connections.containsKey(connName + i)) {
-                    break;
-                }
-            }
-            connName += i;
+//    private static void addConnection(Connection conn) {
+//        String connName = conn.getTitle();
+//        if (connections.containsKey(connName)) {
+//            int i;
+//            for (i = 1;; i++) {
+//                if (!connections.containsKey(connName + i)) {
+//                    break;
+//                }
+//            }
+//            connName += i;
+//        }
+//        connections.put(connName, conn);
+//    }
+//    
+    public static Connection load(FileObject propsFile) throws InternalError, IOException {
+        if (connections.containsKey(propsFile)) {
+            return connections.get(propsFile);
+        } else {
+            Connection conn = new Connection(propsFile);
+            connections.put(propsFile, conn);
+            return conn;
         }
-        connections.put(connName, conn);
     }
 
-    public static void clearConnections() {
-        connections.clear();
+    public static Connection create(FileObject propsFile, String name, String address, int port, String namespace, String username, String password) throws InternalError, IOException {
+        if (connections.containsKey(propsFile)) {
+            throw new InternalError("Properties File already used.");
+        } else {
+            Connection conn = new Connection(propsFile, name, address, port, namespace, username, password);
+            connections.put(propsFile, conn);
+            conn.save();
+            return conn;
+        }
     }
 
+//    public static void clearConnections() {
+//        connections.clear();
+//    }
     public static Map<String, Connection> getConnections() {
-        return connections;
+        HashMap<String, Connection> result = new HashMap<>();
+        for (Map.Entry<FileObject, Connection> entry : connections.entrySet()) {
+            Connection conn = entry.getValue();
+            result.put(conn.getTitle(), conn);
+        }
+        return result;
     }
 
     public static Connection getConnection(String name) {
-        return connections.get(name);
+        for (Map.Entry<FileObject, Connection> entry : connections.entrySet()) {
+            Connection conn = entry.getValue();
+            if (conn.getTitle().equals(name)) {
+                return conn;
+            }
+        }
+        return null;
     }
 
     public CacheFileSystem getFileSystem() {
@@ -190,13 +229,10 @@ public final class Connection {
 
             FileLock lock = propsFile.lock();
             try {
-                OutputStream str = propsFile.getOutputStream(lock);
-                try {
+                try (OutputStream str = propsFile.getOutputStream(lock)) {
                     props.store(str, "");
                 } catch (Exception ex) {
-                    ex.printStackTrace();
-                } finally {
-                    str.close();
+                    System.err.println("Error saving: " + ex.getMessage());
                 }
             } finally {
                 lock.releaseLock();
@@ -205,10 +241,34 @@ public final class Connection {
     }
 
     public void delete() throws IOException, CacheException {
-        if (this.propsFile != null) {
-            close();
-            this.propsFile.delete();
-            connections.remove(name);
+        OpenProjects.getDefault().close(projects.toArray(new Project[projects.size()]));
+        OpenProjects.getDefault().close(new Project[]{rootProject});
+        close();
+        this.propsFile.delete();
+        connections.remove(this.propsFile);
+    }
+
+    public CacheProject getRootProject() {
+        if (this.rootProject == null) {
+            FileObject root = getFileSystem().getRoot();
+            try {
+                this.rootProject = (CacheProject) ProjectManager.getDefault().findProject(root);
+//                this.rootProject = new CacheProject(root, null);
+                System.out.println("getRootProject: " + this.getConnectionString() + " - " + rootProject);
+                addProject(rootProject);
+            } catch (Exception ex) {
+                System.out.println("getRootProjectErr: " + ex.getLocalizedMessage());
+            }
         }
+        return this.rootProject;
+    }
+
+    public boolean addProject(CacheProject project) {
+        if (projects.contains(project)) {
+            return false;
+        }
+        projects.add(project);
+        OpenProjects.getDefault().open(new Project[]{project}, false);
+        return true;
     }
 }

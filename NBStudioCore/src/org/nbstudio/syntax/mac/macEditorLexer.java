@@ -6,7 +6,6 @@ package org.nbstudio.syntax.mac;
 
 import org.nbstudio.syntax.utils.ANTLRCharStream;
 import org.nbstudio.syntax.utils.ANTLRTokenId;
-import org.nbstudio.utils.Logger;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.spi.lexer.Lexer;
 import org.netbeans.spi.lexer.LexerRestartInfo;
@@ -17,8 +16,8 @@ import org.netbeans.spi.lexer.LexerRestartInfo;
  */
 class macEditorLexer implements Lexer<ANTLRTokenId> {
 
-    private LexerRestartInfo<ANTLRTokenId> info;
-    private macLexer lexer;
+    private final LexerRestartInfo<ANTLRTokenId> info;
+    private final macLexer lexer;
 
     public macEditorLexer(LexerRestartInfo<ANTLRTokenId> info) {
         this.info = info;

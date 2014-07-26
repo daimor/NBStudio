@@ -33,6 +33,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,7 @@ import java.util.regex.Pattern;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.nbstudio.core.CacheFile;
 import org.nbstudio.syntax.cls.clsLexer;
@@ -72,7 +74,6 @@ public class ClassFile extends CacheFile {
             } else {
                 cls = new ClassDefinition(db, name);
             }
-            System.out.println("class: " + name + " - " + cls + " - " + (ClassDefinition._existsId(db, new Id(name))));
             Field privateStringField = CacheRootObject.class.getDeclaredField("mInternal");
             privateStringField.setAccessible(true);
             mInternal = (CacheObject) privateStringField.get(cls);
@@ -88,7 +89,7 @@ public class ClassFile extends CacheFile {
             xdataDef = (ClassDefinition) ClassDefinition.open(db, new Id("%Dictionary.XDataDefinition"), 0);
             projectionDef = (ClassDefinition) ClassDefinition.open(db, new Id("%Dictionary.ProjectionDefinition"), 0);
 
-        } catch (Exception ex) {
+        } catch (CacheException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException | SecurityException ex) {
             ex.printStackTrace();
         }
     }
@@ -130,7 +131,9 @@ public class ClassFile extends CacheFile {
             walker.walk(listener, prog);
             cls._save();
             db.utilities().compileCacheClass(getName(), "cdfk-u");
-        } catch (Exception ex) {
+        } catch (CacheException | RecognitionException ex) {
+            System.out.println("SaveException: " + ex.getLocalizedMessage());
+//            ex.printStackTrace();
         }
 
     }
@@ -154,7 +157,7 @@ public class ClassFile extends CacheFile {
             writeParensValue(" Extends %s", cls.getSuper());
 
             // Class properties
-            List<String> clsProperties = new ArrayList<String>();
+            List<String> clsProperties = new ArrayList<>();
             /// boolean's properties
             com.intersys.cache.Dataholder tmpRes;
             String[] boolProps = {"Abstract", "DdlAllowed", "Final", "Hidden", "ProcedureBlock", "SqlRowIdPrivate"};
@@ -178,7 +181,7 @@ public class ClassFile extends CacheFile {
             writeln();
             println("{");
 
-            List<Object> list = new ArrayList();
+            List<Object> list = new ArrayList<>();
             list.addAll(cls.getProperties().asList());
             list.addAll(cls.getMethods().asList());
             list.addAll(cls.getParameters().asList());
@@ -235,8 +238,7 @@ public class ClassFile extends CacheFile {
             });
 
             int pos = 0;
-            for (Iterator<Object> it = list.iterator(); it.hasNext();) {
-                Object obj = it.next();
+            for (Object obj : list) {
                 writeln();
                 if (obj instanceof PropertyDefinition) {
                     showElement((PropertyDefinition) obj);
@@ -293,7 +295,7 @@ public class ClassFile extends CacheFile {
                         props.add(propName);
                     }
                 } else if (defaultValue instanceof String) {
-                    String stringRes = (String) CLSUtils.getProperty(obj, propName, (String) defaultValue);;
+                    String stringRes = (String) CLSUtils.getProperty(obj, propName, (String) defaultValue);
                     if ((!stringRes.isEmpty())
                             && (!defaultValue.equals("\"" + stringRes + "\""))
                             && (!defaultValue.equals(stringRes))) {
@@ -333,7 +335,7 @@ public class ClassFile extends CacheFile {
                 if (objDef == null) {
                     return;
                 }
-                List<String> props = new ArrayList<String>();
+                List<String> props = new ArrayList<>();
 
                 Map<String, Object> objProps = CLSUtils.getProperties(obj);
                 for (Map.Entry<String, Object> entry : objProps.entrySet()) {
@@ -360,8 +362,6 @@ public class ClassFile extends CacheFile {
 
             String[] excludeList = {"Aliases", "Identity", "OnDelete", "Relationship", "Collection"};
             writeProps(propertyDef, obj, Arrays.asList(excludeList));
-
-
 
             writeln(";");
         }
@@ -512,28 +512,29 @@ public class ClassFile extends CacheFile {
             printf("(%s)", str);
         }
 
-        void writeParameters(Map<String, Object> list) {
+        void writeParameters(HashMap<String, String> list) {
 
             if ((list == null) || (list.isEmpty())) {
                 return;
             }
             StringBuilder sepValueBuilder = new StringBuilder();
-            for (Map.Entry<String, Object> entry : list.entrySet()) {
+            for (Map.Entry<String, String> entry : list.entrySet()) {
                 if (sepValueBuilder.length() > 0) {
                     sepValueBuilder.append(", ");
                 }
                 String paramName = entry.getKey();
-                String paramVal = (String) entry.getValue();
+                String paramVal = entry.getValue();
                 if (paramVal != null) {
                     if (!paramVal.matches("^\\d*$")) {
                         paramVal = paramVal.replaceAll("\"", "\"\"");
                         paramVal = "\"" + paramVal + "\"";
                     }
-                    sepValueBuilder.append(paramName + " = " + paramVal);
+                    sepValueBuilder.append(paramName);
+                    sepValueBuilder.append(" = ");
+                    sepValueBuilder.append(paramVal);
                 } else {
                     sepValueBuilder.append(paramName);
                 }
-
             }
             if (sepValueBuilder.length() > 0) {
                 printf("(%s)", sepValueBuilder.toString());

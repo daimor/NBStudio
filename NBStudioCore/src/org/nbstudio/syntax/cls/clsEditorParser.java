@@ -12,13 +12,13 @@ import javax.swing.text.Document;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.tree.*;
 import org.nbstudio.syntax.EditorParserResult;
 import org.nbstudio.syntax.ErrorListener;
 import org.nbstudio.syntax.SyntaxError;
 import org.nbstudio.syntax.cls.clsParser.ProgContext;
 import static org.nbstudio.syntax.mac.macEditorParser.embeddedOffset;
-import org.nbstudio.utils.Logger;
 import org.netbeans.modules.parsing.api.Snapshot;
 import org.netbeans.modules.parsing.api.Task;
 import org.netbeans.modules.parsing.spi.ParseException;
@@ -34,7 +34,11 @@ public class clsEditorParser extends Parser {
 
     private Snapshot snapshot;
     private clsParser clsParser;
-    public List<SyntaxError> syntaxErrors = new ArrayList<SyntaxError>();
+    public List<SyntaxError> syntaxErrors;
+
+    public clsEditorParser() {
+        this.syntaxErrors = new ArrayList<>();
+    }
 
     @Override
     public void parse(Snapshot snapshot, Task task, SourceModificationEvent event) {
@@ -42,7 +46,7 @@ public class clsEditorParser extends Parser {
         Document document = snapshot.getSource().getDocument(true);
         syntaxErrors = (List<SyntaxError>) document.getProperty("syntaxErrors");
         if (syntaxErrors == null) {
-            syntaxErrors = new ArrayList<SyntaxError>();
+            syntaxErrors = new ArrayList<>();
             document.putProperty("syntaxErrors", syntaxErrors);
         }
         embeddedOffset = snapshot.getOriginalOffset(0);
@@ -61,7 +65,7 @@ public class clsEditorParser extends Parser {
             ParseTreeWalker walker = new ParseTreeWalker();
             clsMyParserListener listener = new clsMyParserListener(clsParser);
             walker.walk(listener, prog);
-        } catch (Exception ex) {
+        } catch (RecognitionException ex) {
             ex.printStackTrace();
         }
     }

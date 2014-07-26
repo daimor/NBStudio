@@ -6,6 +6,7 @@ package org.nbstudio.cachefilesystem;
 
 import com.intersys.cache.CacheObject;
 import com.intersys.cache.Dataholder;
+import com.intersys.classes.RoutineMgr;
 import com.intersys.objects.CacheException;
 import com.intersys.objects.CacheQuery;
 import com.intersys.objects.Database;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +27,7 @@ import org.nbstudio.core.CacheFile;
 import org.nbstudio.core.Connection;
 import org.nbstudio.core.cls.ClassFile;
 import org.nbstudio.core.mac.RoutineFile;
+import org.nbstudio.utils.Logger;
 
 /**
  *
@@ -35,7 +38,7 @@ public class CacheRootFile extends File {
     private final Database db;
     private final String path;
     private CacheObject cobj;
-    private String shortFileName;
+    private final String shortFileName;
     private String fullFileName;
     private final String connectionName;
     private final boolean isRoot;
@@ -114,24 +117,22 @@ public class CacheRootFile extends File {
 
     @Override
     public File[] listFiles() {
-        return listFiles("", false, false);
+        return listFiles("", false, false, false);
     }
 
-    public File[] listFiles(String filter, boolean showSystemFiles, boolean showGeneratedFiles) {
-        List<File> files = new ArrayList<File>();
+    public File[] listFiles(String filter, boolean showSystemFiles, boolean showGeneratedFiles, boolean showProjectFiles) {
+        List<File> files = new ArrayList<>();
 //        for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
 //            System.out.println(ste);
 //        }
         try {
 
-            CacheQuery q = new CacheQuery(db, "%RoutineMgr", "StudioOpenDialog");
+            CacheQuery qrRoutines = RoutineMgr.query_StudioOpenDialog(db);
             String currentPath = getFullName();
 
             String searchPath = (currentPath.isEmpty()) ? "" : currentPath + "/";
-            searchPath.replaceAll(".", "/");
-//            System.out.println("listfiles: " + filter);
-//            System.out.println("listFiles: " + searchPath);
-            java.sql.ResultSet rs = q.execute(new Object[]{searchPath + filter, 1, 1, showSystemFiles, false, false, showGeneratedFiles});
+//            searchPath = searchPath.replaceAll("\\.", "/");
+            java.sql.ResultSet rs = qrRoutines.execute(new Object[]{searchPath + filter, 1, 1, showSystemFiles, false, false, showGeneratedFiles});
             while (rs.next()) {
                 String fileName = rs.getString("Name");
                 fileName = connectionName + "/" + (currentPath.isEmpty() ? "" : (currentPath + "/")) + fileName;
@@ -151,24 +152,27 @@ public class CacheRootFile extends File {
 //                12 - MVI file, a MultiValue Basic routine
 //                13 - OBJ, object code
                 CacheRootFile file = null;
-                if ((fileType == 0) || (fileType == 1) || (fileType == 2) || (fileType == 3)) {
+                if ((fileType == 0) || (fileType == 1) || (fileType == 2) || (fileType == 3) || (fileType == 11) || (fileType == 12)) {
                     file = new CacheRootFile(fileName);
                 } else if (fileType == 4) {
                     file = new CacheRootFile(fileName);
                 } else if (fileType == 5) {
+                } else if ((fileType == 8) && (showProjectFiles)) {
+                    file = new CacheRootFile(fileName);
                 } else if (fileType == 9) {
                     file = new CacheRootFile(fileName + ".pkg");
                 }
+                if (file != null) {
+//                    System.out.println("getFiles: " + fileName + " - " + fileType + " - " + ((file != null) && ((file.fileExt.equalsIgnoreCase("prj")) || (!file.isDirectory()) || (file.listFiles(filter, showSystemFiles, showGeneratedFiles, showProjectFiles).length > 0))));
+                }
                 // files and is not empty directories
-                if ((file != null) && ((!file.isDirectory()) || (file.listFiles(filter, showSystemFiles, showGeneratedFiles).length > 0))) {
+                if ((file != null) && ((file.fileExt.equalsIgnoreCase("prj")) || (!file.isDirectory()) || (file.listFiles(filter, showSystemFiles, showGeneratedFiles, showProjectFiles).length > 0))) {
                     files.add(file);
                 }
 
 
             }
-        } catch (CacheException ex) {
-            ex.printStackTrace();
-        } catch (SQLException ex) {
+        } catch (CacheException | SQLException ex) {
             ex.printStackTrace();
         }
         return files.toArray(new File[files.size()]);
@@ -178,6 +182,7 @@ public class CacheRootFile extends File {
     public boolean isDirectory() {
         switch (fileExt) {
             case "pkg":
+            case "prj":
             case "":
                 return true;
             default:
@@ -265,9 +270,9 @@ public class CacheRootFile extends File {
     public long length() {
         long length = -1;
         try {
-            CacheObject cobj = getCacheObject();
-            if (cobj != null) {
-                Dataholder prop = cobj.getProperty("Size", false);
+            CacheObject cacheObj = getCacheObject();
+            if (null != cacheObj) {
+                Dataholder prop = cacheObj.getProperty("Size", false);
                 length = prop.getLong();
             }
         } catch (CacheException ex) {
@@ -289,11 +294,11 @@ public class CacheRootFile extends File {
     public long lastModified() {
         try {
             System.out.println("getLastTime: " + this.getAbsolutePath());
-            CacheObject cobj = getCacheObject();
-            Dataholder prop = cobj.getProperty("TimeStamp", true);
+            CacheObject cacheObj = getCacheObject();
+            Dataholder prop = cacheObj.getProperty("TimeStamp", true);
             Date date = prop.getDate();
             System.out.println("time is: " + date);
-        } catch (Exception ex) {
+        } catch (CacheException ex) {
         }
         return 0;
     }
@@ -311,6 +316,11 @@ public class CacheRootFile extends File {
         }
     }
 
+    @Override
+    public Path toPath() {
+        return super.toPath();
+    }
+    
     public CacheFile getExtFile() {
         try {
             switch (fileExt) {
@@ -326,7 +336,7 @@ public class CacheRootFile extends File {
                 default:
                     return null;
             }
-        } catch (Exception ex) {
+        } catch (CacheException ex) {
             return null;
         }
     }
@@ -339,8 +349,11 @@ public class CacheRootFile extends File {
 
     public void save(byte[] data) throws CacheException {
         CacheFile extFile = getExtFile();
+        Logger.Log("Saving: " + getFullName());
         if (extFile != null) {
             extFile.save(data);
+        } else {
+            Logger.Log("SavingError: Cache object was not found.");
         }
     }
 }

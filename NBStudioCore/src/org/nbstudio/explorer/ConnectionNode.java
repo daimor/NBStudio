@@ -4,8 +4,10 @@
  */
 package org.nbstudio.explorer;
 
+import com.intersys.objects.CacheException;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.beans.IntrospectionException;
 import java.io.IOException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -15,8 +17,6 @@ import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
-import org.openide.util.Lookup;
-import org.openide.util.lookup.Lookups;
 
 /**
  *
@@ -27,15 +27,15 @@ public class ConnectionNode extends AbstractNode {
     private final Connection conn;
 
     public ConnectionNode(final Connection conn) {
-        super(Children.LEAF, Lookups.fixed(conn));
+        super(Children.LEAF);
         this.conn = conn;
         setDisplayName(conn.getTitle());
-        setChildren(new ConnectionNodes(conn));
+//        setChildren(new ConnectionNodes(conn));
     }
 
     class ConnectionNodes extends Children.Array {
 
-        private Connection conn;
+        private final Connection conn;
 
         public ConnectionNodes(Connection conn) {
             this.conn = conn;
@@ -43,13 +43,13 @@ public class ConnectionNode extends AbstractNode {
 
         @Override
         protected void addNotify() {
-            AbstractNode[] nodes = new AbstractNode[2];
+            AbstractNode[] nodesArr = new AbstractNode[2];
             try {
-                nodes[0] = new ClassesNode(conn);
-                nodes[1] = new RoutinesNode(conn);
-            } catch (Exception ex) {
+                nodesArr[0] = new ClassesNode(conn);
+                nodesArr[1] = new RoutinesNode(conn);
+            } catch (IntrospectionException ex) {
             }
-            this.add(nodes);
+            this.add(nodesArr);
         }
     }
 
@@ -89,7 +89,7 @@ public class ConnectionNode extends AbstractNode {
                 if (parentNode instanceof ConnectionsNode) {
                     ((ConnectionsNode) parentNode).refresh();
                 }
-            } catch (Exception ex) {
+            } catch (CacheException | IOException ex) {
                 Exceptions.printStackTrace(ex);
             }
         }

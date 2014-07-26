@@ -4,13 +4,18 @@
  */
 package org.nbstudio.cachefilechooser;
 
-import java.io.File;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.HeadlessException;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileSystemView;
 import javax.swing.plaf.ComponentUI;
 import org.nbstudio.cachefilesystem.CacheFileSystemView;
+import org.nbstudio.cachefilesystem.CacheFileView;
+import org.openide.util.NbPreferences;
 
 /**
  *
@@ -18,12 +23,25 @@ import org.nbstudio.cachefilesystem.CacheFileSystemView;
  */
 public class CacheFileChooser extends JFileChooser {
 
-    public CacheFileChooser(FileSystemView fsv) {
-        super(fsv);
+    private final static Preferences preferences = NbPreferences.forModule(CacheFileChooser.class);
+
+    public CacheFileChooser() {
+        this(new CacheFileSystemView() {
+            {
+                setShowSystemFiles(preferences.getBoolean("FileDialog.ShowSystemFiles", false));
+                setShowGeneratedFiles(preferences.getBoolean("FileDialog.ShowGeneratedFiles", false));
+            }
+        });
     }
 
-    public CacheFileChooser(File currentDirectory) {
-        super(currentDirectory);
+    public CacheFileChooser(CacheFileSystemView fsv) {
+        super(fsv);
+        setFileView(new CacheFileView());
+        setMultiSelectionEnabled(true);
+
+        int height = preferences.getInt("FileDialog.Height", 500);
+        int width = preferences.getInt("FileDialog.Width", 700);
+        setPreferredSize(new Dimension(width, height));
     }
 
     @Override
@@ -33,6 +51,22 @@ public class CacheFileChooser extends JFileChooser {
 
         super.setUI(new CacheFileChooserUI(this));
         UIManager.put("FileChooser.readOnly", readOnly);
+    }
+
+    @Override
+    public int showDialog(Component parent, String approveButtonText) throws HeadlessException {
+        try {
+            int res = super.showDialog(parent, approveButtonText);
+            CacheFileSystemView fsv = getFileSystemView();
+            preferences.putBoolean("FileDialog.ShowSystemFiles", fsv.getShowSystemFiles());
+            preferences.putBoolean("FileDialog.ShowGeneratedFiles", fsv.getShowGeneratedFiles());
+            preferences.putInt("FileDialog.Height", getHeight());
+            preferences.putInt("FileDialog.Width", getWidth());
+            preferences.sync();
+            return res;
+        } catch (BackingStoreException ex) {
+            return CANCEL_OPTION;
+        }
     }
 
     @Override
@@ -63,7 +97,7 @@ public class CacheFileChooser extends JFileChooser {
     }
 
     @Override
-    public FileSystemView getFileSystemView() {
-        return super.getFileSystemView(); //To change body of generated methods, choose Tools | Templates.
+    public CacheFileSystemView getFileSystemView() {
+        return (CacheFileSystemView) super.getFileSystemView();
     }
 }

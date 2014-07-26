@@ -26,8 +26,8 @@ import org.openide.windows.TopComponent;
 @Messages("LBL_cls_VISUAL=Visual")
 public final class clsVisualElement extends JPanel implements MultiViewElement {
 
-    private clsDataObject obj;
-    private JToolBar toolbar = new JToolBar();
+    private final clsDataObject obj;
+    private final JToolBar toolbar = new JToolBar();
     private transient MultiViewElementCallback callback;
 
     public clsVisualElement(Lookup lkp) {

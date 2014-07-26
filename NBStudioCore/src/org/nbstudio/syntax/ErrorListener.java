@@ -7,7 +7,6 @@ package org.nbstudio.syntax;
 import java.util.List;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
@@ -33,7 +32,6 @@ public class ErrorListener extends BaseErrorListener {
 
     protected void underlineError(Recognizer<?, ?> recognizer, Token offendingToken, int line, int charPositionInLine, String msg) {
         CommonTokenStream tokens = (CommonTokenStream) recognizer.getInputStream();
-        String input = tokens.getTokenSource().getInputStream().toString();
 
         int start = offendingToken.getStartIndex() + embeddedOffset;
         int stop = offendingToken.getStopIndex() + embeddedOffset;

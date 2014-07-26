@@ -8,14 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.misc.Interval;
-import org.nbstudio.utils.Logger;
 import org.netbeans.spi.lexer.LexerInput;
 
 /**
  * @author Jonny Heggheim
  */
 public class ANTLRCharStream implements CharStream {
-    
+
     private class CharStreamState {
 
         int index;
@@ -24,65 +23,65 @@ public class ANTLRCharStream implements CharStream {
     }
     private int line = 1;
     private int charPositionInLine = 0;
-    private LexerInput input;
-    private String name;
+    private final LexerInput input;
+    private final String name;
     private int index = 0;
     private List<CharStreamState> markers;
     private int markDepth = 0;
     private int lastMarker;
-    
+
     public ANTLRCharStream(LexerInput input, String name) {
         this.input = input;
         this.name = name;
     }
-    
+
     @Override
     public String getText(Interval intrvl) {
         return input.readText().toString();
     }
-    
+
     public String substring(int start, int stop) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     public int LT(int i) {
         return LA(i);
     }
-    
+
     public int getLine() {
         return line;
     }
-    
+
     public void setLine(int line) {
         this.line = line;
     }
-    
+
     public void setCharPositionInLine(int pos) {
         this.charPositionInLine = pos;
     }
-    
+
     public int getCharPositionInLine() {
         return charPositionInLine;
     }
-    
+
     @Override
     public void consume() {
         int c = input.read();
         index++;
         charPositionInLine++;
-        
+
         if (c == '\n') {
             line++;
             charPositionInLine = 0;
         }
     }
-    
+
     @Override
     public int LA(int i) {
         if (i == 0) {
             return 0; // undefined
         }
-        
+
         int c = 0;
         for (int j = 0; j < i; j++) {
             c = read();
@@ -90,15 +89,15 @@ public class ANTLRCharStream implements CharStream {
         backup(i);
         return c;
     }
-    
+
     @Override
     public int mark() {
         if (markers == null) {
-            markers = new ArrayList<CharStreamState>();
+            markers = new ArrayList<>();
             markers.add(null); // depth 0 means no backtracking, leave blank
         }
         markDepth++;
-        CharStreamState state = null;
+        CharStreamState state;
         if (markDepth >= markers.size()) {
             state = new CharStreamState();
             markers.add(state);
@@ -109,14 +108,14 @@ public class ANTLRCharStream implements CharStream {
         state.line = line;
         state.charPositionInLine = charPositionInLine;
         lastMarker = markDepth;
-        
+
         return markDepth;
     }
-    
+
     public void rewind() {
         rewind(lastMarker);
     }
-    
+
     public void rewind(int marker) {
         CharStreamState state = (CharStreamState) markers.get(marker);
         // restore stream state
@@ -125,14 +124,16 @@ public class ANTLRCharStream implements CharStream {
         charPositionInLine = state.charPositionInLine;
         release(marker);
     }
-    
+
+    @Override
     public void release(int marker) {
         // unwind any other markers made after m and release m
         markDepth = marker;
         // release this marker
         markDepth--;
     }
-    
+
+    @Override
     public void seek(int index) {
         if (index < this.index) {
             backup(this.index - index);
@@ -145,28 +146,31 @@ public class ANTLRCharStream implements CharStream {
             consume();
         }
     }
-    
+
+    @Override
     public int index() {
         return index;
     }
-    
+
+    @Override
     public int size() {
         return -1; //unknown...
     }
-    
+
+    @Override
     public String getSourceName() {
         return name;
     }
-    
+
     private int read() {
         int result = input.read();
         if (result == LexerInput.EOF) {
             result = CharStream.EOF;
         }
-        
+
         return result;
     }
-    
+
     private void backup(int count) {
         input.backup(count);
     }

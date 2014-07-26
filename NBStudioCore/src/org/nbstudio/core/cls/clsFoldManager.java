@@ -5,18 +5,11 @@
 package org.nbstudio.core.cls;
 
 import javax.swing.event.DocumentEvent;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import org.antlr.v4.runtime.Token;
 import org.netbeans.api.editor.fold.Fold;
-import org.netbeans.api.editor.fold.FoldHierarchy;
 import org.netbeans.api.editor.fold.FoldType;
-import org.netbeans.api.lexer.TokenHierarchy;
-import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.spi.editor.fold.FoldHierarchyTransaction;
 import org.netbeans.spi.editor.fold.FoldManager;
 import org.netbeans.spi.editor.fold.FoldOperation;
-import org.openide.util.Exceptions;
 
 public class clsFoldManager implements FoldManager {
 

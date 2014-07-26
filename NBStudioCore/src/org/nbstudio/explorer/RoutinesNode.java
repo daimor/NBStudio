@@ -8,7 +8,6 @@ import java.beans.IntrospectionException;
 import java.util.ArrayList;
 import org.nbstudio.cachefilesystem.CacheFileObject;
 import org.nbstudio.core.Connection;
-import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.nodes.Children;
@@ -27,7 +26,7 @@ public class RoutinesNode extends ConnectionFolderNode {
     public RoutinesNode(Connection conn, CacheFileObject folder) throws IntrospectionException {
         super(conn, (folder == null) ? "Routines" : folder.getName());
         Children.Array children = new Children.Array();
-        ArrayList<Node> nodes = new ArrayList<Node>();
+        ArrayList<Node> nodes = new ArrayList<>();
         folder = (folder == null) ? (CacheFileObject) conn.getFileSystem().getRoot() : folder;
         CacheFileObject[] routines = folder.getChildren("*.mac,*.int");
         for (CacheFileObject fileObject : routines) {

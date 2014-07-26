@@ -4,7 +4,6 @@
  */
 package org.nbstudio.core.mac;
 
-import org.nbstudio.core.cls.*;
 import org.netbeans.api.editor.mimelookup.MimeRegistration;
 import org.netbeans.spi.editor.fold.FoldManager;
 import org.netbeans.spi.editor.fold.FoldManagerFactory;

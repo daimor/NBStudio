@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
-import org.nbstudio.cachefilesystem.CacheRootFile;
+import java.util.Objects;
 import org.nbstudio.core.Connection;
 import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileChangeListener;
@@ -70,7 +70,7 @@ public class CacheFileObject extends FileObject {
 
     @Override
     public boolean isFolder() {
-        return false || isRoot() || getExt().isEmpty() || "pkg".equalsIgnoreCase(getExt());
+        return false || isRoot() || getExt().isEmpty() || "pkg".equalsIgnoreCase(getExt()) || "prj".equalsIgnoreCase(getExt());
     }
 
     @Override
@@ -132,6 +132,9 @@ public class CacheFileObject extends FileObject {
 
     @Override
     public OutputStream getOutputStream(FileLock lock) throws IOException {
+        if (this.name.equalsIgnoreCase(".netbeans.xml")) {
+            return null;
+        }
         return fs.outputStream(getFullName());
     }
 
@@ -173,18 +176,17 @@ public class CacheFileObject extends FileObject {
 
     @Override
     public FileObject[] getChildren() {
-        List<FileObject> children = new ArrayList<FileObject>();
-        children.addAll(Arrays.asList(getChildren("*.cls")));
-        children.addAll(Arrays.asList(getChildren("*.mac")));
-        return children.toArray(new CacheFileObject[children.size()]);
+        List<FileObject> children = new ArrayList();
+        children.addAll(Arrays.asList(getChildren("*.cls,*.mac")));
+        return children.toArray(new FileObject[children.size()]);
     }
 
     public CacheFileObject[] getChildren(String filter) {
         Connection conn = fs.getConnection();
         String fullPath = getFullPath();
         CacheRootFile curFile = new CacheRootFile(conn.getTitle() + fullPath);
-        File[] files = curFile.listFiles(filter, false, false);
-        List<FileObject> children = new ArrayList<FileObject>();
+        File[] files = curFile.listFiles(filter, false, false, false);
+        List<FileObject> children = new ArrayList();
         for (File file : files) {
             String fileName = file.getName();
             children.add(new CacheFileObject(fs, this, fileName));
@@ -204,6 +206,9 @@ public class CacheFileObject extends FileObject {
     @Override
     public FileObject getFileObject(String name, String ext) {
         String fileName = name + (ext != null ? "." + ext : "");
+        if (fileName.equalsIgnoreCase(".netbeans.xml")) {
+            return null;
+        }
         return new CacheFileObject(fs, this, fileName);
     }
 
@@ -230,11 +235,39 @@ public class CacheFileObject extends FileObject {
         AfLock() {
         }
 
+        @Override
         public void releaseLock() {
             if (this.isValid()) {
                 super.releaseLock();
                 unlock(this);
             }
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 11;
+        int hash = 1;
+        hash = prime * hash + Objects.hashCode(this.fs);
+        hash = prime * hash + Objects.hashCode(this.parent);
+        hash = prime * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CacheFileObject) {
+            CacheFileObject cacheFileObj = (CacheFileObject) obj;
+            boolean result = true;
+            try {
+                result = result && this.fs.equals(cacheFileObj.getFileSystem());
+                result = result && this.getFullPath().equals(cacheFileObj.getFullPath());
+            } catch (FileStateInvalidException ex) {
+                result = false;
+            }
+            return result;
+        } else {
+            return false;
         }
     }
 }

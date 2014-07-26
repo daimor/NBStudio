@@ -5,7 +5,6 @@
 package org.nbstudio.core.mac;
 
 import java.io.IOException;
-import org.netbeans.api.editor.document.EditorDocumentUtils;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;

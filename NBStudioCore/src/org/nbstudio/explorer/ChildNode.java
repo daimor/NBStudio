@@ -7,7 +7,6 @@ package org.nbstudio.explorer;
 import com.intersys.objects.Database;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Properties;
 import org.nbstudio.core.Connection;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileSystem;
@@ -42,11 +41,8 @@ public class ChildNode extends FilterNode.Children {
                 if ((fo == null) || (!fo.getExt().equalsIgnoreCase("properties"))) {
                     throw new InternalError("IncompatibleExtFile");
                 }
-                Connection conn = new Connection(fo);
+                Connection conn = Connection.load(fo);
 
-                if (conn == null) {
-                    throw new InternalError();
-                }
                 Database db = conn.getAssociatedConnection();
                 FileSystem fs = conn.getFileSystem();
                 FileObject fob = fs.getRoot();
@@ -58,12 +54,10 @@ public class ChildNode extends FilterNode.Children {
                         tmpNode
 //                        new ConnectionNode(conn)
                     };
-                } catch (Exception ioe) {
+                } catch (DataObjectNotFoundException ioe) {
                     Exceptions.printStackTrace(ioe);
                 }
-            } catch (FileNotFoundException ex) {
-            } catch (IOException ex) {
-            } catch (InternalError ex) {
+            } catch (IOException | InternalError ex) {
                 try {
                     fo.delete();
                 } catch (IOException ex1) {

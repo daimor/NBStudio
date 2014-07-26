@@ -30,7 +30,6 @@ public class RoutineFile extends CacheFile {
     public RoutineFile(Database db, String name) throws CacheException {
         super(db, name);
         rtnMgr = new RoutineMgr(db, name);
-        System.out.println("RoutineFile: " + name + " - " + rtnMgr);
     }
 
     @Override
@@ -71,8 +70,7 @@ public class RoutineFile extends CacheFile {
             this.rtnMgr.sys_Save(new BooleanHolder(true));
             this.rtnMgr.Compile("/keepsource");
 
-        } catch (CacheException ex) {
-        } catch (IOException ex) {
+        } catch (CacheException | IOException ex) {
         }
     }
 

@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 import org.nbstudio.cachefilechooser.CacheFileNameExtensionFilter;
+import org.nbstudio.core.Connection;
 
 /**
  *
@@ -20,20 +21,27 @@ import org.nbstudio.cachefilechooser.CacheFileNameExtensionFilter;
  */
 public class CacheFileSystemView extends FileSystemView {
 
-    private Map<String, Database> connections = new HashMap<String, Database>();
-    private Map<String, File> roots = new HashMap<String, File>();
+    private final Map<String, Database> connections = new HashMap<>();
+    private final Map<String, File> roots = new HashMap<>();
     private FileFilter fileFilter = null;
     private boolean showSystemFiles = false;
     private boolean showGeneratedFiles = false;
+    private boolean showProjectFiles = false;
 
     public CacheFileSystemView() {
+        Map<String, Connection> allConnections = Connection.getConnections();
+        for (Map.Entry<String, Connection> entry : allConnections.entrySet()) {
+            String connectionName = entry.getKey();
+            Connection connection = entry.getValue();
+            addRoot(connection.getAssociatedConnection(), connectionName);
+        }
     }
 
     public CacheFileSystemView(Database db, String rootName) throws IOException {
         addRoot(db, rootName);
     }
 
-    public void addRoot(Database db, String rootName) {
+    public final void addRoot(Database db, String rootName) {
         connections.put(rootName, db);
         roots.put(rootName, new CacheRootFile(rootName));
     }
@@ -45,7 +53,6 @@ public class CacheFileSystemView extends FileSystemView {
 
     public CacheRootFile createFileObject(CacheRootFile dir, String filename) {
         try {
-            System.out.println("createFileObject: " + dir + " - " + dir.getAbsolutePath() + " - " + dir.getFullName() + " - " + dir.getPath());
             return new CacheRootFile(dir.getPath() + "/" + filename);
         } catch (Exception ex) {
             return null;
@@ -88,7 +95,7 @@ public class CacheFileSystemView extends FileSystemView {
             if ((getFileFilter() != null) && (getFileFilter() instanceof CacheFileNameExtensionFilter)) {
                 filterString = ((CacheFileNameExtensionFilter) getFileFilter()).getFilterString();
             }
-            return ((CacheRootFile) dir).listFiles(filterString, showSystemFiles, showGeneratedFiles);
+            return ((CacheRootFile) dir).listFiles(filterString, showSystemFiles, showGeneratedFiles, showProjectFiles);
         } else {
             return new File[]{};
         }
@@ -106,9 +113,9 @@ public class CacheFileSystemView extends FileSystemView {
 
     @Override
     public File getDefaultDirectory() {
-        Collection<File> roots = this.roots.values();
-        if (roots.size() > 0) {
-            return roots.toArray(new File[roots.size()])[0];
+        Collection<File> rootsList = this.roots.values();
+        if (rootsList.size() > 0) {
+            return rootsList.toArray(new File[rootsList.size()])[0];
         } else {
             return null;
         }
@@ -116,7 +123,7 @@ public class CacheFileSystemView extends FileSystemView {
 
     @Override
     public Boolean isTraversable(File f) {
-        boolean res = false;
+        boolean res;
         try {
             CacheRootFile file = (CacheRootFile) f;
             res = file.isDirectory();
@@ -153,5 +160,13 @@ public class CacheFileSystemView extends FileSystemView {
 
     public boolean getShowGeneratedFiles() {
         return this.showGeneratedFiles;
+    }
+
+    public void setShowProjectFiles(boolean showProjectFiles) {
+        this.showProjectFiles = showProjectFiles;
+    }
+    
+    public boolean getShowProjectFiles(){
+        return showProjectFiles;
     }
 }

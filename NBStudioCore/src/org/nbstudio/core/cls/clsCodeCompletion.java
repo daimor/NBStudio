@@ -8,14 +8,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.Locale;
-import javax.swing.ImageIcon;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.StyledDocument;
-import org.nbstudio.utils.Logger;
 import org.netbeans.api.editor.completion.Completion;
 import org.netbeans.api.editor.mimelookup.MimeRegistration;
 import org.netbeans.spi.editor.completion.CompletionItem;
@@ -26,7 +23,6 @@ import org.netbeans.spi.editor.completion.support.AsyncCompletionQuery;
 import org.netbeans.spi.editor.completion.support.AsyncCompletionTask;
 import org.netbeans.spi.editor.completion.support.CompletionUtilities;
 import org.openide.util.Exceptions;
-import org.openide.util.ImageUtilities;
 
 @MimeRegistration(mimeType = "text/isc-cls", service = CompletionProvider.class)
 public class clsCodeCompletion implements CompletionProvider {
@@ -41,8 +37,8 @@ public class clsCodeCompletion implements CompletionProvider {
             @Override
             protected void query(CompletionResultSet completionResultSet, Document document, int caretOffset) {
 
-                String filter = null;
-                int startOffset = caretOffset - 1;
+                String filter;
+                int startOffset;
 
                 try {
                     final StyledDocument bDoc = (StyledDocument) document;
@@ -58,8 +54,7 @@ public class clsCodeCompletion implements CompletionProvider {
                     }
                     
                     String[] keywords = new String[]{"ClassMethod", "Method", "Property", "Parameter", "Index"};
-                    for (int i = 0; i < keywords.length; i++) {
-                        final String keyword = keywords[i];
+                    for (String keyword : keywords) {
                         if (!keyword.equals("") && keyword.toLowerCase().startsWith(filter)) {
                             completionResultSet.addItem(new clsCompletionItem(keyword, startOffset, caretOffset));
                         }
@@ -110,9 +105,9 @@ public class clsCodeCompletion implements CompletionProvider {
 
     private static class clsCompletionItem implements CompletionItem {
 
-        private String text;
-        private static Color fieldColor = Color.decode("0x0000B2");
-        private int caretOffset;
+        private final String text;
+        private static final Color fieldColor = Color.decode("0x0000B2");
+        private final int caretOffset;
         private final int dotOffset;
 
         public clsCompletionItem(String text, int dotOffset, int caretOffset) {

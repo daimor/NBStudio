@@ -5,6 +5,7 @@
 package org.nbstudio.cachefilesystem;
 
 import com.intersys.classes.RoutineMgr;
+import com.intersys.objects.CacheException;
 import com.intersys.objects.CacheQuery;
 import com.intersys.objects.Database;
 import java.io.ByteArrayInputStream;
@@ -14,13 +15,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
-import org.nbstudio.cachefilesystem.CacheRootFile;
 import org.openide.filesystems.AbstractFileSystem;
 import org.openide.filesystems.AbstractFileSystem.Attr;
 import org.openide.filesystems.FileObject;
@@ -40,13 +40,12 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
     private final Database db;
     private final Connection conn;
     private String name;
-    private java.util.Date created = new java.util.Date();
+    private final java.util.Date created = new java.util.Date();
+    private CacheFileObject root;
 
     public CacheFileSystem(Connection conn) {
-        attr = this;
-        list = this;
-        change = this;
-        info = this;
+        super();
+        this.entries = new HashMap<>();
 
         this.conn = conn;
         this.db = conn.getAssociatedConnection();
@@ -62,100 +61,100 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
 
             FileObject routines = getRoot().createFolder("Routines");
             refreshRoutines(routines);
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
     private void refreshRoutines(FileObject root) {
         try {
-            HashMap<String, FileObject> packages = new HashMap<String, FileObject>();
+            HashMap<String, FileObject> packages = new HashMap<>();
 
             CacheQuery qrRoutines = RoutineMgr.query_StudioOpenDialog(db);
 
-//            CacheQuery qrRoutines = new CacheQuery(db, "%Library.Routine", "RoutineList");
-            final ResultSet rsRoutines = qrRoutines.execute("*.MAC,*.INT");
-            while (rsRoutines.next()) {
-                int rtnType = rsRoutines.getInt("Type");
-                if (rtnType == 9) {
-                    continue;
-                }
-                String rtnName = rsRoutines.getString("Name");
-                FileSystem fs = FileUtil.createMemoryFileSystem();
-                String ext = rtnName.substring(rtnName.lastIndexOf(".") + 1, rtnName.length()).toLowerCase();
-
-                rtnName = rtnName.substring(0, rtnName.lastIndexOf("."));
-                if ("int".equals(ext)) {
-                    if (RoutineMgr.Exists(db, rtnName + ".MAC")) {
+            try (ResultSet rsRoutines = qrRoutines.execute("*.MAC,*.INT")) {
+                while (rsRoutines.next()) {
+                    int rtnType = rsRoutines.getInt("Type");
+                    if (rtnType == 9) {
                         continue;
                     }
-                }
+                    String rtnName = rsRoutines.getString("Name");
+                    FileSystem fs = FileUtil.createMemoryFileSystem();
+                    String ext = rtnName.substring(rtnName.lastIndexOf(".") + 1, rtnName.length()).toLowerCase();
 
-                String[] tmp = rtnName.split("\\.");
-                FileObject rootPKG = root;
-                for (int i = 0; i < (tmp.length - 1); i++) {
-                    String pkgName = "";
-                    for (int j = 0; j <= i; j++) {
-                        if (j > 0) {
-                            pkgName += ".";
+                    rtnName = rtnName.substring(0, rtnName.lastIndexOf("."));
+                    if ("int".equals(ext)) {
+                        if (RoutineMgr.Exists(db, rtnName + ".MAC")) {
+                            continue;
                         }
-                        pkgName += tmp[j];
                     }
-                    if (packages.get(pkgName) == null) {
-                        rootPKG = rootPKG.createFolder(tmp[i]);
-                        packages.put(pkgName, rootPKG);
-                    } else {
-                        rootPKG = packages.get(pkgName);
+
+                    String[] tmp = rtnName.split("\\.");
+                    FileObject rootPKG = root;
+                    for (int i = 0; i < (tmp.length - 1); i++) {
+                        StringBuilder pkgNameBuf = new StringBuilder();
+                        for (int j = 0; j <= i; j++) {
+                            if (j > 0) {
+                                pkgNameBuf.append(".");
+                            }
+                            pkgNameBuf.append(tmp[j]);
+                        }
+                        String pkgName = pkgNameBuf.toString();
+                        if (packages.get(pkgName) == null) {
+                            rootPKG = rootPKG.createFolder(tmp[i]);
+                            packages.put(pkgName, rootPKG);
+                        } else {
+                            rootPKG = packages.get(pkgName);
+                        }
                     }
-                }
-                FileObject fob = rootPKG.createData(tmp[tmp.length - 1], ext);
+                    FileObject fob = rootPKG.createData(tmp[tmp.length - 1], ext);
 
 //                FileObject fob = root.createData(rtnName.substring(0, rtnName.length() - 4), ext);
+                }
             }
-            rsRoutines.close();
-        } catch (Exception ex) {
+        } catch (CacheException | IOException | SQLException ex) {
             ex.printStackTrace();
         }
     }
 
     private void refreshClassess(FileObject root) {
         try {
-            HashMap<String, FileObject> packages = new HashMap<String, FileObject>();
+            HashMap<String, FileObject> packages = new HashMap<>();
 
             CacheQuery qrRoutines = new CacheQuery(db, "%Dictionary.ClassDefinitionQuery", "Summary");
-            final ResultSet rsClassess = qrRoutines.execute();
-            while (rsClassess.next()) {
-                String clsName = rsClassess.getString("Name");
-                boolean hidden = rsClassess.getBoolean("Hidden");
-                if (hidden) {
-                    continue;
-                }
-                if (clsName.charAt(0) == '%') {
-                    continue;
-                }
-                String[] tmp = clsName.split("\\.");
-                FileObject rootPKG = root;
-                for (int i = 0; i < (tmp.length - 1); i++) {
-                    String pkgName = "";
-                    for (int j = 0; j <= i; j++) {
-                        if (j > 0) {
-                            pkgName += ".";
+            try (ResultSet rsClassess = qrRoutines.execute()) {
+                while (rsClassess.next()) {
+                    String clsName = rsClassess.getString("Name");
+                    boolean hidden = rsClassess.getBoolean("Hidden");
+                    if (hidden) {
+                        continue;
+                    }
+                    if (clsName.charAt(0) == '%') {
+                        continue;
+                    }
+                    String[] tmp = clsName.split("\\.");
+                    FileObject rootPKG = root;
+                    for (int i = 0; i < (tmp.length - 1); i++) {
+                        String pkgName = "";
+                        for (int j = 0; j <= i; j++) {
+                            if (j > 0) {
+                                pkgName += ".";
+                            }
+                            pkgName += tmp[j];
                         }
-                        pkgName += tmp[j];
+                        if (packages.get(pkgName) == null) {
+                            rootPKG = rootPKG.createFolder(tmp[i]);
+                            packages.put(pkgName, rootPKG);
+                        } else {
+                            rootPKG = packages.get(pkgName);
+                        }
                     }
-                    if (packages.get(pkgName) == null) {
-                        rootPKG = rootPKG.createFolder(tmp[i]);
-                        packages.put(pkgName, rootPKG);
-                    } else {
-                        rootPKG = packages.get(pkgName);
-                    }
-                }
-                FileObject fob = rootPKG.createData(tmp[tmp.length - 1], "cls");
+                    FileObject fob = rootPKG.createData(tmp[tmp.length - 1], "cls");
 //                DataObject dob = DataObject.find(fob);
 //                Node node = dob.getNodeDelegate();
+                }
             }
-            rsClassess.close();
-        } catch (Exception ex) {
+        } catch (CacheException | IOException | SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -167,7 +166,7 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
 
     static final class Entry {
 
-        public HashMap<String, Object> attrs = new HashMap<String, Object>();
+        public HashMap<String, Object> attrs = new HashMap<>();
         public Boolean isFolder;
         public java.util.Date last;
         public String extension;
@@ -175,7 +174,7 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
         public String Name;
         public String Title;
     }
-    private Hashtable<String, Entry> entries = new Hashtable<String, Entry>();
+    private final HashMap<String, Entry> entries;
 
     private Entry e(String n) {
         if (n.length() > 0 && n.charAt(0) == '/') {
@@ -237,13 +236,11 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
         InputStream is = new ByteArrayInputStream(new byte[0]);
         CacheRootFile file = new CacheRootFile(conn.getTitle() + "/" + name);
 
-        if (file != null) {
-            try {
-                is = file.open(); // entry.obj.open();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            return is;
+        try {
+            is = file.open();
+        } catch (NullPointerException ex) {
+        } catch (CacheException ex) {
+            ex.printStackTrace();
         }
         return is;
     }
@@ -256,12 +253,11 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
             public void close() throws IOException {
                 super.close();
                 CacheRootFile file = new CacheRootFile(conn.getTitle() + "/" + name);
-                if (file != null) {
-                    try {
-                        file.save(toByteArray());
-                    } catch (Exception ex) {
-                        Exceptions.printStackTrace(ex);
-                    }
+                try {
+                    file.save(toByteArray());
+                } catch (NullPointerException ex) {
+                } catch (CacheException ex) {
+                    Exceptions.printStackTrace(ex);
                 }
                 e(name).last = new Date();
             }
@@ -347,7 +343,7 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
 //            f = f + "/";
 //        }
 //
-        HashSet<String> l = new HashSet<String>();
+        HashSet<String> l = new HashSet<>();
 //
 //        Iterator<String> it = entries.keySet().iterator();
 //        while (it.hasNext()) {
@@ -367,7 +363,7 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
 //                }
 //            }
 //        }
-        return l.toArray(new String[0]);
+        return l.toArray(new String[l.size()]);
     }
 
     @Override
@@ -403,8 +399,9 @@ public class CacheFileSystem extends AbstractFileSystem implements AbstractFileS
 
     @Override
     public FileObject getRoot() {
-        CacheFileObject root = new CacheFileObject(this, null, "");
+        if (this.root == null) {
+            this.root = new CacheFileObject(this, null, "");
+        }
         return root;
     }
-    
 }

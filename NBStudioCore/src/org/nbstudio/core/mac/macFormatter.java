@@ -4,9 +4,7 @@
  */
 package org.nbstudio.core.mac;
 
-import org.nbstudio.syntax.utils.ANTLRTokenId;
 import org.netbeans.api.editor.EditorRegistry;
-import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.editor.BaseDocument;
 import org.netbeans.modules.csl.spi.ParserResult;
 import org.netbeans.modules.editor.indent.spi.Context;

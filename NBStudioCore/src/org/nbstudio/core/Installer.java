@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.ResourceBundle;
 import org.openide.modules.ModuleInstall;
-import org.openide.util.Exceptions;
 
 public class Installer extends ModuleInstall {
 

@@ -18,7 +18,7 @@ import org.netbeans.modules.editor.indent.spi.IndentTask;
 public class macIndentTask implements IndentTask {
 
     private final Context context;
-    private CodeStyle codeStyle;
+    private final CodeStyle codeStyle;
 
     public macIndentTask(Context context) {
         this.context = context;

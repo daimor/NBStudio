@@ -30,7 +30,6 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -56,8 +55,8 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
     private final Database db;
     int itemIndex = 0;
     CacheObject mInternal = null;
-    HashMap<String, clsParser.ClassPropertiesContext> clsProps = new HashMap<String, clsParser.ClassPropertiesContext>();
-    HashMap<String, ParserRuleContext> curObjProps = new HashMap<String, ParserRuleContext>();
+    HashMap<String, clsParser.ClassPropertiesContext> clsProps = new HashMap<>();
+    HashMap<String, ParserRuleContext> curObjProps = new HashMap<>();
     CacheRootObject curObj = null;
 
     // only for testing
@@ -92,14 +91,14 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
         ClassFile clsFile = new ClassFile(db, className);
         InputStream clsText = clsFile.open();
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(clsText));
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) {
-            System.out.println(inputLine);
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(clsText))) {
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                System.out.println(inputLine);
+            }
         }
-        in.close();
     }
-    private boolean noSave = false;
+    private final boolean noSave = false;
 
     String GetClassName() {
         return this.className;
@@ -180,11 +179,7 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
                 cls.getQueries().clear();
                 cls.getXDatas().clear();
             }
-        } catch (CacheException ex) {
-        } catch (NoSuchFieldException ex) {
-        } catch (SecurityException ex) {
-        } catch (IllegalArgumentException ex) {
-        } catch (IllegalAccessException ex) {
+        } catch (CacheException | NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ex) {
         }
     }
 
@@ -337,7 +332,7 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
             if (!noSave) {
                 propertyDefinition._save();
             }
-        } catch (Exception ex) {
+        } catch (CacheException ex) {
         }
         curObj = null;
     }
@@ -349,10 +344,9 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
         String methodName = ctx.MethodName().getText();
         Boolean classMethod = (ctx.ClassMethod() != null);
         clsParser.MethodFormalSpecContext methodFormalSpec = ctx.methodFormalSpec();
-        ArrayList<String> formalSpecList = new ArrayList<String>();
+        ArrayList<String> formalSpecList = new ArrayList<>();
         if (methodFormalSpec != null) {
-            for (Iterator<clsParser.MethodFormalSpecOneContext> it = methodFormalSpec.methodFormalSpecOne().iterator(); it.hasNext();) {
-                clsParser.MethodFormalSpecOneContext fc = it.next();
+            for (clsParser.MethodFormalSpecOneContext fc : methodFormalSpec.methodFormalSpecOne()) {
                 String str = "";
                 str += (fc.ByRef() == null) ? "" : "&";
                 str += (fc.Output() == null) ? "" : "*";
@@ -392,8 +386,7 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
 
             curObjProps.clear();
             curObj = methodDefinition;
-        } catch (CacheException ex) {
-        } catch (IOException ex) {
+        } catch (CacheException | IOException ex) {
         }
     }
 
@@ -536,10 +529,9 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
         String queryName = ctx.QueryName().getText();
         String returnType = ctx.returnType.getText();
         clsParser.QueryFormalSpecContext queryFormalSpec = ctx.queryFormalSpec();
-        ArrayList<String> formalSpecList = new ArrayList<String>();
+        ArrayList<String> formalSpecList = new ArrayList<>();
         if (queryFormalSpec != null) {
-            for (Iterator<clsParser.QueryFormalSpecOneContext> it = queryFormalSpec.queryFormalSpecOne().iterator(); it.hasNext();) {
-                clsParser.QueryFormalSpecOneContext fc = it.next();
+            for (clsParser.QueryFormalSpecOneContext fc : queryFormalSpec.queryFormalSpecOne()) {
                 String str = "";
                 str += fc.varName.getText();
                 str += (fc.As() == null) ? "" : ":" + fc.varType.getText();
@@ -653,8 +645,7 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
 
             curObj = xdataDefinition;
             curObjProps.clear();
-        } catch (CacheException ex) {
-        } catch (IOException ex) {
+        } catch (CacheException | IOException ex) {
         }
     }
 
@@ -720,10 +711,9 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
                 indexDefinition = new IndexDefinition(db, this.className + ":" + indexName);
             }
 
-            List<String> listProps = new ArrayList<String>();
+            List<String> listProps = new ArrayList<>();
             List<TerminalNode> ctxListProps = ctx.listProperties().PropertyName();
-            for (Iterator<TerminalNode> it = ctxListProps.iterator(); it.hasNext();) {
-                TerminalNode terminalNode = it.next();
+            for (TerminalNode terminalNode : ctxListProps) {
                 listProps.add(terminalNode.getText());
             }
 
@@ -1067,9 +1057,8 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
     }
 
     List<String> convertList(List<TerminalNode> tnList, cnvString func) {
-        ArrayList<String> list = new ArrayList<String>();
-        for (Iterator<TerminalNode> it = tnList.iterator(); it.hasNext();) {
-            TerminalNode terminalNode = it.next();
+        ArrayList<String> list = new ArrayList<>();
+        for (TerminalNode terminalNode : tnList) {
             String str = terminalNode.getText();
             str = func.convert(str);
             list.add(str);
@@ -1094,10 +1083,9 @@ public class CLSParserListerer4Save extends clsParserBaseListener {
     }
 
     String SepListTN(List<TerminalNode> tnList) {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
 
-        for (Iterator<TerminalNode> it = tnList.iterator(); it.hasNext();) {
-            TerminalNode terminalNode = it.next();
+        for (TerminalNode terminalNode : tnList) {
             list.add(terminalNode.getText());
         }
 

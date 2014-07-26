@@ -4,7 +4,6 @@
  */
 package org.nbstudio.core.mac;
 
-import org.nbstudio.utils.Logger;
 import java.io.IOException;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;

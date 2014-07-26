@@ -17,9 +17,9 @@ import org.netbeans.modules.parsing.spi.Parser.Result;
  */
 public class EditorParserResult extends Result {
 
-    private Parser parser;
+    private final Parser parser;
     private boolean valid = false;
-    private List<SyntaxError> syntaxErrors = new ArrayList<SyntaxError>();
+    private List<SyntaxError> syntaxErrors = new ArrayList<>();
 
     public EditorParserResult(Snapshot snapshot, Parser parser, List<SyntaxError> syntaxErrors) {
         super(snapshot);

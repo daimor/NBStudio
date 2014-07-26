@@ -57,6 +57,7 @@ public class CacheFileNameExtensionFilter extends FileFilter {
      * @param f the {@code File} to test
      * @return true if the file is to be accepted, false otherwise
      */
+    @Override
     public boolean accept(File f) {
         if (f != null) {
             if (f.isDirectory()) {
@@ -87,6 +88,7 @@ public class CacheFileNameExtensionFilter extends FileFilter {
      *
      * @return the description of this filter
      */
+    @Override
     public String getDescription() {
         return description + " (" + getFilterString() + ")";
     }
@@ -96,10 +98,12 @@ public class CacheFileNameExtensionFilter extends FileFilter {
         int len = extensions.length;
         if (len > 0) {
             for (int i = 0; i < len - 1; i++) {
-                builder.append("*." + extensions[i]);
+                builder.append("*.");
+                builder.append(extensions[i]);
                 builder.append(",");
             }
-            builder.append("*." + extensions[len - 1]);
+            builder.append("*.");
+            builder.append(extensions[len - 1]);
         }
         return builder.toString();
     }
@@ -123,6 +127,7 @@ public class CacheFileNameExtensionFilter extends FileFilter {
      *
      * @return a string representation of this {@code FileNameExtensionFilter}
      */
+    @Override
     public String toString() {
         return super.toString() + "[description=" + getDescription()
                 + " extensions=" + java.util.Arrays.asList(getExtensions()) + "]";

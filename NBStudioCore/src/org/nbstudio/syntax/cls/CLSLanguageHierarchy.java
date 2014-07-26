@@ -31,7 +31,7 @@ public class CLSLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
 
     private static void init() {
         ANTLRTokenReader reader = new ANTLRTokenReader();
-        HashMap<String, String> tokenTypes = new HashMap<String, String>();
+        HashMap<String, String> tokenTypes = new HashMap<>();
         tokenTypes.put("Class", "keyword");
         tokenTypes.put("Include", "keyword");
         tokenTypes.put("Property", "keyword");
@@ -55,7 +55,7 @@ public class CLSLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
         tokenTypes.put("STRING", "string");
         
         tokens = reader.readTokenFile("org/nbstudio/syntax/cls/clsLexer.tokens", tokenTypes);
-        idToToken = new HashMap<Integer, ANTLRTokenId>();
+        idToToken = new HashMap<>();
         for (ANTLRTokenId token : tokens) {
             idToToken.put(token.ordinal(), token);
         }

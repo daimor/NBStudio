@@ -26,7 +26,7 @@ import org.nbstudio.syntax.cls.clsParser;
  */
 public class CLSUtils {
 
-    private static ArrayList<String> propertiesExcludeList = new ArrayList<String>() {
+    private static final ArrayList<String> propertiesExcludeList = new ArrayList<String>() {
         {
             add("Name");
             add("Description");
@@ -57,38 +57,37 @@ public class CLSUtils {
             Field privateStringField = CacheRootObject.class.getDeclaredField("mInternal");
             privateStringField.setAccessible(true);
             mInternal = (CacheObject) privateStringField.get(obj);
-        } catch (Exception ignoredException) {
+        } catch (IllegalAccessException | IllegalArgumentException | NoSuchFieldException | SecurityException ignoredException) {
         }
         return mInternal;
     }
 
     public static void setParameters(CacheRootObject obj, List<clsParser.ParameterContext> parametersList) {
         try {
-            Map params = CLSUtils.getParameters(obj);
+            HashMap<String, String> params = CLSUtils.getParameters(obj);
             params.clear();
             if (parametersList == null) {
                 return;
             }
-            for (Iterator<clsParser.ParameterContext> it = parametersList.iterator(); it.hasNext();) {
-                clsParser.ParameterContext parameterContext = it.next();
+            for (clsParser.ParameterContext parameterContext : parametersList) {
                 String paramName = parameterContext.paramName.getText();
                 String paramVal = parameterContext.paramVal.getText();
                 paramVal = paramVal.replaceAll("\"\"", "\"");
                 paramVal = Pattern.compile("^\"(.*)\"$").matcher(paramVal).replaceAll("$1");
                 params.put(paramName, paramVal);
             }
-        } catch (Exception ignoredException) {
+        } catch (CacheException ignoredException) {
         }
     }
 
-    public static java.util.Map getParameters(CacheRootObject obj) throws com.intersys.objects.CacheException {
+    public static HashMap<String, String> getParameters(CacheRootObject obj) throws com.intersys.objects.CacheException {
         CacheObject mInternal = getmInternal(obj);
         com.intersys.cache.Dataholder dh = mInternal.getProperty("Parameters", true);
         com.intersys.cache.CacheObject cobj = dh.getCacheObject();
         if (cobj == null) {
             return null;
         }
-        return (java.util.Map) (cobj.newJavaInstance());
+        return  (HashMap<String, String>) (cobj.newJavaInstance());
     }
 
     public static void setProperty(CacheRootObject obj, String propName, boolean value) {
@@ -96,7 +95,7 @@ public class CLSUtils {
             CacheObject mInternal = getmInternal(obj);
             com.intersys.cache.Dataholder dh = new com.intersys.cache.Dataholder(value);
             mInternal.setProperty(propName, dh);
-        } catch (Exception ignoredException) {
+        } catch (CacheException ignoredException) {
         }
     }
 
@@ -107,7 +106,7 @@ public class CLSUtils {
             value = ((value == null) || (value.isEmpty())) ? null : value;
             com.intersys.cache.Dataholder dh = new com.intersys.cache.Dataholder(value);
             mInternal.setProperty(propName, dh);
-        } catch (Exception ignoredException) {
+        } catch (CacheException ignoredException) {
         }
     }
 
@@ -116,7 +115,7 @@ public class CLSUtils {
             CacheObject mInternal = getmInternal(obj);
             com.intersys.cache.Dataholder dh = mInternal.getProperty(propName, false);
             return dh.getString();
-        } catch (Exception ignoredException) {
+        } catch (CacheException ignoredException) {
             return defaultValue;
         }
     }
@@ -126,21 +125,20 @@ public class CLSUtils {
             CacheObject mInternal = getmInternal(obj);
             com.intersys.cache.Dataholder dh = mInternal.getProperty(propName, false);
             return dh.getBoolean();
-        } catch (Exception ignoredException) {
+        } catch (CacheException ignoredException) {
             return defaultValue;
         }
     }
 
     public static java.util.Map<String, Object> getProperties(CacheRootObject obj) {
-        HashMap<String, Object> result = new java.util.HashMap<String, Object>();
+        HashMap<String, Object> result = new java.util.HashMap<>();
         try {
             Database db = obj.getDatabase();
             String className = obj._className(true);
             ClassDefinition objDef = (ClassDefinition) ClassDefinition.open(db, new Id(className), 0);
 
-            List objProps = objDef.getProperties().asList();
-            for (Iterator it = objProps.iterator(); it.hasNext();) {
-                PropertyDefinition prop = (PropertyDefinition) it.next();
+            List<PropertyDefinition> objProps = objDef.getProperties().asList();
+            for (PropertyDefinition prop : objProps) {
                 String propName = prop.getName();
                 String propType = prop.getType();
                 String defaultValue = prop.getInitialExpression();

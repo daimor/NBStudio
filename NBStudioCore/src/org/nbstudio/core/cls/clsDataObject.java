@@ -7,7 +7,6 @@ package org.nbstudio.core.cls;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import javax.swing.text.Document;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
@@ -29,7 +28,7 @@ import org.openide.util.NbBundle.Messages;
 @MIMEResolver.ExtensionRegistration(
         displayName = "#LBL_cls_LOADER",
         mimeType = "text/isc-cls",
-        extension = {"cls"})
+        extension = {"cls", "CLS"})
 @DataObject.Registration(
         mimeType = "text/isc-cls",
         iconBase = "org/nbstudio/core/cls/class.png",
@@ -42,45 +41,45 @@ import org.openide.util.NbBundle.Messages;
             @ActionID(category = "System", id = "org.openide.actions.OpenAction"),
             position = 100,
             separatorAfter = 200),
-    @ActionReference(
-            path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "Edit", id = "org.openide.actions.CutAction"),
-            position = 300),
-    @ActionReference(
-            path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "Edit", id = "org.openide.actions.CopyAction"),
-            position = 400,
-            separatorAfter = 500),
-    @ActionReference(
-            path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "Edit", id = "org.openide.actions.DeleteAction"),
-            position = 600),
-    @ActionReference(
-            path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "System", id = "org.openide.actions.RenameAction"),
-            position = 700,
-            separatorAfter = 800),
-    @ActionReference(
-            path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "System", id = "org.openide.actions.SaveAsTemplateAction"),
-            position = 900,
-            separatorAfter = 1000),
+//    @ActionReference(
+//            path = "Loaders/text/isc-cls/Actions",
+//            id =
+//            @ActionID(category = "Edit", id = "org.openide.actions.CutAction"),
+//            position = 300),
+//    @ActionReference(
+//            path = "Loaders/text/isc-cls/Actions",
+//            id =
+//            @ActionID(category = "Edit", id = "org.openide.actions.CopyAction"),
+//            position = 400,
+//            separatorAfter = 500),
+//    @ActionReference(
+//            path = "Loaders/text/isc-cls/Actions",
+//            id =
+//            @ActionID(category = "Edit", id = "org.openide.actions.DeleteAction"),
+//            position = 600),
+//    @ActionReference(
+//            path = "Loaders/text/isc-cls/Actions",
+//            id =
+//            @ActionID(category = "System", id = "org.openide.actions.RenameAction"),
+//            position = 700,
+//            separatorAfter = 800),
+//    @ActionReference(
+//            path = "Loaders/text/isc-cls/Actions",
+//            id =
+//            @ActionID(category = "System", id = "org.openide.actions.SaveAsTemplateAction"),
+//            position = 900,
+//            separatorAfter = 1000),
     @ActionReference(
             path = "Loaders/text/isc-cls/Actions",
             id =
             @ActionID(category = "System", id = "org.openide.actions.FileSystemAction"),
             position = 1100,
             separatorAfter = 1200),
-    @ActionReference(
-            path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "System", id = "org.openide.actions.ToolsAction"),
-            position = 1300),
+//    @ActionReference(
+//            path = "Loaders/text/isc-cls/Actions",
+//            id =
+//            @ActionID(category = "System", id = "org.openide.actions.ToolsAction"),
+//            position = 1300),
     @ActionReference(
             path = "Loaders/text/isc-cls/Actions",
             id =
@@ -104,7 +103,6 @@ public class clsDataObject extends MultiDataObject {
 //    @Override
 //    protected Node createNodeDelegate() {
 //    }
-
     private class PropertyChangeListenerImpl implements PropertyChangeListener {
 
         private final CloneableEditorSupport support;
@@ -113,6 +111,7 @@ public class clsDataObject extends MultiDataObject {
             this.support = support;
         }
 
+        @Override
         public void propertyChange(PropertyChangeEvent event) {
             if ("document".equals(event.getPropertyName())) {
                 if (event.getNewValue() != null) {

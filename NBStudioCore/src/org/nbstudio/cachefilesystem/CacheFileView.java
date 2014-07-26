@@ -13,6 +13,7 @@ import java.awt.image.ImageFilter;
 import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
@@ -38,7 +39,7 @@ public class CacheFileView extends FileView {
     final static int FILE_ICON_INDEX_PKG = 10;
     final static int FILE_ICON_INDEX_PRJ = 11;
     final static int FILE_ICON_INDEX_BAS = 12;
-    final static Map<String, Integer> fileTypesIcon = new HashMap<String, Integer>();
+    final static Map<String, Integer> fileTypesIcon = new HashMap<>();
 
     {
         try {
@@ -53,6 +54,7 @@ public class CacheFileView extends FileView {
             ImageFilter filter = new RGBImageFilter() {
                 int transparentColor = Color.white.getRGB() | 0xFF000000;
 
+                @Override
                 public final int filterRGB(int x, int y, int rgb) {
                     if ((x == 0) && (y == 0)) {
                         transparentColor = rgb;
@@ -73,7 +75,7 @@ public class CacheFileView extends FileView {
             for (int i = 0; i < countFilesIcons; i++) {
                 filesIcons[i] = new ImageIcon(transparentBufImg.getSubimage(fileIconWidth * i, 0, fileIconWidth, fileIconHeight));
             }
-        } catch (Exception ex) {
+        } catch (IOException ex) {
         }
     }
 

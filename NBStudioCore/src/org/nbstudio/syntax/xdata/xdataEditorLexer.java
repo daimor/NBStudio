@@ -4,10 +4,8 @@
  */
 package org.nbstudio.syntax.xdata;
 
-import org.antlr.v4.runtime.misc.Interval;
 import org.nbstudio.syntax.utils.ANTLRCharStream;
 import org.nbstudio.syntax.utils.ANTLRTokenId;
-import org.nbstudio.utils.Logger;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.spi.lexer.Lexer;
 import org.netbeans.spi.lexer.LexerRestartInfo;
@@ -18,8 +16,8 @@ import org.netbeans.spi.lexer.LexerRestartInfo;
  */
 class xdataEditorLexer implements Lexer<ANTLRTokenId> {
 
-    private LexerRestartInfo<ANTLRTokenId> info;
-    private xdataLexer lexer;
+    private final LexerRestartInfo<ANTLRTokenId> info;
+    private final xdataLexer lexer;
 
     public xdataEditorLexer(LexerRestartInfo<ANTLRTokenId> info) {
         this.info = info;

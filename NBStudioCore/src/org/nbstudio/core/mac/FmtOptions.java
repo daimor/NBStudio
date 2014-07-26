@@ -50,7 +50,7 @@ public class FmtOptions {
 			{rightMargin, "80"}, //NOI18N
 		};
 
-		defaults = new HashMap<String, String>();
+		defaults = new HashMap<>();
 
 		for (java.lang.String[] strings : defaultValues) {
 			defaults.put(strings[0], strings[1]);

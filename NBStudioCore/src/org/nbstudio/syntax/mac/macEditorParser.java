@@ -12,11 +12,11 @@ import javax.swing.text.Document;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.RecognitionException;
 import org.nbstudio.syntax.EditorParserResult;
 import org.nbstudio.syntax.ErrorListener;
 import org.nbstudio.syntax.SyntaxError;
 import org.nbstudio.syntax.mac.macParser.ProgContext;
-import org.nbstudio.utils.Logger;
 import org.netbeans.modules.parsing.api.Snapshot;
 import org.netbeans.modules.parsing.api.Task;
 import org.netbeans.modules.parsing.spi.ParseException;
@@ -32,8 +32,12 @@ public class macEditorParser extends Parser {
 
     private Snapshot snapshot;
     private macParser macParser;
-    public List<SyntaxError> syntaxErrors = new ArrayList<SyntaxError>();
+    public List<SyntaxError> syntaxErrors;
     public static int embeddedOffset;
+
+    public macEditorParser() {
+        this.syntaxErrors = new ArrayList<>();
+    }
 
     @Override
     public void parse(Snapshot snapshot, Task task, SourceModificationEvent event) {
@@ -41,7 +45,7 @@ public class macEditorParser extends Parser {
         Document document = snapshot.getSource().getDocument(true);
         syntaxErrors = (List<SyntaxError>) document.getProperty("syntaxErrors");
         if (syntaxErrors == null) {
-            syntaxErrors = new ArrayList<SyntaxError>();
+            syntaxErrors = new ArrayList<>();
             document.putProperty("syntaxErrors", syntaxErrors);
         }
         embeddedOffset = snapshot.getOriginalOffset(0);
@@ -57,7 +61,7 @@ public class macEditorParser extends Parser {
         macParser.addErrorListener(new ErrorListener(syntaxErrors, embeddedOffset));
         try {
             ProgContext prog = macParser.prog();
-        } catch (Exception ex) {
+        } catch (RecognitionException ex) {
             ex.printStackTrace();
         }
     }

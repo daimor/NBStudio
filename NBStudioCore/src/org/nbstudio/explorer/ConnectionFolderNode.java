@@ -19,7 +19,7 @@ import org.openide.util.lookup.Lookups;
  */
 public class ConnectionFolderNode  extends AbstractNode {
 
-    private Connection conn;
+    private final Connection conn;
 
     public ConnectionFolderNode(Connection conn, String name) throws IntrospectionException {
         super(Children.LEAF, Lookups.fixed(conn));

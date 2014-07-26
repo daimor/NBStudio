@@ -4,11 +4,9 @@
  */
 package org.nbstudio.core.mac;
 
-import org.nbstudio.core.cls.*;
 import org.netbeans.api.editor.mimelookup.MimeRegistration;
 import org.netbeans.modules.editor.indent.spi.Context;
 import org.netbeans.modules.editor.indent.spi.IndentTask;
-import org.netbeans.modules.editor.indent.spi.ReformatTask;
 
 @MimeRegistration(mimeType = "text/isc-mac", service = IndentTask.Factory.class)
 public class macIndentTaskFactory implements IndentTask.Factory {

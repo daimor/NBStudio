@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import org.nbstudio.syntax.utils.ANTLRTokenId;
-import org.nbstudio.utils.Logger;
-import org.netbeans.api.lexer.Language;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
@@ -33,7 +30,7 @@ public class clsEmbeddingProvider extends EmbeddingProvider {
         if (tokenSequence == null) {
             return Collections.emptyList();
         }
-        List<Embedding> embeddings = new ArrayList<Embedding>();
+        List<Embedding> embeddings = new ArrayList<>();
 
         while (tokenSequence.moveNext()) {
             Token<?> token = tokenSequence.token();

@@ -31,7 +31,7 @@ public class macLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
 
     private static void init() {
         ANTLRTokenReader reader = new ANTLRTokenReader();
-        HashMap<String, String> tokenTypes = new HashMap<String, String>();
+        HashMap<String, String> tokenTypes = new HashMap<>();
         tokenTypes.put("CMD", "command");
         tokenTypes.put("Label", "label");
 
@@ -45,7 +45,7 @@ public class macLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
         tokenTypes.put("STRING", "character");
 
         tokens = reader.readTokenFile("org/nbstudio/syntax/mac/macLexer.tokens", tokenTypes);
-        idToToken = new HashMap<Integer, ANTLRTokenId>();
+        idToToken = new HashMap<>();
         for (ANTLRTokenId token : tokens) {
             idToToken.put(token.ordinal(), token);
         }

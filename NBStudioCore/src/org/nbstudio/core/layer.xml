@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
-    <folder name="Connections">
+<!--    <folder name="Actions">
+        <folder name="Projects">
+            <file name="org-netbeans-modules-project-ui-OpenProject.instance">
+                <attr name="delegate" newvalue="org.nbstudio.core.OpenProject"/>
+                <attr name="displayName" bundlevalue="org.nbstudio.Bundle#CTL_OpenProject"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/> 
+            </file>
+        </folder>
+    </folder>-->
+    <!--    <folder name="Connections">
         <attr name="instanceCreate" methodvalue="org.nbstudio.core.Connection"/>
-    </folder>
+    </folder>-->
         
     <!--    <folder name="Loaders">
         <folder name="text">
@@ -32,6 +41,16 @@
             </folder>
         </folder>
     </folder>-->
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="org-nbstudio-core-navigatorTopComponent.instance">
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+                <attr name="preferredID" stringvalue="servers"/>
+            </file>
+            <file name="org-nbstudio-core-servers.instance_hidden"/>
+            <file name="org-netbeans-core-ide-ServicesTabAction.instance_hidden"/>
+        </folder>
+    </folder>
     <folder name="Editors">
         <folder name="text">
             <folder name="isc-mac">
@@ -148,14 +167,42 @@
     <folder name="Keymaps">
         <folder name="NetBeans">
             <file name="D-O.shadow">
-                <attr name="originalFile" stringvalue="Actions/File/org-mycore-OpenFileAction.instance"/>
+                <attr name="originalFile" stringvalue="Actions/System/org-netbeans-modules-openfile-OpenFileAction.instance"/>
             </file>
-            <file name="D-S.shadow">
-                <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-SaveAction.instance"/>
+            <file name="D-F2.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/bookmark-toggle.instance"/>
             </file>
-            <file name="D-F4.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-netbeans-core-windows-actions-CloseWindowAction.instance"/>
+            <file name="F2.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/bookmark-next.instance"/>
             </file>
+            <file name="S-F2.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/bookmark-previous.instance"/>
+            </file>            
+        </folder>
+    </folder>
+    <folder name="Templates">
+        <file name="Licenses_hidden"/>
+        <file name="Other_hidden"/>
+        <file name="Privileged_hidden"/>
+        <file name="Project_hidden"/>
+        <file name="Properties_hidden"/>
+        <file name="Recent_hidden"/>
+        <file name="Services_hidden"/>
+        <file name="UnitTests_hidden"/>
+        <file name="XML_hidden"/>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Modes">
+            <file name="output.wsmode" url="outputWsmode.xml"/>
+            <folder name="output">
+                <file name="output.wstcref" url="outputWstcref.xml"></file>
+                <file name="search-results.wstcref" url="search-resultsWstcref.xml"></file>
+            </folder>
+            <file name="explorer.wsmode" url="explorerWsmode.xml"/>
+            <folder name="explorer">
+                <file name="servers.wstcref" url="serversWstcref.xml"></file>
+                <file name="projectTabLogical_tc.wstcref" url="projectTabLogicalWstcref.xml"></file>
+            </folder>
         </folder>
     </folder>
 </filesystem>

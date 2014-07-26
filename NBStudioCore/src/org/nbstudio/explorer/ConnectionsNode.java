@@ -5,7 +5,6 @@
 package org.nbstudio.explorer;
 
 import com.intersys.objects.CacheException;
-import com.intersys.objects.Database;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -15,15 +14,12 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import static javax.swing.Action.NAME;
 import javax.swing.JOptionPane;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.nbstudio.Localize;
 import org.nbstudio.core.Connection;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
-import org.openide.filesystems.FileAttributeEvent;
-import org.openide.filesystems.FileChangeListener;
-import org.openide.filesystems.FileEvent;
 import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileRenameEvent;
 import org.openide.filesystems.FileUtil;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
@@ -39,7 +35,7 @@ public class ConnectionsNode extends AbstractNode {
 
     private final FileObject connectionsFolder;
 
-    public ConnectionsNode(FileObject connectionsFolder, String name) {
+    public ConnectionsNode(@NotNull FileObject connectionsFolder, String name) {
         super(Children.LEAF);
         this.connectionsFolder = connectionsFolder;
         setDisplayName(name);
@@ -52,7 +48,7 @@ public class ConnectionsNode extends AbstractNode {
 
     public final void refresh() {
         if (isRoot()) {
-            Connection.clearConnections();
+//            Connection.clearConnections();
         }
         setChildren(new ConnectionsNodes());
     }
@@ -71,10 +67,10 @@ public class ConnectionsNode extends AbstractNode {
                     if (fileObject.isFolder()) {
                         nodes4Add.add(new ConnectionsNode(fileObject, fileObject.getName()));
                     } else {
-                        Connection conn = new Connection(fileObject);
+                        Connection conn = Connection.load(fileObject);
                         nodes4Add.add(new ConnectionNode(conn));
                     }
-                } catch (Exception ex) {
+                } catch (IOException | InternalError ex) {
                     System.out.println("Error load connection file: " + fileObject.getNameExt() + " - " + ex.getLocalizedMessage());
                     try {
                         fileObject.delete();
@@ -110,7 +106,7 @@ public class ConnectionsNode extends AbstractNode {
 
     class AddConnection extends AbstractAction {
 
-        private EditConnection editConnection = new EditConnection();
+        private final EditConnection editConnection = new EditConnection();
         private DialogDescriptor d = null;
 
         public AddConnection() {
@@ -144,31 +140,22 @@ public class ConnectionsNode extends AbstractNode {
                     }
                     baseName += ix;
                 }
-                FileObject writeTo = null;
+                FileObject writeTo;
                 Connection conn = null;
                 try {
                     writeTo = fld.createData(baseName, "properties");
-                    conn = new Connection(writeTo, name, address, superPort, namespace, username, password);
-                    Database db = conn.getAssociatedConnection();
-                    System.out.println("AddConnection: " + db);
-                    if (db == null) {
-                        editConnection.setErrorMsg(Localize.getMessage("AddConnectionErrorConnect"));
-                        System.out.println("AddConnectionError: db is null for " + conn.toString());
-                        conn.delete();
-                        return;
-                    } else {
-                        System.out.println("AddConnection: " + db.getConnectionString());
-                        conn.save();
-                        conn.close();
-                        refresh();
-                        d.setClosingOptions(null);
+                    conn = Connection.create(writeTo, name, address, superPort, namespace, username, password);
+                    refresh();
+                    d.setClosingOptions(null);
+                } catch (IOException | InternalError ex) {
+                    if (ex instanceof IOException) {
+                        Exceptions.printStackTrace(ex);
                     }
-                } catch (Exception ex) {
-                    Exceptions.printStackTrace(ex);
+                    editConnection.setErrorMsg(ex.getLocalizedMessage());
                     if (conn != null) {
                         try {
                             conn.delete();
-                        } catch (Exception ex1) {
+                        } catch (CacheException | IOException ex1) {
                         }
                     }
                 }
@@ -221,7 +208,7 @@ public class ConnectionsNode extends AbstractNode {
         public void actionPerformed(ActionEvent ae) {
             try {
                 connectionsFolder.delete();
-            } catch (Exception ex) {
+            } catch (IOException ex) {
             } finally {
                 refresh();
             }

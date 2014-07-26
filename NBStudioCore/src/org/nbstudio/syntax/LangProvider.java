@@ -8,7 +8,6 @@ import org.nbstudio.syntax.cls.CLSLanguageHierarchy;
 import org.nbstudio.syntax.cls.clsLexer;
 import org.nbstudio.syntax.mac.macLanguageHierarchy;
 import org.nbstudio.syntax.xdata.xdataLanguageHierarchy;
-import org.nbstudio.utils.Logger;
 import org.netbeans.api.lexer.InputAttributes;
 import org.netbeans.api.lexer.Language;
 import org.netbeans.api.lexer.LanguagePath;

@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
-import org.nbstudio.utils.Logger;
 import org.netbeans.modules.parsing.api.Snapshot;
+import org.netbeans.modules.parsing.spi.ParseException;
 import org.netbeans.modules.parsing.spi.Parser.Result;
 import org.netbeans.modules.parsing.spi.ParserResultTask;
 import org.netbeans.modules.parsing.spi.Scheduler;
@@ -35,10 +36,9 @@ public class SyntaxErrorsHighlightingTask<T extends Result> extends ParserResult
     public void run(Result result, SchedulerEvent event) {
         try {
             Document document = result.getSnapshot().getSource().getDocument(true);
-            List<ErrorDescription> errors = new ArrayList<ErrorDescription>();
+            List<ErrorDescription> errors = new ArrayList<>();
             EditorParserResult parserResult = (EditorParserResult) result;
             List<SyntaxError> syntaxErrors = parserResult.getSyntaxErrors();
-            int offset = result.getSnapshot().getOriginalOffset(0);
             int cnt = 0;
             for (SyntaxError syntaxError : syntaxErrors) {
                 ErrorDescription errorDescription = ErrorDescriptionFactory.createErrorDescription(
@@ -53,7 +53,7 @@ public class SyntaxErrorsHighlightingTask<T extends Result> extends ParserResult
             }
 //            Logger.Log("getErrors: " + offset + ":" + cnt + " - " + parserResult.getParser().getGrammarFileName());
             HintsController.setErrors(document, "editor", errors);
-        } catch (Exception ex) {
+        } catch (BadLocationException | ParseException ex) {
 //            ex.printStackTrace();
         }
     }
@@ -79,7 +79,7 @@ public class SyntaxErrorsHighlightingTask<T extends Result> extends ParserResult
 //            if (snpsht.getOriginalOffset(0) > 0) {
 //                return Collections.EMPTY_LIST;
 //            }
-            return Collections.singleton(new SyntaxErrorsHighlightingTask<Result>());
+            return Collections.singleton(new SyntaxErrorsHighlightingTask<>());
 
         }
     }

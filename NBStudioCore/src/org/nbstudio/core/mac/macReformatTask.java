@@ -5,8 +5,6 @@
 package org.nbstudio.core.mac;
 
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Position;
-import org.nbstudio.utils.Logger;
 import org.netbeans.modules.editor.indent.spi.Context;
 import org.netbeans.modules.editor.indent.spi.ExtraLock;
 import org.netbeans.modules.editor.indent.spi.ReformatTask;
@@ -17,8 +15,7 @@ import org.netbeans.modules.editor.indent.spi.ReformatTask;
  */
 public class macReformatTask implements ReformatTask {
 
-    private Context context;
-    private Position reformatPos;
+    private final Context context;
 
     public macReformatTask(Context context) {
         this.context = context;
@@ -26,7 +23,6 @@ public class macReformatTask implements ReformatTask {
 
     @Override
     public void reformat() throws BadLocationException {
-        Logger.Log("reformat");
     }
 
     @Override

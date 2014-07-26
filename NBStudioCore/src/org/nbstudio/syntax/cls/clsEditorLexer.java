@@ -6,7 +6,6 @@ package org.nbstudio.syntax.cls;
 
 import org.nbstudio.syntax.utils.ANTLRCharStream;
 import org.nbstudio.syntax.utils.ANTLRTokenId;
-import org.nbstudio.utils.Logger;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.spi.lexer.Lexer;
 import org.netbeans.spi.lexer.LexerRestartInfo;
@@ -17,8 +16,8 @@ import org.netbeans.spi.lexer.LexerRestartInfo;
  */
 class clsEditorLexer implements Lexer<ANTLRTokenId> {
 
-    private LexerRestartInfo<ANTLRTokenId> info;
-    private clsLexer lexer;
+    private final LexerRestartInfo<ANTLRTokenId> info;
+    private final clsLexer lexer;
 
     public clsEditorLexer(LexerRestartInfo<ANTLRTokenId> info) {
         this.info = info;

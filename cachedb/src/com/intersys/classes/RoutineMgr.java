@@ -2,15 +2,15 @@ package com.intersys.classes;
 
 
 /**
- * Cache' Java Class Generated for class %Library.RoutineMgr on version Cache for UNIX (SUSE Linux Enterprise Server for x86-64) 2013.1 (Build 416U) Mon Feb 4 2013 19:21:06 EST.<br>
+ * Cache' Java Class Generated for class %Library.RoutineMgr on version Cache for UNIX (SUSE Linux Enterprise Server for x86-64) 2014.1 (Build 608U) Tue Mar 25 2014 17:13:20 EDT.<br>
  * Description: This class is used internally by Cach&eacute;. You should not make direct use of it within your applications. There is no guarantee made about either the behavior or future operation of this class.<p>
 This is a wrapper class used by Studio to manipulate routines.
  *
- * @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr</A>
+ * @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr</A>
 **/
 
 public class RoutineMgr extends com.intersys.classes.RegisteredObject implements java.io.Serializable {
-    private static final long serialVersionUID = 2309;
+    private static final long serialVersionUID = 7094;
     private static String CACHE_CLASS_NAME = "%Library.RoutineMgr";
     /**
            <p>NB: DO NOT USE IN APPLICATION(!!!).
@@ -249,7 +249,7 @@ public class RoutineMgr extends com.intersys.classes.RegisteredObject implements
        <code>java.lang.Boolean</code>
 
        @throws com.intersys.objects.CacheException if any error occurred during value retrieval.
-       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Generated"> Generated</A>
+       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Generated"> Generated</A>
     */
     public java.lang.Boolean getGenerated()  throws com.intersys.objects.CacheException {
        com.intersys.cache.Dataholder dh = mInternal.getProperty("Generated",false);
@@ -265,7 +265,7 @@ public class RoutineMgr extends com.intersys.classes.RegisteredObject implements
        <code>java.lang.Boolean</code>
 
        @throws com.intersys.objects.CacheException if any error occurred during value retrieval.
-       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsCSP"> IsCSP</A>
+       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsCSP"> IsCSP</A>
     */
     public java.lang.Boolean getIsCSP()  throws com.intersys.objects.CacheException {
        com.intersys.cache.Dataholder dh = mInternal.getProperty("IsCSP",false);
@@ -281,7 +281,7 @@ public class RoutineMgr extends com.intersys.classes.RegisteredObject implements
        <code>java.lang.String</code>
 
        @throws com.intersys.objects.CacheException if any error occurred during value retrieval.
-       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Name"> Name</A>
+       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Name"> Name</A>
     */
     public java.lang.String getName()  throws com.intersys.objects.CacheException {
        com.intersys.cache.Dataholder dh = mInternal.getProperty("Name",false);
@@ -294,7 +294,7 @@ public class RoutineMgr extends com.intersys.classes.RegisteredObject implements
        @param value new value to be set represented as
        <code>java.lang.String</code>.
        @throws com.intersys.objects.CacheException if any error occurred during value setting.
-       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Name"> Name</A>
+       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Name"> Name</A>
     */
     public void setName(java.lang.String value)  throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder dh = new com.intersys.cache.Dataholder (value);
@@ -311,7 +311,7 @@ public class RoutineMgr extends com.intersys.classes.RegisteredObject implements
        <code>java.lang.String</code>
 
        @throws com.intersys.objects.CacheException if any error occurred during value retrieval.
-       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Namespace"> Namespace</A>
+       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Namespace"> Namespace</A>
     */
     public java.lang.String getNamespace()  throws com.intersys.objects.CacheException {
        com.intersys.cache.Dataholder dh = mInternal.getProperty("Namespace",false);
@@ -327,7 +327,7 @@ public class RoutineMgr extends com.intersys.classes.RegisteredObject implements
        <code>java.lang.Boolean</code>
 
        @throws com.intersys.objects.CacheException if any error occurred during value retrieval.
-       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Protected"> Protected</A>
+       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Protected"> Protected</A>
     */
     public java.lang.Boolean getProtected()  throws com.intersys.objects.CacheException {
        com.intersys.cache.Dataholder dh = mInternal.getProperty("Protected",false);
@@ -340,7 +340,7 @@ public class RoutineMgr extends com.intersys.classes.RegisteredObject implements
        @param value new value to be set represented as
        <code>java.lang.Boolean</code>.
        @throws com.intersys.objects.CacheException if any error occurred during value setting.
-       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Protected"> Protected</A>
+       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Protected"> Protected</A>
     */
     public void setProtected(java.lang.Boolean value)  throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder dh = new com.intersys.cache.Dataholder (value);
@@ -357,7 +357,7 @@ public class RoutineMgr extends com.intersys.classes.RegisteredObject implements
        <code>java.sql.Timestamp</code>
 
        @throws com.intersys.objects.CacheException if any error occurred during value retrieval.
-       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#TimeStamp"> TimeStamp</A>
+       @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#TimeStamp"> TimeStamp</A>
     */
     public java.sql.Timestamp getTimeStamp()  throws com.intersys.objects.CacheException {
        com.intersys.cache.Dataholder dh = mInternal.getProperty("TimeStamp",false);
@@ -374,7 +374,7 @@ with the pre-package behaviour of %ClassName.</p>
      @param db represented as com.intersys.objects.Database
      @param fullname represented as java.lang.Boolean
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#%ClassName"> Method %ClassName</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#%ClassName"> Method %ClassName</A>
     */
     public static java.lang.String sys_ClassName (com.intersys.objects.Database db, java.lang.Boolean fullname) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -389,7 +389,7 @@ That is 'isclass' is a primary superclass of this object.</p>
      @param db represented as com.intersys.objects.Database
      @param isclass represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#%IsA"> Method %IsA</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#%IsA"> Method %IsA</A>
     */
     public static java.lang.Integer sys_IsA (com.intersys.objects.Database db, java.lang.String isclass) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -404,7 +404,7 @@ Return <var>Refresh</var>=1 if the save has changed
 the document so it should be refreshed in the client</p>
      @param Refresh represented as com.intersys.objects.BooleanHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#%Save"> Method %Save</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#%Save"> Method %Save</A>
     */
     public void sys_Save (com.intersys.objects.BooleanHolder Refresh) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -429,7 +429,7 @@ null if it can not find a match or the next name that does match.</p>
      default argument directory set to ""
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #AutoComplete(com.intersys.objects.Database,java.lang.String,java.lang.String,com.intersys.objects.StringHolder,java.lang.Boolean,java.lang.String)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#AutoComplete"> Method AutoComplete</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#AutoComplete"> Method AutoComplete</A>
     */
     public static void AutoComplete (com.intersys.objects.Database db, java.lang.String name, java.lang.String mask, com.intersys.objects.StringHolder complete) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[3];
@@ -456,7 +456,7 @@ null if it can not find a match or the next name that does match.</p>
      default argument directory set to ""
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #AutoComplete(com.intersys.objects.Database,java.lang.String,java.lang.String,com.intersys.objects.StringHolder,java.lang.Boolean,java.lang.String)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#AutoComplete"> Method AutoComplete</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#AutoComplete"> Method AutoComplete</A>
     */
     public static void AutoComplete (com.intersys.objects.Database db, java.lang.String name, java.lang.String mask, com.intersys.objects.StringHolder complete, java.lang.Boolean generated) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[4];
@@ -483,7 +483,7 @@ null if it can not find a match or the next name that does match.</p>
      @param generated represented as java.lang.Boolean
      @param directory represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#AutoComplete"> Method AutoComplete</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#AutoComplete"> Method AutoComplete</A>
     */
     public static void AutoComplete (com.intersys.objects.Database db, java.lang.String name, java.lang.String mask, com.intersys.objects.StringHolder complete, java.lang.Boolean generated, java.lang.String directory) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[5];
@@ -506,7 +506,7 @@ Studio to open</p>
      @param db represented as com.intersys.objects.Database
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#BestRoutineMatch"> Method BestRoutineMatch</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#BestRoutineMatch"> Method BestRoutineMatch</A>
     */
     public static java.lang.String BestRoutineMatch (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -518,7 +518,7 @@ Studio to open</p>
      <p>Runs method CheckDeveloperRole in Cache.</p>
      @param db represented as com.intersys.objects.Database
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CheckDeveloperRole"> Method CheckDeveloperRole</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CheckDeveloperRole"> Method CheckDeveloperRole</A>
     */
     public static void CheckDeveloperRole (com.intersys.objects.Database db) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -532,7 +532,7 @@ Studio to open</p>
      @param db represented as com.intersys.objects.Database
      @param ident represented as com.intersys.objects.StringHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CheckSQLIdentifier"> Method CheckSQLIdentifier</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CheckSQLIdentifier"> Method CheckSQLIdentifier</A>
     */
     public static void CheckSQLIdentifier (com.intersys.objects.Database db, com.intersys.objects.StringHolder ident) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -549,7 +549,7 @@ Studio to open</p>
      default argument force set to 0
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #CodeGetObjectId(java.lang.Integer)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CodeGetObjectId"> Method CodeGetObjectId</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CodeGetObjectId"> Method CodeGetObjectId</A>
     */
     public java.lang.String CodeGetObjectId () throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -560,7 +560,7 @@ Studio to open</p>
      <p>Runs method CodeGetObjectId in Cache.</p>
      @param force represented as java.lang.Integer
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CodeGetObjectId"> Method CodeGetObjectId</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CodeGetObjectId"> Method CodeGetObjectId</A>
     */
     public java.lang.String CodeGetObjectId (java.lang.Integer force) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -573,7 +573,7 @@ Studio to open</p>
      @param db represented as com.intersys.objects.Database
      @param value represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CodeIsValid"> Method CodeIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CodeIsValid"> Method CodeIsValid</A>
     */
     public static void CodeIsValid (com.intersys.objects.Database db, java.lang.String value) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -586,7 +586,7 @@ Studio to open</p>
      <p>Runs method CodeSetObject in Cache.</p>
      @param newvalue represented as com.intersys.objects.Oid
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CodeSetObject"> Method CodeSetObject</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CodeSetObject"> Method CodeSetObject</A>
     */
     public void CodeSetObject (com.intersys.objects.Oid newvalue) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -599,7 +599,7 @@ Studio to open</p>
      <p>Runs method CodeSetObjectId in Cache.</p>
      @param newid represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CodeSetObjectId"> Method CodeSetObjectId</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CodeSetObjectId"> Method CodeSetObjectId</A>
     */
     public void CodeSetObjectId (java.lang.String newid) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -614,7 +614,7 @@ Studio to open</p>
      default argument qspec set to ""
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #Compile(java.lang.String)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Compile"> Method Compile</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Compile"> Method Compile</A>
     */
     public void Compile () throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -627,7 +627,7 @@ Studio to open</p>
      <p>Description: Compile the routine associated with this object.</p>
      @param qspec represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Compile"> Method Compile</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Compile"> Method Compile</A>
     */
     public void Compile (java.lang.String qspec) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -644,7 +644,7 @@ Studio to open</p>
      @param qspec represented as java.lang.String
      @param Reload represented as com.intersys.objects.BooleanHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CompileClass"> Method CompileClass</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CompileClass"> Method CompileClass</A>
     */
     public static void CompileClass (com.intersys.objects.Database db, java.lang.String _class, java.lang.String qspec, com.intersys.objects.BooleanHolder Reload) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[3];
@@ -663,7 +663,7 @@ Studio to open</p>
      <p>Description: Internal method to construct a CSP session with current security permissions and return the session id</p>
      @param db represented as com.intersys.objects.Database
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ConstructCSPSession"> Method ConstructCSPSession</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ConstructCSPSession"> Method ConstructCSPSession</A>
     */
     public static java.lang.String ConstructCSPSession (com.intersys.objects.Database db) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -680,7 +680,7 @@ of source control hooks</p>
      @param ischeckedout represented as java.lang.Boolean
      @param user represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ConstructEditError"> Method ConstructEditError</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ConstructEditError"> Method ConstructEditError</A>
     */
     public static void ConstructEditError (com.intersys.objects.Database db, java.lang.String name, java.lang.Boolean isinsourcecontrol, java.lang.Boolean ischeckedout, java.lang.String user) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[4];
@@ -700,7 +700,7 @@ of source control hooks</p>
      @param type represented as java.lang.String
      @param version represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ConvertVersion"> Method ConvertVersion</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ConvertVersion"> Method ConvertVersion</A>
     */
     public static java.lang.String ConvertVersion (com.intersys.objects.Database db, java.lang.String name, java.lang.String type, java.lang.String version) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[3];
@@ -716,7 +716,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param directory represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#CreateCSPDirectory"> Method CreateCSPDirectory</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#CreateCSPDirectory"> Method CreateCSPDirectory</A>
     */
     public static void CreateCSPDirectory (com.intersys.objects.Database db, java.lang.String directory) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -731,7 +731,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Delete"> Method Delete</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Delete"> Method Delete</A>
     */
     public static void Delete (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -746,7 +746,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param _package represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#DeletePackage"> Method DeletePackage</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#DeletePackage"> Method DeletePackage</A>
     */
     public static void DeletePackage (com.intersys.objects.Database db, java.lang.String _package) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -760,7 +760,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param QHandle represented as com.intersys.objects.ByteArrayHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#DocumentTypesClose"> Method DocumentTypesClose</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#DocumentTypesClose"> Method DocumentTypesClose</A>
     */
     public static void DocumentTypesClose (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -777,7 +777,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param QHandle represented as com.intersys.objects.ByteArrayHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#DocumentTypesExecute"> Method DocumentTypesExecute</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#DocumentTypesExecute"> Method DocumentTypesExecute</A>
     */
     public static void DocumentTypesExecute (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -797,7 +797,7 @@ of source control hooks</p>
      default argument AtEnd set to 0
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #DocumentTypesFetch(com.intersys.objects.Database,com.intersys.objects.ByteArrayHolder,com.intersys.objects.SysListHolder,com.intersys.objects.IntegerHolder)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#DocumentTypesFetch"> Method DocumentTypesFetch</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#DocumentTypesFetch"> Method DocumentTypesFetch</A>
     */
     public static void DocumentTypesFetch (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, com.intersys.objects.SysListHolder Row) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[2];
@@ -819,7 +819,7 @@ of source control hooks</p>
      @param Row represented as com.intersys.objects.SysListHolder
      @param AtEnd represented as com.intersys.objects.IntegerHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#DocumentTypesFetch"> Method DocumentTypesFetch</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#DocumentTypesFetch"> Method DocumentTypesFetch</A>
     */
     public static void DocumentTypesFetch (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, com.intersys.objects.SysListHolder Row, com.intersys.objects.IntegerHolder AtEnd) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[3];
@@ -843,7 +843,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Exists"> Method Exists</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Exists"> Method Exists</A>
     */
     public static java.lang.Boolean Exists (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -858,7 +858,7 @@ of source control hooks</p>
      default argument bit set to ""
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #FeatureBits(com.intersys.objects.Database,java.lang.Integer)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#FeatureBits"> Method FeatureBits</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#FeatureBits"> Method FeatureBits</A>
     */
     public static byte[] FeatureBits (com.intersys.objects.Database db) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -871,7 +871,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param bit represented as java.lang.Integer
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#FeatureBits"> Method FeatureBits</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#FeatureBits"> Method FeatureBits</A>
     */
     public static byte[] FeatureBits (com.intersys.objects.Database db, java.lang.Integer bit) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -884,7 +884,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#GeneratedDisplayToLogical"> Method GeneratedDisplayToLogical</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#GeneratedDisplayToLogical"> Method GeneratedDisplayToLogical</A>
     */
     public static java.lang.Boolean GeneratedDisplayToLogical (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -898,7 +898,7 @@ of source control hooks</p>
      default argument _val set to ""
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #GeneratedIsValid(com.intersys.objects.Database,java.lang.String)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#GeneratedIsValid"> Method GeneratedIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#GeneratedIsValid"> Method GeneratedIsValid</A>
     */
     public static void GeneratedIsValid (com.intersys.objects.Database db) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -911,7 +911,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#GeneratedIsValid"> Method GeneratedIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#GeneratedIsValid"> Method GeneratedIsValid</A>
     */
     public static void GeneratedIsValid (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -925,7 +925,7 @@ of source control hooks</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.Boolean
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#GeneratedLogicalToDisplay"> Method GeneratedLogicalToDisplay</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#GeneratedLogicalToDisplay"> Method GeneratedLogicalToDisplay</A>
     */
     public static java.lang.String GeneratedLogicalToDisplay (com.intersys.objects.Database db, java.lang.Boolean _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -938,7 +938,7 @@ of source control hooks</p>
      <p>Description: Get the on-disk timestamp for the routine associated with this object.</p>
      @param compiletime represented as com.intersys.objects.TimestampHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#GetCurrentTimeStamp"> Method GetCurrentTimeStamp</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#GetCurrentTimeStamp"> Method GetCurrentTimeStamp</A>
     */
     public java.sql.Timestamp GetCurrentTimeStamp (com.intersys.objects.TimestampHolder compiletime) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -956,7 +956,7 @@ or -1 if it does not exist</p>
      @param db represented as com.intersys.objects.Database
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#GetDate"> Method GetDate</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#GetDate"> Method GetDate</A>
     */
     public static java.sql.Timestamp GetDate (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -995,7 +995,7 @@ routine name followed by a ':' and then the offset corresponding to this positio
      @param direction represented as java.lang.Integer
      @param label represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#GetOther"> Method GetOther</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#GetOther"> Method GetOther</A>
     */
     public static java.lang.String GetOther (com.intersys.objects.Database db, java.lang.String name, java.lang.String type, java.lang.Integer direction, java.lang.String label) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[4];
@@ -1021,7 +1021,7 @@ url as a string, you just need to append the page you are going to request to th
      @param urlprefix represented as com.intersys.objects.StringHolder
      @param url represented as com.intersys.objects.StringHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#GetWebServerPort"> Method GetWebServerPort</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#GetWebServerPort"> Method GetWebServerPort</A>
     */
     public static void GetWebServerPort (com.intersys.objects.Database db, com.intersys.objects.IntegerHolder port, com.intersys.objects.StringHolder server, com.intersys.objects.StringHolder urlprefix, com.intersys.objects.StringHolder url) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[4];
@@ -1047,7 +1047,7 @@ url as a string, you just need to append the page you are going to request to th
      @param db represented as com.intersys.objects.Database
      @param QHandle represented as byte[]
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ImportItemListClose"> Method ImportItemListClose</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ImportItemListClose"> Method ImportItemListClose</A>
     */
     public static void ImportItemListClose (com.intersys.objects.Database db, byte[] QHandle) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1064,7 +1064,7 @@ url as a string, you just need to append the page you are going to request to th
      @param charset represented as java.lang.String
      @param description represented as com.intersys.objects.StringHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ImportItemListExecute"> Method ImportItemListExecute</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ImportItemListExecute"> Method ImportItemListExecute</A>
     */
     public static void ImportItemListExecute (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, java.lang.String filename, java.lang.String charset, com.intersys.objects.StringHolder description) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[4];
@@ -1088,7 +1088,7 @@ url as a string, you just need to append the page you are going to request to th
      @param Row represented as com.intersys.objects.SysListHolder
      @param AtEnd represented as com.intersys.objects.IntegerHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ImportItemListFetch"> Method ImportItemListFetch</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ImportItemListFetch"> Method ImportItemListFetch</A>
     */
     public static void ImportItemListFetch (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, com.intersys.objects.SysListHolder Row, com.intersys.objects.IntegerHolder AtEnd) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[3];
@@ -1116,7 +1116,7 @@ url as a string, you just need to append the page you are going to request to th
      @param ReturnCount represented as com.intersys.objects.IntegerHolder
      @param AtEnd represented as com.intersys.objects.IntegerHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ImportItemListFetchRows"> Method ImportItemListFetchRows</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ImportItemListFetchRows"> Method ImportItemListFetchRows</A>
     */
     public static void ImportItemListFetchRows (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, java.lang.Integer FetchCount, com.intersys.objects.SysListHolder RowSet, com.intersys.objects.IntegerHolder ReturnCount, com.intersys.objects.IntegerHolder AtEnd) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[5];
@@ -1143,7 +1143,7 @@ url as a string, you just need to append the page you are going to request to th
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsCSPDisplayToLogical"> Method IsCSPDisplayToLogical</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsCSPDisplayToLogical"> Method IsCSPDisplayToLogical</A>
     */
     public static java.lang.Boolean IsCSPDisplayToLogical (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1157,7 +1157,7 @@ url as a string, you just need to append the page you are going to request to th
      default argument _val set to ""
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #IsCSPIsValid(com.intersys.objects.Database,java.lang.String)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsCSPIsValid"> Method IsCSPIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsCSPIsValid"> Method IsCSPIsValid</A>
     */
     public static void IsCSPIsValid (com.intersys.objects.Database db) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -1170,7 +1170,7 @@ url as a string, you just need to append the page you are going to request to th
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsCSPIsValid"> Method IsCSPIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsCSPIsValid"> Method IsCSPIsValid</A>
     */
     public static void IsCSPIsValid (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1184,7 +1184,7 @@ url as a string, you just need to append the page you are going to request to th
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.Boolean
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsCSPLogicalToDisplay"> Method IsCSPLogicalToDisplay</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsCSPLogicalToDisplay"> Method IsCSPLogicalToDisplay</A>
     */
     public static java.lang.String IsCSPLogicalToDisplay (com.intersys.objects.Database db, java.lang.Boolean _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1198,7 +1198,7 @@ url as a string, you just need to append the page you are going to request to th
      @param db represented as com.intersys.objects.Database
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsCSPName"> Method IsCSPName</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsCSPName"> Method IsCSPName</A>
     */
     public static java.lang.Boolean IsCSPName (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1212,7 +1212,7 @@ url as a string, you just need to append the page you are going to request to th
      @param db represented as com.intersys.objects.Database
      @param classname represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsClassGenerated"> Method IsClassGenerated</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsClassGenerated"> Method IsClassGenerated</A>
     */
     public static java.lang.Boolean IsClassGenerated (com.intersys.objects.Database db, java.lang.String classname) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1226,7 +1226,7 @@ url as a string, you just need to append the page you are going to request to th
      @param db represented as com.intersys.objects.Database
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsGenerated"> Method IsGenerated</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsGenerated"> Method IsGenerated</A>
     */
     public static java.lang.Boolean IsGenerated (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1242,7 +1242,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param name represented as java.lang.String
      @param sourcedb represented as com.intersys.objects.StringHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsMapped"> Method IsMapped</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsMapped"> Method IsMapped</A>
     */
     public static java.lang.Boolean IsMapped (com.intersys.objects.Database db, java.lang.String name, com.intersys.objects.StringHolder sourcedb) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[2];
@@ -1260,7 +1260,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#IsServerOnly"> Method IsServerOnly</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#IsServerOnly"> Method IsServerOnly</A>
     */
     public static java.lang.Boolean IsServerOnly (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1273,7 +1273,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param pid represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#KillProcess"> Method KillProcess</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#KillProcess"> Method KillProcess</A>
     */
     public static void KillProcess (com.intersys.objects.Database db, java.lang.String pid) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1285,7 +1285,7 @@ Also return the source database in <var>sourcedb</var>.</p>
     /**
      <p>Runs method LanguageModeGet in Cache.</p>
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#LanguageModeGet"> Method LanguageModeGet</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#LanguageModeGet"> Method LanguageModeGet</A>
     */
     public java.lang.Integer LanguageModeGet () throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -1296,7 +1296,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      <p>Runs method LanguageModeSet in Cache.</p>
      @param languagemode represented as java.lang.Integer
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#LanguageModeSet"> Method LanguageModeSet</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#LanguageModeSet"> Method LanguageModeSet</A>
     */
     public void LanguageModeSet (java.lang.Integer languagemode) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1309,7 +1309,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      <p>Runs method Lock in Cache.</p>
      <p>Description: Lock this routine, return true if it worked and false if it did not.</p>
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Lock"> Method Lock</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Lock"> Method Lock</A>
     */
     public void Lock () throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -1326,7 +1326,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      default argument lock set to 1
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #LockItem(com.intersys.objects.Database,java.lang.String,java.lang.Boolean)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#LockItem"> Method LockItem</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#LockItem"> Method LockItem</A>
     */
     public static void LockItem (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1343,7 +1343,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param name represented as java.lang.String
      @param lock represented as java.lang.Boolean
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#LockItem"> Method LockItem</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#LockItem"> Method LockItem</A>
     */
     public static void LockItem (com.intersys.objects.Database db, java.lang.String name, java.lang.Boolean lock) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[2];
@@ -1358,7 +1358,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NameDisplayToLogical"> Method NameDisplayToLogical</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NameDisplayToLogical"> Method NameDisplayToLogical</A>
     */
     public static java.lang.String NameDisplayToLogical (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1369,7 +1369,7 @@ Also return the source database in <var>sourcedb</var>.</p>
     /**
      <p>Runs method NameGet in Cache.</p>
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NameGet"> Method NameGet</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NameGet"> Method NameGet</A>
     */
     public java.lang.String NameGet () throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -1381,7 +1381,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NameIsValid"> Method NameIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NameIsValid"> Method NameIsValid</A>
     */
     public static void NameIsValid (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1395,7 +1395,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NameLogicalToDisplay"> Method NameLogicalToDisplay</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NameLogicalToDisplay"> Method NameLogicalToDisplay</A>
     */
     public static java.lang.String NameLogicalToDisplay (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1407,7 +1407,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      <p>Runs method NameSet in Cache.</p>
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NameSet"> Method NameSet</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NameSet"> Method NameSet</A>
     */
     public void NameSet (java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1421,7 +1421,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NamespaceDisplayToLogical"> Method NamespaceDisplayToLogical</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NamespaceDisplayToLogical"> Method NamespaceDisplayToLogical</A>
     */
     public static java.lang.String NamespaceDisplayToLogical (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1434,7 +1434,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NamespaceIsValid"> Method NamespaceIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NamespaceIsValid"> Method NamespaceIsValid</A>
     */
     public static void NamespaceIsValid (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1448,7 +1448,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param QHandle represented as byte[]
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NamespaceListClose"> Method NamespaceListClose</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NamespaceListClose"> Method NamespaceListClose</A>
     */
     public static void NamespaceListClose (com.intersys.objects.Database db, byte[] QHandle) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1462,7 +1462,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param QHandle represented as com.intersys.objects.ByteArrayHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NamespaceListExecute"> Method NamespaceListExecute</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NamespaceListExecute"> Method NamespaceListExecute</A>
     */
     public static void NamespaceListExecute (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1482,7 +1482,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      default argument AtEnd set to 0
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #NamespaceListFetch(com.intersys.objects.Database,com.intersys.objects.ByteArrayHolder,com.intersys.objects.SysListHolder,com.intersys.objects.IntegerHolder)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NamespaceListFetch"> Method NamespaceListFetch</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NamespaceListFetch"> Method NamespaceListFetch</A>
     */
     public static void NamespaceListFetch (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, com.intersys.objects.SysListHolder Row) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[2];
@@ -1504,7 +1504,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param Row represented as com.intersys.objects.SysListHolder
      @param AtEnd represented as com.intersys.objects.IntegerHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NamespaceListFetch"> Method NamespaceListFetch</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NamespaceListFetch"> Method NamespaceListFetch</A>
     */
     public static void NamespaceListFetch (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, com.intersys.objects.SysListHolder Row, com.intersys.objects.IntegerHolder AtEnd) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[3];
@@ -1527,7 +1527,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NamespaceLogicalToDisplay"> Method NamespaceLogicalToDisplay</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NamespaceLogicalToDisplay"> Method NamespaceLogicalToDisplay</A>
     */
     public static java.lang.String NamespaceLogicalToDisplay (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1540,7 +1540,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param name represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#NormalizeName"> Method NormalizeName</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#NormalizeName"> Method NormalizeName</A>
     */
     public static java.lang.String NormalizeName (com.intersys.objects.Database db, java.lang.String name) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1555,7 +1555,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      default argument xml set to 0
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #OnPageCode(com.intersys.objects.Database,java.lang.String,java.lang.Boolean)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#OnPageCode"> Method OnPageCode</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#OnPageCode"> Method OnPageCode</A>
     */
     public static java.lang.String OnPageCode (com.intersys.objects.Database db, java.lang.String language) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1569,7 +1569,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param language represented as java.lang.String
      @param xml represented as java.lang.Boolean
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#OnPageCode"> Method OnPageCode</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#OnPageCode"> Method OnPageCode</A>
     */
     public static java.lang.String OnPageCode (com.intersys.objects.Database db, java.lang.String language, java.lang.Boolean xml) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[2];
@@ -1583,7 +1583,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ProtectedDisplayToLogical"> Method ProtectedDisplayToLogical</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ProtectedDisplayToLogical"> Method ProtectedDisplayToLogical</A>
     */
     public static java.lang.Boolean ProtectedDisplayToLogical (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1597,7 +1597,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      default argument _val set to ""
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #ProtectedIsValid(com.intersys.objects.Database,java.lang.String)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ProtectedIsValid"> Method ProtectedIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ProtectedIsValid"> Method ProtectedIsValid</A>
     */
     public static void ProtectedIsValid (com.intersys.objects.Database db) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -1610,7 +1610,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ProtectedIsValid"> Method ProtectedIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ProtectedIsValid"> Method ProtectedIsValid</A>
     */
     public static void ProtectedIsValid (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1624,7 +1624,7 @@ Also return the source database in <var>sourcedb</var>.</p>
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.Boolean
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ProtectedLogicalToDisplay"> Method ProtectedLogicalToDisplay</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ProtectedLogicalToDisplay"> Method ProtectedLogicalToDisplay</A>
     */
     public static java.lang.String ProtectedLogicalToDisplay (com.intersys.objects.Database db, java.lang.Boolean _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1639,7 +1639,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param db represented as com.intersys.objects.Database
      @param id represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#ReturnCSPSessionId"> Method ReturnCSPSessionId</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#ReturnCSPSessionId"> Method ReturnCSPSessionId</A>
     */
     public static java.lang.String ReturnCSPSessionId (com.intersys.objects.Database db, java.lang.String id) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1652,7 +1652,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param db represented as com.intersys.objects.Database
      @param QHandle represented as byte[]
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogClose"> Method StudioOpenDialogClose</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogClose"> Method StudioOpenDialogClose</A>
     */
     public static void StudioOpenDialogClose (com.intersys.objects.Database db, byte[] QHandle) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1674,9 +1674,10 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param ShowGenerated represented as java.lang.Boolean
      @param Filter represented as java.lang.String
      default argument RoundTime set to 0
+     default argument Mapped set to 1
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see #StudioOpenDialogExecute(com.intersys.objects.Database,com.intersys.objects.ByteArrayHolder,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.String,java.lang.Boolean)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogExecute"> Method StudioOpenDialogExecute</A>
+     @see #StudioOpenDialogExecute(com.intersys.objects.Database,com.intersys.objects.ByteArrayHolder,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.String,java.lang.Boolean,java.lang.Boolean)
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogExecute"> Method StudioOpenDialogExecute</A>
     */
     public static void StudioOpenDialogExecute (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, java.lang.String Spec, java.lang.Integer Dir, java.lang.Integer OrderBy, java.lang.Boolean SystemFiles, java.lang.Boolean Flat, java.lang.Boolean NotStudio, java.lang.Boolean ShowGenerated, java.lang.String Filter) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[9];
@@ -1709,8 +1710,10 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param ShowGenerated represented as java.lang.Boolean
      @param Filter represented as java.lang.String
      @param RoundTime represented as java.lang.Boolean
+     default argument Mapped set to 1
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogExecute"> Method StudioOpenDialogExecute</A>
+     @see #StudioOpenDialogExecute(com.intersys.objects.Database,com.intersys.objects.ByteArrayHolder,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.lang.String,java.lang.Boolean,java.lang.Boolean)
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogExecute"> Method StudioOpenDialogExecute</A>
     */
     public static void StudioOpenDialogExecute (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, java.lang.String Spec, java.lang.Integer Dir, java.lang.Integer OrderBy, java.lang.Boolean SystemFiles, java.lang.Boolean Flat, java.lang.Boolean NotStudio, java.lang.Boolean ShowGenerated, java.lang.String Filter, java.lang.Boolean RoundTime) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[10];
@@ -1732,6 +1735,43 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
         return;
     }
     /**
+     <p>Runs method StudioOpenDialogExecute in Cache.</p>
+     @param db represented as com.intersys.objects.Database
+     @param QHandle represented as com.intersys.objects.ByteArrayHolder
+     @param Spec represented as java.lang.String
+     @param Dir represented as java.lang.Integer
+     @param OrderBy represented as java.lang.Integer
+     @param SystemFiles represented as java.lang.Boolean
+     @param Flat represented as java.lang.Boolean
+     @param NotStudio represented as java.lang.Boolean
+     @param ShowGenerated represented as java.lang.Boolean
+     @param Filter represented as java.lang.String
+     @param RoundTime represented as java.lang.Boolean
+     @param Mapped represented as java.lang.Boolean
+     @throws com.intersys.objects.CacheException if any error occured while running the method.
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogExecute"> Method StudioOpenDialogExecute</A>
+    */
+    public static void StudioOpenDialogExecute (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, java.lang.String Spec, java.lang.Integer Dir, java.lang.Integer OrderBy, java.lang.Boolean SystemFiles, java.lang.Boolean Flat, java.lang.Boolean NotStudio, java.lang.Boolean ShowGenerated, java.lang.String Filter, java.lang.Boolean RoundTime, java.lang.Boolean Mapped) throws com.intersys.objects.CacheException {
+        com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[11];
+        int[] _refs = new int[1];
+        args[0] = com.intersys.cache.Dataholder.create (QHandle.value);
+        _refs[0] = 1;
+        args[1] = new com.intersys.cache.Dataholder(Spec);
+        args[2] = new com.intersys.cache.Dataholder(Dir);
+        args[3] = new com.intersys.cache.Dataholder(OrderBy);
+        args[4] = new com.intersys.cache.Dataholder(SystemFiles);
+        args[5] = new com.intersys.cache.Dataholder(Flat);
+        args[6] = new com.intersys.cache.Dataholder(NotStudio);
+        args[7] = new com.intersys.cache.Dataholder(ShowGenerated);
+        args[8] = new com.intersys.cache.Dataholder(Filter);
+        args[9] = new com.intersys.cache.Dataholder(RoundTime);
+        args[10] = new com.intersys.cache.Dataholder(Mapped);
+        com.intersys.cache.Dataholder[] res=db.runClassMethod(CACHE_CLASS_NAME,"StudioOpenDialogExecute",_refs,args,com.intersys.objects.Database.RET_PRIM);
+        QHandle.set(res[1].getBytes());
+        db.parseStatus(res[0]);
+        return;
+    }
+    /**
      <p>Runs method StudioOpenDialogFetch in Cache.</p>
      <p>Description: <b>Fetch</b> returns the next row in the query.</p>
      @param db represented as com.intersys.objects.Database
@@ -1740,7 +1780,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      default argument AtEnd set to 0
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #StudioOpenDialogFetch(com.intersys.objects.Database,com.intersys.objects.ByteArrayHolder,com.intersys.objects.SysListHolder,com.intersys.objects.IntegerHolder)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogFetch"> Method StudioOpenDialogFetch</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogFetch"> Method StudioOpenDialogFetch</A>
     */
     public static void StudioOpenDialogFetch (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, com.intersys.objects.SysListHolder Row) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[2];
@@ -1763,7 +1803,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param Row represented as com.intersys.objects.SysListHolder
      @param AtEnd represented as com.intersys.objects.IntegerHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogFetch"> Method StudioOpenDialogFetch</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogFetch"> Method StudioOpenDialogFetch</A>
     */
     public static void StudioOpenDialogFetch (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, com.intersys.objects.SysListHolder Row, com.intersys.objects.IntegerHolder AtEnd) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[3];
@@ -1791,7 +1831,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param ReturnCount represented as com.intersys.objects.IntegerHolder
      @param AtEnd represented as com.intersys.objects.IntegerHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogFetchRows"> Method StudioOpenDialogFetchRows</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#StudioOpenDialogFetchRows"> Method StudioOpenDialogFetchRows</A>
     */
     public static void StudioOpenDialogFetchRows (com.intersys.objects.Database db, com.intersys.objects.ByteArrayHolder QHandle, java.lang.Integer FetchCount, com.intersys.objects.SysListHolder RowSet, com.intersys.objects.IntegerHolder ReturnCount, com.intersys.objects.IntegerHolder AtEnd) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[5];
@@ -1820,7 +1860,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param name represented as java.lang.String
      @param compiletime represented as com.intersys.objects.TimestampHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#TS"> Method TS</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#TS"> Method TS</A>
     */
     public static java.sql.Timestamp TS (com.intersys.objects.Database db, java.lang.String name, com.intersys.objects.TimestampHolder compiletime) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[2];
@@ -1837,7 +1877,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#TimeStampDisplayToLogical"> Method TimeStampDisplayToLogical</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#TimeStampDisplayToLogical"> Method TimeStampDisplayToLogical</A>
     */
     public static java.sql.Timestamp TimeStampDisplayToLogical (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1850,7 +1890,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#TimeStampIsValid"> Method TimeStampIsValid</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#TimeStampIsValid"> Method TimeStampIsValid</A>
     */
     public static void TimeStampIsValid (com.intersys.objects.Database db, java.lang.String _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1864,7 +1904,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param db represented as com.intersys.objects.Database
      @param _val represented as java.sql.Timestamp
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#TimeStampLogicalToDisplay"> Method TimeStampLogicalToDisplay</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#TimeStampLogicalToDisplay"> Method TimeStampLogicalToDisplay</A>
     */
     public static java.lang.String TimeStampLogicalToDisplay (com.intersys.objects.Database db, java.sql.Timestamp _val) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1876,7 +1916,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      <p>Runs method Unlock in Cache.</p>
      <p>Description: Unlock this routine, return a status code.</p>
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#Unlock"> Method Unlock</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#Unlock"> Method Unlock</A>
     */
     public void Unlock () throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[0];
@@ -1890,7 +1930,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param db represented as com.intersys.objects.Database
      @param qspec represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#UpdateTemplates"> Method UpdateTemplates</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#UpdateTemplates"> Method UpdateTemplates</A>
     */
     public static void UpdateTemplates (com.intersys.objects.Database db, java.lang.String qspec) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1908,7 +1948,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param Schema represented as com.intersys.objects.StringHolder
      @param StudioIcon represented as com.intersys.objects.IntegerHolder
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#UserType"> Method UserType</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#UserType"> Method UserType</A>
     */
     public static java.lang.Boolean UserType (com.intersys.objects.Database db, java.lang.String Name, com.intersys.objects.StringHolder Class, com.intersys.objects.StringHolder StudioType, com.intersys.objects.StringHolder Schema, com.intersys.objects.IntegerHolder StudioIcon) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[5];
@@ -1939,7 +1979,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      default argument namespace set to $namespace
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #getPackageList(com.intersys.objects.Database,java.lang.Integer,java.lang.String,java.lang.Boolean,java.lang.String)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#getPackageList"> Method getPackageList</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#getPackageList"> Method getPackageList</A>
     */
     public static void getPackageList (com.intersys.objects.Database db, java.lang.Integer idx, java.lang.String directory, java.lang.Boolean SystemFiles) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[3];
@@ -1958,7 +1998,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param SystemFiles represented as java.lang.Boolean
      @param namespace represented as java.lang.String
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#getPackageList"> Method getPackageList</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#getPackageList"> Method getPackageList</A>
     */
     public static void getPackageList (com.intersys.objects.Database db, java.lang.Integer idx, java.lang.String directory, java.lang.Boolean SystemFiles, java.lang.String namespace) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[4];
@@ -1976,7 +2016,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      default argument type set to 0
      @throws com.intersys.objects.CacheException if any error occured while running the method.
      @see #getRoutinesFromClass(com.intersys.objects.Database,java.lang.String,java.lang.Integer)
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#getRoutinesFromClass"> Method getRoutinesFromClass</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#getRoutinesFromClass"> Method getRoutinesFromClass</A>
     */
     public static java.lang.String getRoutinesFromClass (com.intersys.objects.Database db, java.lang.String _class) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[1];
@@ -1990,7 +2030,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @param _class represented as java.lang.String
      @param type represented as java.lang.Integer
      @throws com.intersys.objects.CacheException if any error occured while running the method.
-     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=SAMPLES&CLASSNAME=%25Library.RoutineMgr#getRoutinesFromClass"> Method getRoutinesFromClass</A>
+     @see <a href = "http://daimor-pc:57772/csp/documatic/%25CSP.Documatic.cls?APP=1&PAGE=CLASS&LIBRARY=USER&CLASSNAME=%25Library.RoutineMgr#getRoutinesFromClass"> Method getRoutinesFromClass</A>
     */
     public static java.lang.String getRoutinesFromClass (com.intersys.objects.Database db, java.lang.String _class, java.lang.Integer type) throws com.intersys.objects.CacheException {
         com.intersys.cache.Dataholder[] args = new com.intersys.cache.Dataholder[2];
@@ -2032,7 +2072,7 @@ This is no longer needed as <method>ConstructCSPSession</method> returns the CSP
      @throws com.intersys.objects.CacheException if any error occured while running the method.
     */
     public static com.intersys.objects.CacheQuery query_StudioOpenDialog (com.intersys.objects.Database db) throws com.intersys.objects.CacheException {
-        return new com.intersys.objects.CacheQuery(db, "%Library.RoutineMgr_StudioOpenDialog", 9, 1);
+        return new com.intersys.objects.CacheQuery(db, "%Library.RoutineMgr_StudioOpenDialog", 10, 1);
     }
 
 }

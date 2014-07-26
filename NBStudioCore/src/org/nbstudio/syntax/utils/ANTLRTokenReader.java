@@ -19,8 +19,8 @@ import org.openide.util.Exceptions;
  */
 public class ANTLRTokenReader {
 
-    private HashMap<String, String> tokenTypes = new HashMap<String, String>();
-    private ArrayList<ANTLRTokenId> tokens = new ArrayList<ANTLRTokenId>();
+    private final HashMap<String, String> tokenTypes = new HashMap<>();
+    private final ArrayList<ANTLRTokenId> tokens = new ArrayList<>();
 
     public ANTLRTokenReader() {
         init();
@@ -55,9 +55,9 @@ public class ANTLRTokenReader {
      * @param buff
      */
     private void readTokenFile(BufferedReader buff) {
-        String line = null;
         try {
-            ArrayList<Integer> uniq = new ArrayList<Integer>();
+            String line;
+            ArrayList<Integer> uniq = new ArrayList<>();
             while ((line = buff.readLine()) != null) {
                 String[] splLine = line.split("=");
                 String name = splLine[0];

@@ -32,14 +32,14 @@ public class xdataLanguageHierarchy extends LanguageHierarchy<ANTLRTokenId> {
 
     private static void init() {
         ANTLRTokenReader reader = new ANTLRTokenReader();
-        HashMap<String, String> tokenTypes = new HashMap<String, String>();
+        HashMap<String, String> tokenTypes = new HashMap<>();
         
         tokenTypes.put("Name", "tagname");
         tokenTypes.put("COMMENT", "comment");
         tokenTypes.put("STRING", "character");
         
         tokens = reader.readTokenFile("org/nbstudio/syntax/xdata/xdataLexer.tokens", tokenTypes);
-        idToToken = new HashMap<Integer, ANTLRTokenId>();
+        idToToken = new HashMap<>();
         for (ANTLRTokenId token : tokens) {
             idToToken.put(token.ordinal(), token);
         }

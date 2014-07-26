@@ -4,14 +4,11 @@
  */
 package org.nbstudio.explorer;
 
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-
 /**
  *
  * @author daimor
  */
-public class EditConnection extends javax.swing.JPanel {
+public final class EditConnection extends javax.swing.JPanel {
 
     /**
      * Creates new form EditConnection

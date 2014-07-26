@@ -4,9 +4,7 @@
  */
 package org.nbstudio.core.mac;
 
-import javax.swing.text.Caret;
 import org.nbstudio.utils.Logger;
-import org.netbeans.editor.ext.ExtKit;
 import org.netbeans.modules.editor.NbEditorKit;
 
 /**

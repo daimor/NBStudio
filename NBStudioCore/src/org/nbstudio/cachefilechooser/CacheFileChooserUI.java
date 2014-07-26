@@ -76,6 +76,7 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
         this.fileChooser = fileChooser;
     }
 
+    @Override
     public CacheFileChooser getFileChooser() {
         return fileChooser;
     }
@@ -104,14 +105,6 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
     public void installComponents(final JFileChooser fileChooser) {
         super.installComponents(fileChooser);
         CacheFileSystemView fsv = (CacheFileSystemView) fileChooser.getFileSystemView();
-
-        fileChooser.addChoosableFileFilter(new CacheFileNameExtensionFilter("Macro Routine", new String[]{"mac"}));
-        fileChooser.addChoosableFileFilter(new CacheFileNameExtensionFilter("Intermediate Routine", new String[]{"int", "mvi"}));
-        fileChooser.addChoosableFileFilter(new CacheFileNameExtensionFilter("Include File", new String[]{"inc"}));
-        fileChooser.addChoosableFileFilter(new CacheFileNameExtensionFilter("Basic File", new String[]{"bas"}));
-        fileChooser.addChoosableFileFilter(new CacheFileNameExtensionFilter("Class definition", new String[]{"cls"}));
-        fileChooser.addChoosableFileFilter(new CacheFileNameExtensionFilter("Cache Server Pages", new String[]{"csp"}));
-        fileChooser.addChoosableFileFilter(new CacheFileNameExtensionFilter("Other Files", new String[]{"xml", "js", "css", "xsl", "xsd"}));
 
         JComponent south = null;
         JComponent topButtonPanel = null;
@@ -244,6 +237,7 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
             this.list = list;
         }
 
+        @Override
         public void mouseClicked(MouseEvent evt) {
             // Note: we can't depend on evt.getSource() because of backward
             // compatability
@@ -260,7 +254,10 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
 //                    } catch (IOException ex) {
 //                        // That's ok, we'll use f as is
 //                    }
-                    if (getFileChooser().isTraversable(f)) {
+                    if (f.getName().toLowerCase().endsWith(".prj")) {
+                        getFileChooser().setSelectedFile(f);
+                        getFileChooser().approveSelection();
+                    } else if (getFileChooser().isTraversable(f)) {
                         list.clearSelection();
                         changeDirectory(f);
                     } else {
@@ -318,7 +315,7 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
                             setDirectorySelected(true);
                             setDirectory(((CacheRootFile) objects[0]));
                         } else {
-                            ArrayList<CacheRootFile> fList = new ArrayList<CacheRootFile>(objects.length);
+                            ArrayList<CacheRootFile> fList = new ArrayList<>(objects.length);
                             for (Object object : objects) {
                                 CacheRootFile f = (CacheRootFile) object;
                                 boolean isDir = f.isDirectory();
@@ -368,7 +365,7 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
     private void changeDirectory(File dir) {
         JFileChooser fc = getFileChooser();
         // Traverse shortcuts on Windows
-        if (dir != null && FilePane.usesShellFolder(fc)) {
+        if (null != dir && FilePane.usesShellFolder(fc)) {
             try {
                 ShellFolder shellFolder = ShellFolder.getShellFolder(dir);
 
@@ -450,6 +447,7 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
             }
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             CacheFileChooser fileChooser = (CacheFileChooser) getFileChooser();
             if (fileFilter != null) {
@@ -466,6 +464,7 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
         return readonlyFlag;
     }
 
+    @Override
     public Action getApproveSelectionAction() {
         return approveSelectionAction;
     }
@@ -479,28 +478,32 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
             super(FilePane.ACTION_APPROVE_SELECTION);
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
+            CacheFileChooser chooser = getFileChooser();
             if (isDirectorySelected()) {
                 File dir = getDirectory();
                 if (dir != null) {
-                    try {
-                        // Strip trailing ".."
-                        dir = ShellFolder.getNormalizedFile(dir);
-                    } catch (IOException ex) {
-                        // Ok, use f as is
+                    if (dir.getName().matches(".*\\.prj$")) {
+                        chooser.setSelectedFile(dir);
+                        chooser.approveSelection();
+                    } else {
+                        try {
+                            // Strip trailing ".."
+                            dir = ShellFolder.getNormalizedFile(dir);
+                        } catch (IOException ex) {
+                            // Ok, use f as is
+                        }
+                        changeDirectory(dir);
                     }
-                    changeDirectory(dir);
                     return;
                 }
             }
-
-            CacheFileChooser chooser = getFileChooser();
-
             String filename = getFileName();
             CacheFileSystemView fs = (CacheFileSystemView) chooser.getFileSystemView();
             CacheRootFile dir = (CacheRootFile) chooser.getCurrentDirectory();
-
-            if (filename != null) {
+            if (filename
+                    != null) {
                 // Remove whitespaces from end of filename
                 int i = filename.length() - 1;
 
@@ -510,18 +513,18 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
 
                 filename = filename.substring(0, i + 1);
             }
-
-            if (filename == null || filename.length() == 0) {
+            if (filename
+                    == null || filename.length()
+                    == 0) {
                 // no file selected, multiple selection off, therefore cancel the approve action
                 resetGlobFilter();
                 return;
             }
-
             CacheRootFile selectedFile = null;
             CacheRootFile[] selectedFiles = null;
-
             // Unix: Resolve '~' to user's home directory
-            if (File.separatorChar == '/') {
+            if (File.separatorChar
+                    == '/') {
                 if (filename.startsWith("~/")) {
                     filename = System.getProperty("user.home") + filename.substring(1);
                 } else if (filename.equals("~")) {
@@ -529,9 +532,10 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
                 }
             }
 
-            if (chooser.isMultiSelectionEnabled() && filename.length() > 1
+            if (chooser.isMultiSelectionEnabled()
+                    && filename.length() > 1
                     && filename.charAt(0) == '"' && filename.charAt(filename.length() - 1) == '"') {
-                List<File> fList = new ArrayList<File>();
+                List<CacheRootFile> fList = new ArrayList<>();
 
                 String[] files = filename.substring(1, filename.length() - 1).split("\" \"");
                 // Optimize searching files by names in "children" array
@@ -556,7 +560,7 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
                             }
                         }
                     }
-                    fList.add(file);
+                    fList.add((CacheRootFile) file);
                 }
 
                 if (!fList.isEmpty()) {
@@ -607,8 +611,8 @@ public class CacheFileChooserUI extends MetalFileChooserUI {
                     selectedFile = null;
                 }
             }
-
-            if (selectedFiles != null || selectedFile != null) {
+            if (selectedFiles != null || selectedFile
+                    != null) {
                 if (selectedFiles != null || chooser.isMultiSelectionEnabled()) {
                     if (selectedFiles == null) {
                         selectedFiles = new CacheRootFile[]{selectedFile};
