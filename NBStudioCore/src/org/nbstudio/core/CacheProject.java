@@ -31,13 +31,6 @@ public class CacheProject implements Project {
     private final Connection conn;
 
     public CacheProject(FileObject prj, ProjectState state) {
-        Logger.Log("OpenProject: " + prj + " - " + state);
-        System.out.println("---------------------------- " + prj);
-        StackTraceElement[] stack = Thread.currentThread().getStackTrace();
-        for (StackTraceElement stackTraceElement : stack) {
-            System.out.println(stackTraceElement.toString());
-        }
-        System.out.println("----------------------------");
         this.prj = prj;
         this.state = state;
         try {
