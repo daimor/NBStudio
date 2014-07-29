@@ -39,18 +39,28 @@
         </pathconvert>
         <echo level="info">antlr.tool: ${antlr.tool.src}</echo>
     
-        <foreach target="antlr" param="theFile">
-            <fileset dir="${src.dir}"  >
-                <include name="**/mac*.g4" />
-                <include name="**/cls*.g4" />
-                <include name="**/xdata*.g4" />
-            </fileset>
+        <foreach target="antlr" param="theFile" >
+            <path>
+                <fileset dir="${src.dir}"  >
+                    <include name="**/mac*.g4" />
+                    <include name="**/cls*.g4" />
+                    <include name="**/xdata*.g4" />
+                </fileset>
+            </path>
             <param name="antlr.tool.src" value="${antlr.tool.src}"></param>
         </foreach>
+        <!--<antcall target="antlr"/>-->
     </target>
-    <target name="antlr">
+    
+    <target name="checkFile">
+        <uptodate property="newer" srcfile="${theFile}">
+            <mapper type="glob" from="*.g4" to="*.java"/>
+        </uptodate>
+    </target>
+        
+    <target name="antlr" depends="checkFile" unless="newer">
+        <echo level="info">compile grammar file: ${theFile}</echo>
         <dirname property="fileDir" file="${theFile}"></dirname>
-        <echo level="info">grammar file: ${theFile} </echo>
         <java jar="${antlr.tool.src}" fork="true" failonerror="true" dir="${fileDir}">
             <arg line="${theFile}"/>
         </java>
