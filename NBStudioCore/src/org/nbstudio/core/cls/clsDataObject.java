@@ -37,8 +37,8 @@ import org.openide.util.NbBundle.Messages;
 @ActionReferences({
     @ActionReference(
             path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "System", id = "org.openide.actions.OpenAction"),
+            id
+            = @ActionID(category = "System", id = "org.openide.actions.OpenAction"),
             position = 100,
             separatorAfter = 200),
 //    @ActionReference(
@@ -71,8 +71,8 @@ import org.openide.util.NbBundle.Messages;
 //            separatorAfter = 1000),
     @ActionReference(
             path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "System", id = "org.openide.actions.FileSystemAction"),
+            id
+            = @ActionID(category = "System", id = "org.openide.actions.FileSystemAction"),
             position = 1100,
             separatorAfter = 1200),
 //    @ActionReference(
@@ -82,14 +82,17 @@ import org.openide.util.NbBundle.Messages;
 //            position = 1300),
     @ActionReference(
             path = "Loaders/text/isc-cls/Actions",
-            id =
-            @ActionID(category = "System", id = "org.openide.actions.PropertiesAction"),
+            id
+            = @ActionID(category = "System", id = "org.openide.actions.PropertiesAction"),
             position = 1400)
 })
 public class clsDataObject extends MultiDataObject {
 
+    private final FileObject fileObject;
+
     public clsDataObject(FileObject pf, MultiFileLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
+        this.fileObject = pf;
 //        registerEditor("text/isc-cls", false);
         CookieSet cookies = getCookieSet();
 //        observer = new GlslShaderFileObserver(this);

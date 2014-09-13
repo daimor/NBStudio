@@ -26,30 +26,49 @@ public class newFileWizard implements WizardDescriptor.InstantiatingIterator<Wiz
     private int index;
     private WizardDescriptor wizard;
     private List<WizardDescriptor.Panel<WizardDescriptor>> panels;
+    private List<WizardDescriptor.Panel<WizardDescriptor>> firstPanels;
+    private String[] beforeSteps;
+    private int currentTypeClass = 0;
 
     private List<WizardDescriptor.Panel<WizardDescriptor>> getPanels() {
+        if (firstPanels == null) {
+            firstPanels = new ArrayList<>();
+            firstPanels.add(new newfileWizardPanelName());
+            firstPanels.add(new newfileWizardPanelType());
+        }
+        
         if (panels == null) {
             panels = new ArrayList<>();
-            panels.add(new newfileWizardPanelName());
-            panels.add(new newfileWizardPanelType());
-            panels.add(new newfileWizardPanelTypePersistent());
-            panels.add(new newfileWizardPanelTypeCSP());
+            panels.addAll(firstPanels);
+
+            if (currentTypeClass == 0) {
+                panels.add(null);
+            } else {
+                switch (currentTypeClass) {
+                    case newfileVisualPanelType.TYPE_PERSISTENT:
+                        panels.add(new newfileWizardPanelTypePersistent());
+                        break;
+                    case newfileVisualPanelType.TYPE_CSP:
+                        panels.add(new newfileWizardPanelTypeCSP());
+                        break;
+                }
+                panels.add(new newfileWizardPanelTypeSummary());
+            }
+
+//            panels.add(new newfileWizardPanelTypePersistent());
+//            panels.add(new newfileWizardPanelTypeCSP());
             String[] steps = createSteps();
             for (int i = 0; i < panels.size(); i++) {
-                Component c = panels.get(i).getComponent();
-                if (steps[i] == null) {
-                    // Default step name to component name of panel. Mainly
-                    // useful for getting the name of the target chooser to
-                    // appear in the list of steps.
-                    steps[i] = c.getName();
-                }
-                if (c instanceof JComponent) { // assume Swing components
-                    JComponent jc = (JComponent) c;
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_SELECTED_INDEX, i);
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DATA, steps);
-                    jc.putClientProperty(WizardDescriptor.PROP_AUTO_WIZARD_STYLE, true);
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, true);
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, true);
+                if (panels.get(i) != null) {
+                    Component c = panels.get(i).getComponent();
+                    if (c instanceof JComponent) { // assume Swing components
+                        JComponent jc = (JComponent) c;
+                        jc.putClientProperty(WizardDescriptor.PROP_CONTENT_SELECTED_INDEX, i);
+                        jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DATA, steps);
+                        jc.putClientProperty(WizardDescriptor.PROP_AUTO_WIZARD_STYLE, true);
+                        jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, true);
+                        jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, true);
+                    }
                 }
             }
         }
@@ -57,12 +76,13 @@ public class newFileWizard implements WizardDescriptor.InstantiatingIterator<Wiz
     }
 
     private String[] createSteps() {
-        String[] beforeSteps = (String[]) wizard.getProperty("WizardPanel_contentData");
         assert beforeSteps != null : "This wizard may only be used embedded in the template wizard";
         String[] res = new String[(beforeSteps.length - 1) + panels.size()];
         for (int i = 0; i < res.length; i++) {
             if (i < (beforeSteps.length - 1)) {
                 res[i] = beforeSteps[i];
+            } else if (panels.get(i - beforeSteps.length + 1) == null) {
+                res[i] = "...";
             } else {
                 res[i] = panels.get(i - beforeSteps.length + 1).getComponent().getName();
             }
@@ -78,6 +98,8 @@ public class newFileWizard implements WizardDescriptor.InstantiatingIterator<Wiz
     @Override
     public void initialize(WizardDescriptor wizard) {
         this.wizard = wizard;
+        beforeSteps = (String[]) wizard.getProperty("WizardPanel_contentData");
+        wizard.putProperty("typeOfClass", newfileVisualPanelType.TYPE_CSP);
     }
 
     @Override
@@ -97,20 +119,6 @@ public class newFileWizard implements WizardDescriptor.InstantiatingIterator<Wiz
 
     @Override
     public boolean hasNext() {
-        if (index == 1) {
-            if (wizard.getProperty("typeOfClass") == null) {
-                return false;
-            }
-            int typeOfClass = (int) wizard.getProperty("typeOfClass");
-            switch (typeOfClass) {
-                case newfileVisualPanelType.TYPE_PERSISTENT:
-                case newfileVisualPanelType.TYPE_CSP:
-                    return true;
-            }
-        }
-        if (index > 1) {
-            return false;
-        }
         return index < getPanels().size() - 1;
     }
 
@@ -125,16 +133,9 @@ public class newFileWizard implements WizardDescriptor.InstantiatingIterator<Wiz
             throw new NoSuchElementException();
         }
         if (index == 1) {
-            int typeOfClass = (int) wizard.getProperty("typeOfClass");
-            switch (typeOfClass) {
-                case newfileVisualPanelType.TYPE_PERSISTENT:
-                    index = 2;
-                    break;
-                case newfileVisualPanelType.TYPE_CSP:
-                    index = 3;
-                    break;
-            }
-            return;
+            panels.clear();
+            panels = null;
+            currentTypeClass = wizard.getProperty("typeOfClass") == null ? 0 : (int) wizard.getProperty("typeOfClass");
         }
         index++;
     }
@@ -144,11 +145,12 @@ public class newFileWizard implements WizardDescriptor.InstantiatingIterator<Wiz
         if (!hasPrevious()) {
             throw new NoSuchElementException();
         }
-        if (index > 1) {
-            index = 1;
-        } else {
-            index--;
+        if (index - 1 == 1) {
+            panels.clear();
+            panels = null;
+            currentTypeClass = 0;
         }
+        index--;
     }
 
     // If nothing unusual changes in the middle of the wizard, simply:

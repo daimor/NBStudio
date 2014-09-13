@@ -180,17 +180,6 @@
             </file>            
         </folder>
     </folder>
-    <folder name="Templates">
-        <file name="Licenses_hidden"/>
-        <file name="Other_hidden"/>
-        <file name="Privileged_hidden"/>
-        <file name="Project_hidden"/>
-        <file name="Properties_hidden"/>
-        <file name="Recent_hidden"/>
-        <file name="Services_hidden"/>
-        <file name="UnitTests_hidden"/>
-        <file name="XML_hidden"/>
-    </folder>
     <folder name="Windows2">
         <folder name="Modes">
             <file name="output.wsmode" url="outputWsmode.xml"/>

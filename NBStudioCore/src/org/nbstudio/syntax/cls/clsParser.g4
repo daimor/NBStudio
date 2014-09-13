@@ -49,6 +49,7 @@ classProperties: Not? propName=Abstract
                | Not? propName=Hidden
                | Not? propName=ProcedureBlock
                | Not? propName=SqlRowIdPrivate
+               | propName=StorageStrategy EQUAL proVal=ID
                ;
 
 classContent: comment

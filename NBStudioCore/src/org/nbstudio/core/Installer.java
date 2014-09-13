@@ -16,18 +16,4 @@ public class Installer extends ModuleInstall {
         ResourceBundle rb = ResourceBundle.getBundle("org/nbstudio/version");
         System.setProperty("netbeans.buildnumber", rb.getString("FULLVERSION"));
     }
-
-    @Override
-    public void close() {
-        super.close();
-        Map<String, Connection> connections = Connection.getConnections();
-        for (Map.Entry<String, Connection> entry : connections.entrySet()) {
-            String connName = entry.getKey();
-            Connection connection = entry.getValue();
-            try {
-                connection.save();
-            } catch (IOException ex) {
-            }
-        }
-    }
 }

@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.nbstudio.cachefilesystem.CacheFileObject;
-import org.nbstudio.core.CacheProject;
+import org.nbstudio.project.CacheProject;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
 
@@ -151,7 +151,6 @@ public final class newfileVisualPanelName extends JPanel {
 
     void read(WizardDescriptor settings) {
         project = (CacheProject) Templates.getProject(settings);
-        CacheFileObject dir = (CacheFileObject) project.getProjectDirectory();
     }
 
     private class TextEditorListener implements DocumentListener {

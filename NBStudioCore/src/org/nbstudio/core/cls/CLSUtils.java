@@ -7,6 +7,7 @@ package org.nbstudio.core.cls;
 import com.intersys.cache.CacheObject;
 import com.intersys.classes.CacheRootObject;
 import com.intersys.classes.Dictionary.ClassDefinition;
+import com.intersys.classes.Dictionary.ParameterDefinition;
 import com.intersys.classes.Dictionary.PropertyDefinition;
 import com.intersys.objects.CacheException;
 import com.intersys.objects.Database;
@@ -14,9 +15,7 @@ import com.intersys.objects.Id;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 import org.nbstudio.syntax.cls.clsParser;
 
@@ -81,13 +80,29 @@ public class CLSUtils {
     }
 
     public static HashMap<String, String> getParameters(CacheRootObject obj) throws com.intersys.objects.CacheException {
-        CacheObject mInternal = getmInternal(obj);
-        com.intersys.cache.Dataholder dh = mInternal.getProperty("Parameters", true);
-        com.intersys.cache.CacheObject cobj = dh.getCacheObject();
-        if (cobj == null) {
-            return null;
+//        CacheObject mInternal = getmInternal(obj);
+//        com.intersys.cache.Dataholder dh = mInternal.getProperty("Parameters", true);
+//        com.intersys.cache.CacheObject cobj = dh.getCacheObject();
+//        if (cobj == null) {
+//            return null;
+//        }
+//        return  (HashMap<String, String>) (cobj.newJavaInstance());
+        HashMap<String, String> result = new java.util.HashMap<>();
+        try {
+            Database db = obj.getDatabase();
+            String className = obj._className(true);
+            ClassDefinition objDef = (ClassDefinition) ClassDefinition.open(db, new Id(className), 0);
+
+            List<ParameterDefinition> objParams = objDef.getParameters().asList();
+            for (ParameterDefinition param : objParams) {
+                String paramName = param.getName();
+                String paramDef = param.getDefault();
+                
+                result.put(paramName, paramDef);
+            }
+        } catch (CacheException ex) {
         }
-        return  (HashMap<String, String>) (cobj.newJavaInstance());
+        return result;
     }
 
     public static void setProperty(CacheRootObject obj, String propName, boolean value) {
@@ -130,7 +145,7 @@ public class CLSUtils {
         }
     }
 
-    public static java.util.Map<String, Object> getProperties(CacheRootObject obj) {
+    public static HashMap<String, Object> getProperties(CacheRootObject obj) {
         HashMap<String, Object> result = new java.util.HashMap<>();
         try {
             Database db = obj.getDatabase();

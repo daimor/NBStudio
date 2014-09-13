@@ -16,7 +16,7 @@ import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
 import org.nbstudio.cachefilesystem.CacheFileObject;
 import org.nbstudio.cachefilesystem.CacheFileSystem;
-import org.netbeans.api.project.Project;
+import org.nbstudio.project.CacheProject;
 import org.netbeans.api.templates.TemplateRegistration;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
@@ -75,13 +75,13 @@ public final class newfileWizard implements WizardDescriptor.InstantiatingIterat
     @Override
     public Set instantiate() throws IOException {
         wizard.getProperties();
-        Project project = Templates.getProject(wizard);
+        CacheProject project = (CacheProject) Templates.getProject(wizard);
         try {
 
             String rtnName = (String) wizard.getProperty("routineName");
             if (!rtnName.isEmpty()) {
                 rtnName +=".mac";
-                CacheFileSystem fs = (CacheFileSystem) project.getProjectDirectory().getFileSystem();
+                CacheFileSystem fs = project.getConnection().getFileSystem();
                 CacheFileObject fo = new CacheFileObject(fs, (CacheFileObject) fs.getRoot(), rtnName);
                 Database db = fs.getConnection().getAssociatedConnection();
                 DataObject rdo = DataObject.find(fo);
@@ -89,7 +89,7 @@ public final class newfileWizard implements WizardDescriptor.InstantiatingIterat
 
                 return Collections.singleton(fo);
             }
-        } catch (FileStateInvalidException | DataObjectNotFoundException ex) {
+        } catch (DataObjectNotFoundException ex) {
             ex.printStackTrace();
         }
         return Collections.emptySet();

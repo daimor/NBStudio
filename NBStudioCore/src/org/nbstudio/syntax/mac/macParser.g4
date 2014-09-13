@@ -290,7 +290,7 @@ variable:       localVariable
 localVariable:	PERCENT? ID
 	;
 globalVariable
-        :       CARET ('|' expression? '|')? PERCENT? GlobalName
+        :       CARET (VertBar expression? VertBar)? PERCENT? GlobalName
 	;
 localVariableList
 	:	(LPAREN ID Spaces ( COMMA ID)* RPAREN)
