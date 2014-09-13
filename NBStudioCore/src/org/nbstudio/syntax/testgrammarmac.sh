@@ -1,5 +1,5 @@
 
-ANTLR=../../../../../release/modules/ext/antlr-4.1-complete.jar
+ANTLR=../../../../../release/modules/ext/antlr-4.4-complete.jar
 LEXER=macLexer.g4
 PARSER=macParser.g4
 PACKAGE=org.nbstudio.syntax.mac

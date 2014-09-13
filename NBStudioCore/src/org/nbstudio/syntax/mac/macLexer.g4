@@ -154,7 +154,7 @@ COMMENT     : (WS+ '/*' .*? ( '*/'WS* | EOF ))
 Spaces      : WS+
             {
              if (nesting==0&&!macroline){
-                if (isCommand){isCommand=false;setType(CommandSPACE);} 
+                if ((isCommand) && (getText().length() == 1)){isCommand=false;setType(CommandSPACE);} 
                 else {pushMode(COMMAND);}
              }
             }
@@ -185,11 +185,11 @@ DefineExpression: Define .*? [\r\n]+;
 Include     : {(getCharPositionInLine()==0)}? WS*'#'[Ii][Nn][Cc][Ll][Uu][Dd][Ee] {macroline = true;};
 
 mode COMMAND;
-fragment MethodType: {labelDef}? [a-zA-Z]+ {
-   String str = getText().toLowerCase(); 
-   if(str.equals("public")){popMode();setType(MACMethodPublic);}
-   if(str.equals("private")){popMode();setType(MACMethodPrivate);}
-   };
+//fragment MethodType: {labelDef}? [a-zA-Z]+ {
+//   String str = getText().toLowerCase(); 
+//   if(str.equals("public")){popMode();setType(MACMethodPublic);}
+//   if(str.equals("private")){popMode();setType(MACMethodPrivate);}
+//   };
 CMDComments: (';'|'//') {popMode();more();};
 
 CommandDO   : [dD][oO]? {doArg = true;isCMD();};

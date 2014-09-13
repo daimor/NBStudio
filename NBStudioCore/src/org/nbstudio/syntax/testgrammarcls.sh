@@ -3,7 +3,7 @@
 DIR="$(dirname "$(readlink -f "$0")")"
 cd $DIR 
 
-ANTLR=../../../../../release/modules/ext/antlr-4.1-complete.jar
+ANTLR=../../../../../release/modules/ext/antlr-4.4-complete.jar
 CACHEDB=../../../../../../lib/cachedb.jar
 CACHEJDBC=../../../../../../lib/cachejdbc.jar
 LEXER=clsLexer.g4

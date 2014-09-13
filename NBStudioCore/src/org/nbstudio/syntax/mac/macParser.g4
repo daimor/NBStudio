@@ -63,7 +63,7 @@ simpleStatement
     whileBlock = doBlock;
     doBlock = false;
 }    
-        :   breakCommand pc? breakStatement?
+        :   breakCommand pc? breakStatement
         |   catchCommand catchStatement
         |   closeCommand pc? closeStatement
         |   continueCommand pc?
@@ -127,7 +127,7 @@ define  :
 
 breakCommand            :{cmp("b,break")}? CMD;
 breakStatement
-        :               expression
+        :               CommandSPACE? expression?
         ;
 
 catchCommand            : {catchBlock&&cmp("catch")}? CMD;
@@ -153,7 +153,7 @@ elseifCommand           :{cmp("elseif")}? CMD;
 
 forCommand              :{cmp("f,for")}? CMD;
 forStatement
-        :       CommandSPACE ( variable (EQUAL forExpression)? )? (CommandSPACE|Spaces|CommandEOL|EOL)* blockStatement[true]
+        :       CommandSPACE ( variable (EQUAL forExpression)? )? (CommandSPACE|Spaces|CommandEOL|EOL)* blockStatement[true]?
         ;
 forExpression 
         :       expression ((Colon expression (Colon expression)? )? | (COMMA expression)*)
