@@ -10,38 +10,49 @@ import com.intersys.objects.CacheException;
 import com.intersys.objects.CacheQuery;
 import com.intersys.objects.Database;
 import java.awt.Component;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.zip.ZipEntry;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.Set;
+import java.util.zip.ZipInputStream;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
 import org.netbeans.api.templates.TemplateRegistration;
+import org.netbeans.spi.project.ui.support.NodeList;
 import org.netbeans.spi.project.ui.support.ProjectChooser;
+import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
-import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle.Messages;
+import org.openide.xml.XMLUtil;
+import org.xml.sax.InputSource;
 
 @TemplateRegistration(
         folder = "Project/MUMPS",
+        content = "CacheProject.zip",
         displayName = "#CacheProjectWizardIterator_displayName",
         iconBase = "org/nbstudio/project/project.gif",
-        description = "cacheProject.html")
+        targetName = "CacheProject",
+        description = "CacheProject.html")
 @Messages("CacheProjectWizardIterator_displayName=InterSystems Caché")
 public final class CacheProjectWizardIterator implements WizardDescriptor.InstantiatingIterator<WizardDescriptor> {
 
     private int index;
-
     private WizardDescriptor wizard;
     private List<WizardDescriptor.Panel<WizardDescriptor>> panels;
 
@@ -74,20 +85,11 @@ public final class CacheProjectWizardIterator implements WizardDescriptor.Instan
 
     @Override
     public Set<?> instantiate() throws IOException {
-        Set<FileObject> resultSet = new LinkedHashSet<FileObject>();
+        Set<FileObject> resultSet = new LinkedHashSet<>();
         File dirF = FileUtil.normalizeFile((File) wizard.getProperty("projdir"));
         dirF.mkdirs();
-        FileObject dir = FileUtil.toFileObject(dirF);
-        resultSet.add(dir);
-        File parent = dirF.getParentFile();
-        if (parent != null && parent.exists()) {
-            ProjectChooser.setProjectsFolder(parent);
-        }
 
-        FileObject projectFile = dir.createData(CacheProjectFactory.PROJECT_FILE);
         Properties propsProject = new Properties();
-        propsProject.load(projectFile.getInputStream());
-
         propsProject.setProperty("server.addr", (String) wizard.getProperty("addr"));
         propsProject.setProperty("server.port", (String) wizard.getProperty("port"));
         propsProject.setProperty("server.namespace", (String) wizard.getProperty("namespace"));
@@ -95,19 +97,16 @@ public final class CacheProjectWizardIterator implements WizardDescriptor.Instan
         propsProject.setProperty("server.project", (cacheProjectName == null) ? "" : cacheProjectName);
         propsProject.setProperty("server.login", (String) wizard.getProperty("login"));
         propsProject.setProperty("server.pass", (String) wizard.getProperty("pass"));
+        
+        FileObject template = Templates.getTemplate(wizard);
+        FileObject dir = FileUtil.toFileObject(dirF);
+        unZipFile(template.getInputStream(), dir, propsProject);
 
-        FileLock lock = projectFile.lock();
-        try {
-            try (OutputStream str = projectFile.getOutputStream(lock)) {
-                str.write(new byte[0]);
-                propsProject.store(str, "Cache' Project File");
-                str.flush();
-                str.close();
-            } catch (Exception ex) {
-                System.err.println("Error saving: " + ex.getMessage());
-            }
-        } finally {
-            lock.releaseLock();
+        resultSet.add(dir);
+
+        File parent = dirF.getParentFile();
+        if (parent != null && parent.exists()) {
+            ProjectChooser.setProjectsFolder(parent);
         }
 
         return resultSet;
@@ -195,7 +194,6 @@ public final class CacheProjectWizardIterator implements WizardDescriptor.Instan
                 try {
                     conn.close();
                 } catch (CacheException ex) {
-
                 }
             }
         }
@@ -239,6 +237,56 @@ public final class CacheProjectWizardIterator implements WizardDescriptor.Instan
             }
         }
         return res;
+    }
+
+    private static void unZipFile(InputStream source, FileObject projectRoot, Properties props) throws IOException {
+        try {
+            ZipInputStream str = new ZipInputStream(source);
+            ZipEntry entry;
+            while ((entry = str.getNextEntry()) != null) {
+                if (entry.isDirectory()) {
+                    FileUtil.createFolder(projectRoot, entry.getName());
+                } else {
+                    FileObject fo = FileUtil.createData(projectRoot, entry.getName());
+                    if ("cacheProject.properties".equals(entry.getName())) {
+                        // Special handling for setting properties
+                        filterProjectProperties(fo, str, props);
+                    } else {
+                        writeFile(str, fo);
+                    }
+                }
+            }
+        } finally {
+            source.close();
+        }
+    }
+
+    private static void writeFile(ZipInputStream str, FileObject fo) throws IOException {
+        try (OutputStream out = fo.getOutputStream()) {
+            FileUtil.copy(str, out);
+        }
+    }
+
+    private static void filterProjectProperties(FileObject fo, ZipInputStream str, Properties props) throws IOException {
+        try {
+            
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            FileUtil.copy(str, baos);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            
+            Properties propsOriginal = new Properties();            
+            propsOriginal.load(bais);
+            Properties propsProject = new Properties();
+            propsProject.putAll(propsOriginal);
+            propsProject.putAll(props);
+            
+            try (OutputStream out = fo.getOutputStream()) {
+                propsProject.store(out, "Caché Project Properties File");
+            }
+        } catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+            writeFile(str, fo);
+        }
     }
 
 }

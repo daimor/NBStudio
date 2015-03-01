@@ -4,8 +4,6 @@
  */
 package org.nbstudio.project;
 
-import com.intersys.cache.CacheObject;
-import com.intersys.cache.SysDatabase;
 import com.intersys.objects.CacheException;
 import com.intersys.objects.CacheQuery;
 import java.beans.PropertyChangeListener;
@@ -21,7 +19,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import org.nbstudio.core.Connection;
 import org.nbstudio.project.customizer.CacheProjectCustomizerProvider;
-import org.nbstudio.utils.Logger;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ProjectState;
@@ -47,7 +44,6 @@ public class CacheProject implements Project {
     public CacheProject(FileObject prj, ProjectState state) throws IOException, CacheException {
         this.prj = prj;
         this.state = state;
-        Logger.Log("CacheProjectInit: " + prj + " - " + state.toString());
 
         Properties propsProject = new Properties();
         FileObject projectFile = prj.getFileObject(CacheProjectFactory.PROJECT_FILE);
@@ -64,13 +60,13 @@ public class CacheProject implements Project {
         String url = "jdbc:Cache://" + addr + ":" + port + "/" + namespace;
         conn = new Connection(prj.getName(), addr, port, namespace, login, pass);
     }
-
+    
     public List<String> getItems() {
         if (this.items != null) {
             return this.items;
         }
         this.items = new ArrayList<>();
-        if (getProjectName().isEmpty()) {
+        if ((getProjectName() == null) || (getProjectName().isEmpty())) {
             return this.items;
         }
         try {

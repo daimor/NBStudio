@@ -25,6 +25,11 @@ public class Logger {
         io.getOut().close();
     }
 
+    public static final void LogAdd(String str) {
+        io.getOut().print(str);
+        io.getOut().close();
+    }
+
     public static final void Log(SList list) {
         for (Iterator<String> it = list.iterator(); it.hasNext();) {
             String str = it.next();

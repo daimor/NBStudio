@@ -20,3 +20,6 @@
 /NBStudioCore/src/org/nbstudio/syntax/xdata/xdataParser.tokens
 /NBStudioCore/src/org/nbstudio/syntax/xdata/xdataParserBaseListener.java
 /NBStudioCore/src/org/nbstudio/syntax/xdata/xdataParserListener.java
+NBStudioCore/nbproject/private
+cachedb/nbproject/private
+nbproject/private

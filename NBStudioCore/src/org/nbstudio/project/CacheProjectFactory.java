@@ -36,7 +36,6 @@ public class CacheProjectFactory implements ProjectFactory {
         if (!isProject(prj)) {
             return null;
         }
-        Logger.Log("loadProject: " + prj);
         FileObject xml = prj.getFileObject(PROJECT_FILE);
         if (xml == null || !xml.isData()) {
             return null;

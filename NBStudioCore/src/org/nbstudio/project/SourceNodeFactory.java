@@ -54,11 +54,10 @@ public class SourceNodeFactory implements NodeFactory {
             super(node,
                     NodeFactorySupport.createCompositeChildren(project, "Projects/org-nbstudio-project-sources/Nodes"),
                     new ProxyLookup(
-                            new Lookup[]{
-                                Lookups.singleton(project),
-                                node.getLookup()
-                            }
-                    ));
+                    new Lookup[]{
+                Lookups.singleton(project),
+                node.getLookup()
+            }));
             setDisplayName("Source");
         }
 
@@ -71,7 +70,6 @@ public class SourceNodeFactory implements NodeFactory {
         public Image getOpenedIcon(int type) {
             return ImageUtilities.loadImage("org/nbstudio/core/folderOpened.gif");
         }
-
     }
 
     private static class ClassesNodeList implements NodeList<ConnectionFolderNode> {
@@ -108,22 +106,18 @@ public class SourceNodeFactory implements NodeFactory {
 
         @Override
         public void addChangeListener(ChangeListener l) {
-
         }
 
         @Override
         public void removeChangeListener(ChangeListener l) {
-
         }
 
         @Override
         public void addNotify() {
-
         }
 
         @Override
         public void removeNotify() {
-
         }
     }
 
@@ -150,7 +144,6 @@ public class SourceNodeFactory implements NodeFactory {
         public Image getOpenedIcon(int type) {
             return ImageUtilities.loadImage("org/nbstudio/core/folderOpened.gif");
         }
-
     }
 
     private static class ClassesNode extends ConnectionFolderNode {
@@ -164,51 +157,11 @@ public class SourceNodeFactory implements NodeFactory {
             Children.Array children = new Children.Array();
             ArrayList<Node> nodes = new ArrayList<>();
             folder = (folder == null) ? (CacheFileObject) project.getConnection().getFileSystem().getRoot() : folder;
-//            project.getItems();
             try {
                 nodes.add(DataObject.find(folder).getNodeDelegate());
-
-//                CacheQuery q = new CacheQuery(getAssocatedConnection(), "%Studio.Project", "ProjectItemsList");
-//                java.sql.ResultSet rs = q.execute(new Object[]{project.getProjectName()});
-//                CacheFileObject pkg = (CacheFileObject) folder.getFileObject("Cinema");
-//                Node node = DataObject.find(pkg).getNodeDelegate();
-//                Logger.Log("pkgNode: " + node);
-//                nodes.add(node);
-//                while (rs.next()) {
-//                    String fileName = rs.getString("Name");
-//                    String fileType = rs.getString("Type");
-//                    if ("CLS".equalsIgnoreCase(fileType)) {
-//                        fileName += ".cls";
-//                    }
-//                    CacheFileObject fo = (CacheFileObject) folder.getFileObject(fileName);
-//                    DataObject dataObject = DataObject.find(fo);
-//                    if (dataObject == null) {
-//                        continue;
-//                    }
-//                    Node node = dataObject.getNodeDelegate();
-//                    Logger.Log(fo + " - " + dataObject + " - " + node);
-//                    if (node == null) {
-//                        continue;
-//                    }
-//                    nodes.add(node);
-//                    if ("CLS".equalsIgnoreCase(fileType)) {
-////                        String pkgName = 
-//                    }
-//                }
             } catch (DataObjectNotFoundException ex) {
                 ex.printStackTrace();
             }
-//            CacheFileObject[] classes = folder.getChildren("*.cls");
-//            for (CacheFileObject fileObject : classes) {
-//                try {
-//                    if (fileObject.isFolder()) {
-//                        nodes.add(new ClassesNode(conn, fileObject));
-//                    } else {
-//                        nodes.add(DataObject.find(fileObject).getNodeDelegate());
-//                    }
-//                } catch (DataObjectNotFoundException ex) {
-//                }
-//            }
             children.add(nodes.toArray(new Node[nodes.size()]));
             setChildren(children);
         }
@@ -241,5 +194,4 @@ public class SourceNodeFactory implements NodeFactory {
             setChildren(children);
         }
     }
-
 }
