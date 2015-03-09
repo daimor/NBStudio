@@ -327,8 +327,8 @@
                 <binary-origin>release/modules/ext/cachedb.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/antlr-4.4-complete.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/antlr-4.4-complete.jar</binary-origin>
+                <runtime-relative-path>ext/antlr-4.5-complete.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/antlr-4.5-complete.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>

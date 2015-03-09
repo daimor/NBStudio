@@ -34,7 +34,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -135,7 +134,6 @@ public class ClassFile extends CacheFile {
             System.out.println("SaveException: " + ex.getLocalizedMessage());
 //            ex.printStackTrace();
         }
-
     }
 
     final class ClassText extends ByteArrayOutputStream {
