@@ -55,8 +55,8 @@ public class CacheProject implements Project {
             throw new IOException("Error in project properties");
         }
         String namespace = propsProject.getProperty("server.namespace");
-        String login = propsProject.getProperty("login");
-        String pass = propsProject.getProperty("pass");
+        String login = propsProject.getProperty("server.login");
+        String pass = propsProject.getProperty("server.pass");
         String url = "jdbc:Cache://" + addr + ":" + port + "/" + namespace;
         conn = new Connection(prj.getName(), addr, port, namespace, login, pass);
     }

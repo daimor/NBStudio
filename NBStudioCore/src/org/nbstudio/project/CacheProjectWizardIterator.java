@@ -28,10 +28,7 @@ import java.util.Set;
 import java.util.zip.ZipInputStream;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
 import org.netbeans.api.templates.TemplateRegistration;
-import org.netbeans.spi.project.ui.support.NodeList;
 import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
@@ -39,8 +36,6 @@ import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle.Messages;
-import org.openide.xml.XMLUtil;
-import org.xml.sax.InputSource;
 
 @TemplateRegistration(
         folder = "Project/MUMPS",
