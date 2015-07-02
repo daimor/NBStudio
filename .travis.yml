@@ -1,10 +1,9 @@
 language: java
 jdk:
-  - oraclejdk7
-  - oraclejdk8
-
-install: ant deps
-
+- oraclejdk7
+- oraclejdk8
+install: 
+  ant build
 branches:
   only:
   - master

@@ -21,7 +21,7 @@
     <target name="build-init" depends="-getAntContrib,harness.build-init">
         <property name="versionProperties" value="${src.dir}/org/nbstudio/version.properties"/>
         <propertyfile file="${versionProperties}"> 
-            <entry key="BUILD" value="1" type="int" operation="+"/> 
+            <entry pattern="0000" key="BUILD" value="1" type="int" operation="+"/> 
         </propertyfile>
         <property file="${versionProperties}"/>
         <propertyfile file="${versionProperties}"> 
